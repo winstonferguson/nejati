@@ -1,0 +1,15 @@
+
+@use "../utilities" as *;
+
+.section {
+  &__centered {
+    @extend %flex-column--center;
+
+    padding: 2rem 10px;
+    text-align: center;
+
+    > * {
+      max-width: 500px;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+@use "../utilities" as *;
+
+.footer {
+  background-color: $color-black;
+
+  &__inner {
+    @extend %flex-column-to-row;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: $page-max-width;
+    padding: 3rem 10px;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      align-items: center;
+      padding: 3rem;
+    }     
+  }
+}

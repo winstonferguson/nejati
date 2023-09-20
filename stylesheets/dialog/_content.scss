@@ -1,0 +1,26 @@
+@use "../utilities" as *;
+
+.dialog {
+  &__content {
+    @extend %flex-column;
+
+    margin: 0 auto;
+    max-width: 400px;
+    
+    &-title {
+      font-weight: 600;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      text-align: center;
+      border-bottom: 1px solid #bababa;
+      margin: 0 auto 1rem auto;
+      max-width: 400px;
+      padding-bottom: 0.25rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}

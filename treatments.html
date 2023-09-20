@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="builds/global.css">
+  </head>
+  <body class="treatments">
+    <header class="header">
+      <div class="header__inner">
+        <div class="header__branding">
+          <img src="images/logo.svg" alt="Nejati Clinic logo">
+        </div>
+        <header-nav></header-nav>
+        <nav class="header__nav">
+          <ul>
+            <li><a class="nav__link" href="index.html">Home</a></li>
+            <li><a class="nav__link" href="treatments.html">Treatments</a></li>
+            <li><button class="nav__link" data-a11y-dialog-show="contact-dialog">Contact</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div
+      id="contact-dialog"
+      class="dialog"
+      aria-labelledby="nejati-contact-dialog"
+      aria-hidden="true"
+      >
+      <!-- 2. The dialog overlay -->
+      <div class="dialog__aside" data-a11y-dialog-hide></div>
+      <!-- 3. The actual dialog -->
+      <div class="dialog__inner color-accent-1" data-collection-id="contact" role="document">
+        <!-- 4. The close button -->
+        <button class="button--square" type="button" data-a11y-dialog-hide aria-label="Close dialog">
+          &times;
+        </button>
+        <!-- 5. The dialog title -->
+        <h2 class="dialog__content-title">Contact</h2>
+        <div class="dialog__content">
+          <div>
+            <h3>Phone</h3>
+            <p data-item="phone"></p>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p href="" data-item="email"></p>
+          </div>
+          <div>
+            <h3>Address</h3>
+            <p data-item="address"></p>
+          </div>        
+          <div data-item="map"></div>
+        </div>
+        <!-- 6. Dialog content -->
+      </div>
+</div>
+    <script src="builds/app.js" async defer></script>
+  </body>
+</html>

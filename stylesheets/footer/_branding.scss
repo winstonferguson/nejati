@@ -1,0 +1,12 @@
+@use "../utilities" as *;
+
+.footer {
+  &__branding {
+    text-align: center;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      text-align: right;
+    }    
+  }
+}

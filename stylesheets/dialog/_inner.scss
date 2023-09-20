@@ -1,0 +1,13 @@
+
+.dialog {
+  &__inner {
+    animation: fade-in 400ms 100ms both, slide-in 400ms 100ms both;
+    min-height: 100%;
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 90%;
+    max-width: 500px;
+  }
+}

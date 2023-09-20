@@ -1,0 +1,94 @@
+@use "../variables" as *;
+
+%flex {
+  &-column {
+    display: flex;
+    flex-direction: column;
+    gap: $default-gap;
+
+    &--center {
+      @extend %flex-column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--end {
+      @extend %flex-column;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    &--start {
+      @extend %flex-column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    &--start-center {
+      @extend %flex-column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+
+  &-row {
+    align-items: center;
+    display: flex;
+    gap: $default-gap;
+
+    &--center {
+      @extend %flex-row;
+      justify-content: center;
+    }
+
+    &--end {
+      @extend %flex-row;
+      justify-content: flex-end;
+    }
+
+    &--reverse {
+      @extend %flex-row;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+
+    &--space-between {
+      @extend %flex-row;
+      justify-content: space-between;
+    }
+
+    &--start {
+      @extend %flex-row;
+      justify-content: start;
+    }
+  }
+}
+
+%flex-column-to-row {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  @media (min-width: $breakpoint-medium) {
+    flex-direction: row;
+  }
+
+  &--center {
+    @extend %flex-column-to-row;
+
+    @media (min-width: $breakpoint-medium) {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &--end {
+    @extend %flex-column-to-row;
+
+    @media (min-width: $breakpoint-medium) {
+      align-items: center;
+      justify-content: end;
+    }
+  }
+}

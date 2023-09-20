@@ -1,0 +1,12 @@
+.dialog {
+  &__aside {
+    animation: fade-in 200ms both;
+    background-color: rgba(0,0,0, 0.4);
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+  }
+}

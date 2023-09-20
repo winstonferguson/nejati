@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@wix/api-client": "^1.3.0",
+    "@wix/data": "^1.0.47",
+    "@wix/media": "^1.0.32",
+    "a11y-dialog": "^8.0.1",
+    "dart-sass": "^1.25.0",
+    "esbuild": "^0.19.2"
+  },
+  "scripts": {
+    "build": "esbuild javascript/app.js --bundle --outfile=builds/app.js --watch",
+    "build:css": "dart-sass stylesheets/global.scss:./builds/global.css --watch"
+  }
+}

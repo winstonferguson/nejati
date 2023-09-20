@@ -1,0 +1,66 @@
+@use "../utilities" as *;
+
+html {
+  @extend %text-base;
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  // @extend %pointer;
+  color: $color-black;
+  text-decoration: none;
+
+  &:visited {
+    color: $color-black;
+  }
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+body {
+  line-height: 1.5;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+p {
+  // max-width: $text-width-max;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
