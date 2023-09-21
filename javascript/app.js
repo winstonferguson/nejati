@@ -10,3 +10,5 @@ const populateWixData = async () => {
   await wix.fetchDataItems();
   wix.updateCollections();
 }
+
+populateWixData();
