@@ -1,0 +1,7 @@
+@use "../utilities" as *;
+
+.header {
+  &__branding {
+    max-width: 150px;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../utilities" as *;
+
+.nav {
+  &__link {
+    @extend %flex-row;
+    @extend %pointer;
+
+    background: none;
+    color: inherit;
+    border: none;
+    font-weight: 400;
+    gap: 6px;
+    text-transform: uppercase;
+    outline: inherit;
+    padding: 0.5rem 0.25rem;
+
+    img {
+      width: 1rem;
+    }
+  }
+}

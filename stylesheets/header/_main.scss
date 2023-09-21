@@ -1,0 +1,20 @@
+@use "../utilities" as *;
+
+.header {
+  background-color: $color-accent-2;
+  height: 140px;
+  padding: 10px 0 0 0;
+  position: relative;
+  width: 100%;
+
+  .index & {
+    background-color: rgba($color-accent-2, 0.6);
+    z-index: 9;
+  }
+
+  &__inner {
+    @extend %flex-column--center;
+
+    gap: 0.5rem;
+  }
+}

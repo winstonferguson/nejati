@@ -1,0 +1,9 @@
+@use "../utilities" as *;
+
+.header {
+  &__nav {
+    .nav {
+      @extend %flex-row--center;
+    }
+  }
+}
