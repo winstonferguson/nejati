@@ -1,4 +1,5 @@
 import './dialog.js';
+import './landing_video.js';
 import WixData from './wix_data.js';
 
 const populateWixData = async() => {

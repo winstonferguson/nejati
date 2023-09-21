@@ -6933,6 +6933,17 @@
   var container = document.querySelector("#contact-dialog");
   var dialog = new A11yDialog(container);
 
+  // javascript/landing_video.js
+  var landingVideo = document.querySelector("#landingVideo");
+  if (landingVideo) {
+    landingVideo.addEventListener("ended", function() {
+      console.log("ended");
+      setTimeout(function() {
+        landingVideo.play();
+      }, 3e3);
+    }, false);
+  }
+
   // node_modules/@wix/image-kit/dist/esm/helpers/imageServiceConstants.js
   var fittingTypes = {
     SCALE_TO_FILL: "fill",
