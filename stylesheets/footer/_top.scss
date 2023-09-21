@@ -1,0 +1,12 @@
+@use "../utilities" as *;
+
+.footer {
+  &__top {
+    @extend %flex-column-to-row;
+    justify-content: space-between;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      align-items: center;
+    } 
+  }
+}

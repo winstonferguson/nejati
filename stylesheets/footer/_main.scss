@@ -2,17 +2,19 @@
 
 .footer {
   background-color: $color-black;
+  color: #fff;
+  padding: 3rem 10px;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    padding: 3rem;
+  } 
+
+  a {
+    color: #fff;
+  }
 
   &__inner {
-    @extend %flex-column-to-row;
-    justify-content: space-between;
     margin: 0 auto;
     max-width: $page-max-width;
-    padding: 3rem 10px;
-
-    @media screen and (min-width: $breakpoint-medium) {
-      align-items: center;
-      padding: 3rem;
-    }     
   }
 }
