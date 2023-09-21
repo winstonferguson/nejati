@@ -278,7 +278,7 @@
   };
 
   // javascript/utilities.js
-  var isIndex = window.location.pathname.includes("index") || false;
+  var isIndex = document.querySelector(".index") || false;
 
   // javascript/app.js
   if (isIndex)

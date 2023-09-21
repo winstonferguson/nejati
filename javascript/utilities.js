@@ -1,4 +1,4 @@
-const isIndex = window.location.pathname.includes('index') || false;
+const isIndex = document.querySelector(".index") || false;
 
 export {
   isIndex
