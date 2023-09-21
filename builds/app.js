@@ -266,7 +266,7 @@
 
   // javascript/landing_video.js
   var landing_video_default = delayedLoopLandingVideo = (delay) => {
-    const delayTime = delay || 5e3;
+    const delayTime = delay || 3e3;
     const landingVideo = document.querySelector("#landingVideo");
     if (!landingVideo)
       return;
