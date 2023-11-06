@@ -1,0 +1,7 @@
+@use "../utilities" as *;
+
+.block {
+  &--left {
+    @extend %flex-column--start;
+  }
+}

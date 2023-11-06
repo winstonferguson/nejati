@@ -25,6 +25,7 @@ export default class WixData {
       const id = el.dataset.collectionId;
       const response = await this.wixClient.items.queryDataItems({ dataCollectionId: id }).ascending('orderId').find();
       // todo: response error handling
+      console.log(response);
 
       this.dataItems[id] = response.items[0].data;
     }
