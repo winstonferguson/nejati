@@ -43,9 +43,10 @@ export default class WixData {
     console.log(collectionData);
 
     for (const item of collectionData) {
-      console.log(item._id);
-      const itemEl = el.querySelector(`[data-item-id="${item._id}"]`) || el;
-      console.log(itemEl);
+      const id = item._id;
+
+      const itemEl = id === "SINGLE_ITEM_ID" ? el : el.querySelector(`[data-item-id="${id}"]`);
+
       if (!itemEl) continue;
 
       this.updateItem(itemEl, item.data);
@@ -54,7 +55,6 @@ export default class WixData {
 
   updateItem(el, data) {
     for (const [key, value] of Object.entries(data)) {
-      console.log(key, value);
       if (key.startsWith("_")) continue;
 
       const itemEl = el.querySelector(`[data-item-key="${key}"]`);

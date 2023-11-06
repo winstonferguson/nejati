@@ -74,7 +74,7 @@ html {
 }
 
 .color-accent-2 {
-  background-color: #f0ecdd;
+  background-color: #efe9dc;
 }
 
 .button--square {
@@ -101,7 +101,7 @@ html {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #f0ecdd;
+  background: #efe9dc;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
@@ -254,14 +254,14 @@ video {
 }
 
 .header {
-  background-color: #f0ecdd;
+  background-color: #efe9dc;
   height: 140px;
   padding: 10px 0 0 0;
   position: relative;
   width: 100%;
 }
 .index .header {
-  background-color: rgba(240, 236, 221, 0.6);
+  background-color: rgba(239, 233, 220, 0.6);
   z-index: 9;
 }
 .header__inner {
