@@ -61,6 +61,7 @@ html {
   font-size: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .subtitle {
@@ -71,6 +72,7 @@ html {
 
 .content__copy {
   max-width: 550px;
+  margin: 0 auto;
 }
 
 .color-accent-1 {
@@ -312,6 +314,28 @@ video {
 }
 .section__centered > * {
   max-width: 500px;
+}
+
+.section__two-column {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  position: relative;
+  gap: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.image__feature {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.image__feature--model {
+  position: sticky;
+  top: 140px;
+  left: 0;
+  padding: 0 4rem;
 }
 
 .footer {
