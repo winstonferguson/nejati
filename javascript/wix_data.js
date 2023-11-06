@@ -25,8 +25,6 @@ export default class WixData {
       const id = el.dataset.collectionId;
       const response = await this.wixClient.items.queryDataItems({ dataCollectionId: id }).ascending('orderId').find();
       // todo: response error handling
-      console.log(response);
-
       this.dataItems[id] = response.items[0].data;
     }
   }
@@ -42,6 +40,10 @@ export default class WixData {
     const collectionData = this.dataItems[el.dataset.collectionId];
 
     for (const [key, value] of Object.entries(collectionData)) {
+      if(key === "_id" && value !== "SINGLE_ITEM_ID") {
+        console.log("SINGLE_ITEM_ID is not set correctly in the data collection", key, value);
+      }
+
       if (key.startsWith("_")) continue;
 
       const itemEl = el.querySelector(`[data-item="${key}"]`);
