@@ -69,6 +69,10 @@ html {
   text-transform: uppercase;
 }
 
+.content__copy {
+  max-width: 550px;
+}
+
 .color-accent-1 {
   background-color: #fffefa;
 }
