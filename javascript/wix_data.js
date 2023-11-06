@@ -24,9 +24,9 @@ export default class WixData {
     for (const el of this.collectionElements) {
       const id = el.dataset.collectionId;
       const response = await this.wixClient.items.queryDataItems({ dataCollectionId: id }).ascending('orderId').find();
-      console.log(response);
       // todo: response error handling
-      this.dataItems[id] = response.items[0].data;
+
+      this.dataItems[id] = response.items;
     }
   }
 
@@ -40,14 +40,24 @@ export default class WixData {
   updateItems(el) {
     const collectionData = this.dataItems[el.dataset.collectionId];
 
-    for (const [key, value] of Object.entries(collectionData)) {
-      if(key === "_id" && value !== "SINGLE_ITEM_ID") {
-        console.log("SINGLE_ITEM_ID", key, value);
-      }
+    console.log(collectionData);
 
+    for (const item of collectionData) {
+      console.log(item._id);
+      const itemEl = el.querySelector(`[data-item-id="${item._id}"]`) || el;
+      console.log(itemEl);
+      if (!itemEl) continue;
+
+      this.updateItem(itemEl, item.data);
+    }
+  }
+
+  updateItem(el, data) {
+    for (const [key, value] of Object.entries(data)) {
+      console.log(key, value);
       if (key.startsWith("_")) continue;
 
-      const itemEl = el.querySelector(`[data-item="${key}"]`);
+      const itemEl = el.querySelector(`[data-item-key="${key}"]`);
 
       if (!itemEl) continue;
 
