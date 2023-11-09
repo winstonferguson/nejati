@@ -22929,12 +22929,6 @@
   };
   if (isIndex)
     delayedLoopLandingVideo();
-  var populateWixData = async () => {
-    const wix = new WixData();
-    await wix.fetchDataItems();
-    wix.updateCollections();
-    stickyModels();
-  };
   var stickyModels = () => {
     models = document.querySelectorAll(".image__feature--model");
     models.forEach((model) => {
@@ -22943,6 +22937,12 @@
       if (isSticky)
         model.style.top = `${window.innerHeight - model.clientHeight}px`;
     });
+  };
+  var populateWixData = async () => {
+    const wix = new WixData();
+    await wix.fetchDataItems();
+    wix.updateCollections();
+    stickyModels();
   };
   var indexBody = () => {
     const isHomepage = document.querySelector("body.index");

@@ -55,14 +55,6 @@ import { isIndex } from './utilities.js';
 
 if (isIndex) delayedLoopLandingVideo();
 
-const populateWixData = async () => {
-  const wix = new WixData();
-  await wix.fetchDataItems();
-  wix.updateCollections();
-
-  stickyModels();
-}
-
 const stickyModels = () => {
   models = document.querySelectorAll('.image__feature--model');
 
@@ -73,6 +65,16 @@ const stickyModels = () => {
     if (isSticky) model.style.top = `${window.innerHeight - model.clientHeight}px`;
   });
 }
+
+const populateWixData = async () => {
+  const wix = new WixData();
+  await wix.fetchDataItems();
+  wix.updateCollections();
+
+  stickyModels();
+}
+
+
 
 const indexBody = () => {
   const isHomepage = document.querySelector('body.index');
