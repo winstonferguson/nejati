@@ -5,6 +5,10 @@ import Glide, { Autoplay, Breakpoints, Controls, Keyboard, Swipe } from '@glidej
 
 
 window.onload = () => {
+  const hasGlide = document.querySelector(".glide") || false;
+
+  if (!hasGlide) return;
+  
   const indexOptions = {
     type: 'carousel',
     focusAt: 'center',

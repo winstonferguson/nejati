@@ -22887,6 +22887,9 @@
 
   // javascript/app.js
   window.onload = () => {
+    const hasGlide = document.querySelector(".glide") || false;
+    if (!hasGlide)
+      return;
     const indexOptions = {
       type: "carousel",
       focusAt: "center",
