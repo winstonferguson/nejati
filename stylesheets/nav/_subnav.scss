@@ -5,9 +5,10 @@
     &-content {
       display: none;
       left: 0;
-      margin-top: -1px;
+      margin-top: 0;
       position: absolute;
       z-index: 1;
+      line-height: 2;
     }
 
     &:hover {
@@ -19,12 +20,11 @@
         @extend %flex-column--center;
 
         animation:
-          fade-in 400ms,
-          slide-up 200ms;
-        border-top: 1px solid #111;
+          fade-in 1000ms,
+          slide-up 500ms;
         font-size: 0.75rem;
         gap: 0.1rem;
-        padding: 0.5rem 10px;
+        padding: 1rem;
         text-align: center;
         width: 100%;
 

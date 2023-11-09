@@ -3,27 +3,41 @@
 .section {
   &__two-column {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 100%;
     position: relative;
-    gap: 2rem;
-    max-width: 1800px;
-    margin: 0 auto;
 
-
-
+    @media (min-width: 960px) {
+      grid-template-columns: 1fr 50%;
+      gap: 2rem;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
   }
 }
 
 .image__feature {
-  position: sticky;
-  top: 0;
-  left: 0;
+  grid-row: 1;
+  height: 60vh;
+  object-fit: cover;
+
+  @media (min-width: 960px) {
+    grid-column: 2;
+    height: auto;
+    left: 0;
+    position: sticky;
+    top: 0;
+  }
 }
 
 .image__feature--model {
-  position: sticky;
-  top: 140px;
-  left: 0;
-  padding: 0 4rem;
-
+  grid-row: 2;
+  padding: 0 10%;
+  
+  @media (min-width: 960px) {
+    grid-row: 1;
+    left: 0;
+    padding: 4rem 15% 0 15%;
+    position: sticky;
+    top: 0;
+  }
 }

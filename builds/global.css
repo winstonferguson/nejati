@@ -57,6 +57,10 @@ html {
   font-weight: 400;
 }
 
+.padded {
+  padding: 2rem 0;
+}
+
 .title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -70,9 +74,54 @@ html {
   text-transform: uppercase;
 }
 
+h3.subtitle {
+  font-size: 0.75rem;
+}
+
 .content__copy {
   max-width: 550px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.glide__arrows {
+  display: flex;
+  gap: 1rem;
+  margin: 0 auto 1rem auto;
+  max-width: 1800px;
+  padding-left: 20px;
+}
+@media (min-width: 960px) {
+  .glide__arrows {
+    padding-left: calc((50% - (16px + 550px))/2);
+  }
+}
+@media (min-width: 1800px) {
+  .glide__arrows {
+    padding-left: 170px;
+  }
+}
+.glide__arrows button {
+  border: 1px solid #111;
+  height: 30px;
+  padding: 0 0.5rem;
+  width: 30px;
+}
+.glide__arrows .glide__arrow--left {
+  transform: rotate(90deg);
+}
+.glide__arrows .glide__arrow--right {
+  transform: rotate(-90deg);
+}
+
+.glide__slide {
+  display: flex;
+  justify-content: center;
+}
+
+.content__carousel {
+  margin-top: -2rem;
+  padding-bottom: 4rem;
 }
 
 .color-accent-1 {
@@ -81,6 +130,16 @@ html {
 
 .color-accent-2 {
   background-color: #efe9dc;
+}
+
+.color-invert {
+  background-color: #111111;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}
+.color-invert a {
+  color: #fff !important;
 }
 
 .button--square {
@@ -109,6 +168,10 @@ html {
   border-radius: 50%;
   background: #efe9dc;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis--black div {
+  background: #111111;
 }
 
 .lds-ellipsis div:nth-child(1) {
@@ -239,19 +302,19 @@ video {
 .nav__subnav-content {
   display: none;
   left: 0;
-  margin-top: -1px;
+  margin-top: 0;
   position: absolute;
   z-index: 1;
+  line-height: 2;
 }
 .nav__subnav:hover .nav__subnav-caret {
   transform: rotate(180deg);
 }
 .nav__subnav:hover .nav__subnav-content {
-  animation: fade-in 400ms, slide-up 200ms;
-  border-top: 1px solid #111;
+  animation: fade-in 1000ms, slide-up 500ms;
   font-size: 0.75rem;
   gap: 0.1rem;
-  padding: 0.5rem 10px;
+  padding: 1rem;
   text-align: center;
   width: 100%;
 }
@@ -261,8 +324,7 @@ video {
 
 .header {
   background-color: #efe9dc;
-  height: 140px;
-  padding: 10px 0 0 0;
+  padding: 2rem 0 1.5rem 0;
   position: relative;
   width: 100%;
 }
@@ -302,11 +364,14 @@ video {
   }
 }
 .index .hero__media {
-  margin-top: -140px;
+  margin-top: -180.5px;
 }
 
 .section {
-  padding: 2rem 10px 3rem 10px;
+  padding: 2rem 20px 2rem 20px;
+}
+.section--extra-padding {
+  padding: 4rem 20px 4rem 20px;
 }
 
 .section__centered {
@@ -318,24 +383,53 @@ video {
 
 .section__two-column {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   position: relative;
-  gap: 2rem;
-  max-width: 1800px;
-  margin: 0 auto;
+}
+@media (min-width: 960px) {
+  .section__two-column {
+    grid-template-columns: 1fr 50%;
+    gap: 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+  }
 }
 
 .image__feature {
-  position: sticky;
-  top: 0;
-  left: 0;
+  grid-row: 1;
+  height: 60vh;
+  object-fit: cover;
+}
+@media (min-width: 960px) {
+  .image__feature {
+    grid-column: 2;
+    height: auto;
+    left: 0;
+    position: sticky;
+    top: 0;
+  }
 }
 
 .image__feature--model {
-  position: sticky;
-  top: 140px;
-  left: 0;
-  padding: 0 4rem;
+  grid-row: 2;
+  padding: 0 10%;
+}
+@media (min-width: 960px) {
+  .image__feature--model {
+    grid-row: 1;
+    left: 0;
+    padding: 4rem 15% 0 15%;
+    position: sticky;
+    top: 0;
+  }
+}
+
+.section__press {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  padding: 4rem 0;
 }
 
 .footer {
@@ -363,7 +457,7 @@ video {
 @media screen and (min-width: 768px) {
   .footer__bottom {
     border-top: 1px solid #fff;
-    margin: 3rem 0 0 0;
+    margin: 3rem auto 0 auto;
     padding: 3rem 0 0 0;
   }
 }
@@ -421,8 +515,8 @@ video {
 }
 
 .dialog__aside {
-  animation: fade-in 200ms both;
-  background-color: rgba(0, 0, 0, 0.4);
+  animation: fade-in 1000ms both;
+  background-color: rgba(0, 0, 0, 0.8);
   left: 0;
   min-height: 100%;
   min-width: 100%;
@@ -448,6 +542,10 @@ video {
 .dialog__content h3 {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.block--left {
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=global.css.map */

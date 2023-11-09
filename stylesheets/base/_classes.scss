@@ -1,5 +1,9 @@
 @use "../utilities" as *;
 
+.padded {
+  padding: 2rem 0;
+}
+
 .title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -13,10 +17,56 @@
   text-transform: uppercase;
 }
 
+h3.subtitle {
+  font-size: 0.75rem;
+}
+
 .content__copy {
   max-width: 550px;
   margin: 0 auto;
+  width: 100%;
+}
 
+.glide__arrows {
+  display: flex;
+  gap: 1rem;
+  margin: 0 auto 1rem auto;
+  max-width: 1800px;
+  padding-left: 20px;
+  
+
+  @media (min-width: 960px) {
+    padding-left: calc((50% - (16px + 550px))/2);
+  }
+
+  @media (min-width: 1800px) {
+    padding-left: 170px;
+  }
+
+  button {
+    border: 1px solid #111;
+    height: 30px;
+    padding: 0 0.5rem;
+    width: 30px;
+  }
+
+  .glide__arrow--left {
+    transform: rotate(90deg);
+  }
+
+  .glide__arrow--right{
+    transform: rotate(-90deg);
+  }
+}
+.glide__slide {
+  display: flex;
+  justify-content: center;
+
+}
+
+.content__carousel {
+  margin-top: -2rem;
+  padding-bottom: 4rem;
 }
 
 .color-accent-1 {
@@ -25,6 +75,17 @@
 
 .color-accent-2 {
   background-color: $color-accent-2;
+}
+
+.color-invert {
+  background-color: $color-black;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+
+  a {
+    color: #fff !important;
+  }
 }
 
 .button--square {
@@ -52,6 +113,10 @@
   border-radius: 50%;
   background: $color-accent-2;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis--black div {
+  background: $color-black;
 }
 .lds-ellipsis div:nth-child(1) {
   left: 8px;

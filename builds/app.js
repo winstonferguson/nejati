@@ -858,7 +858,7 @@
           var dataViewCtorString = toSource(DataView2), mapCtorString = toSource(Map2), promiseCtorString = toSource(Promise2), setCtorString = toSource(Set), weakMapCtorString = toSource(WeakMap);
           var symbolProto = Symbol2 ? Symbol2.prototype : undefined2, symbolValueOf = symbolProto ? symbolProto.valueOf : undefined2, symbolToString = symbolProto ? symbolProto.toString : undefined2;
           function lodash(value) {
-            if (isObjectLike(value) && !isArray5(value) && !(value instanceof LazyWrapper)) {
+            if (isObjectLike(value) && !isArray6(value) && !(value instanceof LazyWrapper)) {
               if (value instanceof LodashWrapper) {
                 return value;
               }
@@ -872,7 +872,7 @@
             function object() {
             }
             return function(proto) {
-              if (!isObject3(proto)) {
+              if (!isObject4(proto)) {
                 return {};
               }
               if (objectCreate) {
@@ -973,7 +973,7 @@
             return result2;
           }
           function lazyValue() {
-            var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray5(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start4 = view.start, end = view.end, length = end - start4, index = isRight ? end : start4 - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
+            var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray6(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start4 = view.start, end = view.end, length = end - start4, index = isRight ? end : start4 - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
             if (!isArr || !isRight && arrLength == length && takeCount == length) {
               return baseWrapperValue(array, this.__actions__);
             }
@@ -1182,7 +1182,7 @@
           Stack.prototype.has = stackHas;
           Stack.prototype.set = stackSet;
           function arrayLikeKeys(value, inherited) {
-            var isArr = isArray5(value), isArg = !isArr && isArguments(value), isBuff = !isArr && !isArg && isBuffer(value), isType = !isArr && !isArg && !isBuff && isTypedArray(value), skipIndexes = isArr || isArg || isBuff || isType, result2 = skipIndexes ? baseTimes(value.length, String2) : [], length = result2.length;
+            var isArr = isArray6(value), isArg = !isArr && isArguments(value), isBuff = !isArr && !isArg && isBuffer(value), isType = !isArr && !isArg && !isBuff && isTypedArray(value), skipIndexes = isArr || isArg || isBuff || isType, result2 = skipIndexes ? baseTimes(value.length, String2) : [], length = result2.length;
             for (var key in value) {
               if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && // Safari 9 has enumerable `arguments.length` in strict mode.
               (key == "length" || // Node.js 0.10 has enumerable non-index properties on buffers.
@@ -1274,10 +1274,10 @@
             if (result2 !== undefined2) {
               return result2;
             }
-            if (!isObject3(value)) {
+            if (!isObject4(value)) {
               return value;
             }
-            var isArr = isArray5(value);
+            var isArr = isArray6(value);
             if (isArr) {
               result2 = initCloneArray(value);
               if (!isDeep) {
@@ -1461,7 +1461,7 @@
           }
           function baseFunctions(object, props) {
             return arrayFilter(props, function(key) {
-              return isFunction2(object[key]);
+              return isFunction3(object[key]);
             });
           }
           function baseGet(object, path) {
@@ -1474,7 +1474,7 @@
           }
           function baseGetAllKeys(object, keysFunc, symbolsFunc) {
             var result2 = keysFunc(object);
-            return isArray5(object) ? result2 : arrayPush(result2, symbolsFunc(object));
+            return isArray6(object) ? result2 : arrayPush(result2, symbolsFunc(object));
           }
           function baseGetTag(value) {
             if (value == null) {
@@ -1557,7 +1557,7 @@
             return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
           }
           function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
-            var objIsArr = isArray5(object), othIsArr = isArray5(other), objTag = objIsArr ? arrayTag : getTag(object), othTag = othIsArr ? arrayTag : getTag(other);
+            var objIsArr = isArray6(object), othIsArr = isArray6(other), objTag = objIsArr ? arrayTag : getTag(object), othTag = othIsArr ? arrayTag : getTag(other);
             objTag = objTag == argsTag ? objectTag : objTag;
             othTag = othTag == argsTag ? objectTag : othTag;
             var objIsObj = objTag == objectTag, othIsObj = othTag == objectTag, isSameTag = objTag == othTag;
@@ -1621,10 +1621,10 @@
             return true;
           }
           function baseIsNative(value) {
-            if (!isObject3(value) || isMasked(value)) {
+            if (!isObject4(value) || isMasked(value)) {
               return false;
             }
-            var pattern = isFunction2(value) ? reIsNative : reIsHostCtor;
+            var pattern = isFunction3(value) ? reIsNative : reIsHostCtor;
             return pattern.test(toSource(value));
           }
           function baseIsRegExp(value) {
@@ -1644,7 +1644,7 @@
               return identity;
             }
             if (typeof value == "object") {
-              return isArray5(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+              return isArray6(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
             }
             return property(value);
           }
@@ -1661,7 +1661,7 @@
             return result2;
           }
           function baseKeysIn(object) {
-            if (!isObject3(object)) {
+            if (!isObject4(object)) {
               return nativeKeysIn(object);
             }
             var isProto = isPrototype(object), result2 = [];
@@ -1706,7 +1706,7 @@
             }
             baseFor(source, function(srcValue, key) {
               stack || (stack = new Stack());
-              if (isObject3(srcValue)) {
+              if (isObject4(srcValue)) {
                 baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
               } else {
                 var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source, stack) : undefined2;
@@ -1726,10 +1726,10 @@
             var newValue = customizer ? customizer(objValue, srcValue, key + "", object, source, stack) : undefined2;
             var isCommon = newValue === undefined2;
             if (isCommon) {
-              var isArr = isArray5(srcValue), isBuff = !isArr && isBuffer(srcValue), isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+              var isArr = isArray6(srcValue), isBuff = !isArr && isBuffer(srcValue), isTyped = !isArr && !isBuff && isTypedArray(srcValue);
               newValue = srcValue;
               if (isArr || isBuff || isTyped) {
-                if (isArray5(objValue)) {
+                if (isArray6(objValue)) {
                   newValue = objValue;
                 } else if (isArrayLikeObject(objValue)) {
                   newValue = copyArray(objValue);
@@ -1746,7 +1746,7 @@
                 newValue = objValue;
                 if (isArguments(objValue)) {
                   newValue = toPlainObject(objValue);
-                } else if (!isObject3(objValue) || isFunction2(objValue)) {
+                } else if (!isObject4(objValue) || isFunction3(objValue)) {
                   newValue = initCloneObject(srcValue);
                 }
               } else {
@@ -1771,7 +1771,7 @@
           function baseOrderBy(collection, iteratees, orders) {
             if (iteratees.length) {
               iteratees = arrayMap(iteratees, function(iteratee2) {
-                if (isArray5(iteratee2)) {
+                if (isArray6(iteratee2)) {
                   return function(value) {
                     return baseGet(value, iteratee2.length === 1 ? iteratee2[0] : iteratee2);
                   };
@@ -1885,7 +1885,7 @@
             return shuffleSelf(array, baseClamp(n, 0, array.length));
           }
           function baseSet(object, path, value, customizer) {
-            if (!isObject3(object)) {
+            if (!isObject4(object)) {
               return object;
             }
             path = castPath(path, object);
@@ -1899,7 +1899,7 @@
                 var objValue = nested[key];
                 newValue = customizer ? customizer(objValue, key, nested) : undefined2;
                 if (newValue === undefined2) {
-                  newValue = isObject3(objValue) ? objValue : isIndex2(path[index + 1]) ? [] : {};
+                  newValue = isObject4(objValue) ? objValue : isIndex2(path[index + 1]) ? [] : {};
                 }
               }
               assignValue(nested, key, newValue);
@@ -2016,7 +2016,7 @@
             if (typeof value == "string") {
               return value;
             }
-            if (isArray5(value)) {
+            if (isArray6(value)) {
               return arrayMap(value, baseToString) + "";
             }
             if (isSymbol(value)) {
@@ -2119,7 +2119,7 @@
             return typeof value == "function" ? value : identity;
           }
           function castPath(value, object) {
-            if (isArray5(value)) {
+            if (isArray6(value)) {
               return value;
             }
             return isKey(value, object) ? [value] : stringToPath(toString2(value));
@@ -2254,7 +2254,7 @@
           }
           function createAggregator(setter, initializer) {
             return function(collection, iteratee2) {
-              var func = isArray5(collection) ? arrayAggregator : baseAggregator, accumulator = initializer ? initializer() : {};
+              var func = isArray6(collection) ? arrayAggregator : baseAggregator, accumulator = initializer ? initializer() : {};
               return func(collection, setter, getIteratee(iteratee2, 2), accumulator);
             };
           }
@@ -2349,7 +2349,7 @@
                   return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
               }
               var thisBinding = baseCreate(Ctor.prototype), result2 = Ctor.apply(thisBinding, args);
-              return isObject3(result2) ? result2 : thisBinding;
+              return isObject4(result2) ? result2 : thisBinding;
             };
           }
           function createCurry(func, bitmask, arity) {
@@ -2421,7 +2421,7 @@
               }
               return function() {
                 var args = arguments, value = args[0];
-                if (wrapper && args.length == 1 && isArray5(value)) {
+                if (wrapper && args.length == 1 && isArray6(value)) {
                   return wrapper.plant(value).value();
                 }
                 var index2 = 0, result2 = length ? funcs[index2].apply(this, args) : value;
@@ -2685,7 +2685,7 @@
             return objValue;
           }
           function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
-            if (isObject3(objValue) && isObject3(srcValue)) {
+            if (isObject4(objValue) && isObject4(srcValue)) {
               stack.set(srcValue, objValue);
               baseMerge(objValue, srcValue, undefined2, customDefaultsMerge, stack);
               stack["delete"](srcValue);
@@ -2968,7 +2968,7 @@
               return result2;
             }
             length = object == null ? 0 : object.length;
-            return !!length && isLength(length) && isIndex2(key, length) && (isArray5(object) || isArguments(object));
+            return !!length && isLength(length) && isIndex2(key, length) && (isArray6(object) || isArguments(object));
           }
           function initCloneArray(array) {
             var length = array.length, result2 = new array.constructor(length);
@@ -3025,7 +3025,7 @@
             return source.replace(reWrapComment, "{\n/* [wrapped with " + details + "] */\n");
           }
           function isFlattenable(value) {
-            return isArray5(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
+            return isArray6(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
           }
           function isIndex2(value, length) {
             var type2 = typeof value;
@@ -3033,7 +3033,7 @@
             return !!length && (type2 == "number" || type2 != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
           }
           function isIterateeCall(value, index, object) {
-            if (!isObject3(object)) {
+            if (!isObject4(object)) {
               return false;
             }
             var type2 = typeof index;
@@ -3043,7 +3043,7 @@
             return false;
           }
           function isKey(value, object) {
-            if (isArray5(value)) {
+            if (isArray6(value)) {
               return false;
             }
             var type2 = typeof value;
@@ -3070,13 +3070,13 @@
           function isMasked(func) {
             return !!maskSrcKey && maskSrcKey in func;
           }
-          var isMaskable = coreJsData ? isFunction2 : stubFalse;
+          var isMaskable = coreJsData ? isFunction3 : stubFalse;
           function isPrototype(value) {
             var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
             return value === proto;
           }
           function isStrictComparable(value) {
-            return value === value && !isObject3(value);
+            return value === value && !isObject4(value);
           }
           function matchesStrictComparable(key, srcValue) {
             return function(object) {
@@ -3299,7 +3299,7 @@
             while (index--) {
               args[index - 1] = arguments[index];
             }
-            return arrayPush(isArray5(array) ? copyArray(array) : [array], baseFlatten(args, 1));
+            return arrayPush(isArray6(array) ? copyArray(array) : [array], baseFlatten(args, 1));
           }
           var difference = baseRest(function(array, values2) {
             return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values2, 1, isArrayLikeObject, true)) : [];
@@ -3697,7 +3697,7 @@
           }
           function wrapperNext() {
             if (this.__values__ === undefined2) {
-              this.__values__ = toArray2(this.value());
+              this.__values__ = toArray3(this.value());
             }
             var done = this.__index__ >= this.__values__.length, value = done ? undefined2 : this.__values__[this.__index__++];
             return { "done": done, "value": value };
@@ -3750,14 +3750,14 @@
             }
           });
           function every(collection, predicate, guard) {
-            var func = isArray5(collection) ? arrayEvery : baseEvery;
+            var func = isArray6(collection) ? arrayEvery : baseEvery;
             if (guard && isIterateeCall(collection, predicate, guard)) {
               predicate = undefined2;
             }
             return func(collection, getIteratee(predicate, 3));
           }
           function filter(collection, predicate) {
-            var func = isArray5(collection) ? arrayFilter : baseFilter;
+            var func = isArray6(collection) ? arrayFilter : baseFilter;
             return func(collection, getIteratee(predicate, 3));
           }
           var find = createFind(findIndex);
@@ -3773,11 +3773,11 @@
             return baseFlatten(map2(collection, iteratee2), depth);
           }
           function forEach2(collection, iteratee2) {
-            var func = isArray5(collection) ? arrayEach : baseEach;
+            var func = isArray6(collection) ? arrayEach : baseEach;
             return func(collection, getIteratee(iteratee2, 3));
           }
           function forEachRight(collection, iteratee2) {
-            var func = isArray5(collection) ? arrayEachRight : baseEachRight;
+            var func = isArray6(collection) ? arrayEachRight : baseEachRight;
             return func(collection, getIteratee(iteratee2, 3));
           }
           var groupBy = createAggregator(function(result2, value, key) {
@@ -3794,7 +3794,7 @@
             if (fromIndex < 0) {
               fromIndex = nativeMax(length + fromIndex, 0);
             }
-            return isString5(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
+            return isString6(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
           }
           var invokeMap = baseRest(function(collection, path, args) {
             var index = -1, isFunc = typeof path == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
@@ -3807,18 +3807,18 @@
             baseAssignValue(result2, key, value);
           });
           function map2(collection, iteratee2) {
-            var func = isArray5(collection) ? arrayMap : baseMap;
+            var func = isArray6(collection) ? arrayMap : baseMap;
             return func(collection, getIteratee(iteratee2, 3));
           }
           function orderBy(collection, iteratees, orders, guard) {
             if (collection == null) {
               return [];
             }
-            if (!isArray5(iteratees)) {
+            if (!isArray6(iteratees)) {
               iteratees = iteratees == null ? [] : [iteratees];
             }
             orders = guard ? undefined2 : orders;
-            if (!isArray5(orders)) {
+            if (!isArray6(orders)) {
               orders = orders == null ? [] : [orders];
             }
             return baseOrderBy(collection, iteratees, orders);
@@ -3829,19 +3829,19 @@
             return [[], []];
           });
           function reduce(collection, iteratee2, accumulator) {
-            var func = isArray5(collection) ? arrayReduce : baseReduce, initAccum = arguments.length < 3;
+            var func = isArray6(collection) ? arrayReduce : baseReduce, initAccum = arguments.length < 3;
             return func(collection, getIteratee(iteratee2, 4), accumulator, initAccum, baseEach);
           }
           function reduceRight(collection, iteratee2, accumulator) {
-            var func = isArray5(collection) ? arrayReduceRight : baseReduce, initAccum = arguments.length < 3;
+            var func = isArray6(collection) ? arrayReduceRight : baseReduce, initAccum = arguments.length < 3;
             return func(collection, getIteratee(iteratee2, 4), accumulator, initAccum, baseEachRight);
           }
           function reject(collection, predicate) {
-            var func = isArray5(collection) ? arrayFilter : baseFilter;
+            var func = isArray6(collection) ? arrayFilter : baseFilter;
             return func(collection, negate(getIteratee(predicate, 3)));
           }
           function sample(collection) {
-            var func = isArray5(collection) ? arraySample : baseSample;
+            var func = isArray6(collection) ? arraySample : baseSample;
             return func(collection);
           }
           function sampleSize(collection, n, guard) {
@@ -3850,11 +3850,11 @@
             } else {
               n = toInteger(n);
             }
-            var func = isArray5(collection) ? arraySampleSize : baseSampleSize;
+            var func = isArray6(collection) ? arraySampleSize : baseSampleSize;
             return func(collection, n);
           }
           function shuffle(collection) {
-            var func = isArray5(collection) ? arrayShuffle : baseShuffle;
+            var func = isArray6(collection) ? arrayShuffle : baseShuffle;
             return func(collection);
           }
           function size(collection) {
@@ -3862,7 +3862,7 @@
               return 0;
             }
             if (isArrayLike(collection)) {
-              return isString5(collection) ? stringSize(collection) : collection.length;
+              return isString6(collection) ? stringSize(collection) : collection.length;
             }
             var tag = getTag(collection);
             if (tag == mapTag || tag == setTag) {
@@ -3871,7 +3871,7 @@
             return baseKeys(collection).length;
           }
           function some3(collection, predicate, guard) {
-            var func = isArray5(collection) ? arraySome : baseSome;
+            var func = isArray6(collection) ? arraySome : baseSome;
             if (guard && isIterateeCall(collection, predicate, guard)) {
               predicate = undefined2;
             }
@@ -3889,7 +3889,7 @@
             }
             return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
           });
-          var now = ctxNow || function() {
+          var now2 = ctxNow || function() {
             return root.Date.now();
           };
           function after(n, func) {
@@ -3958,7 +3958,7 @@
               throw new TypeError2(FUNC_ERROR_TEXT);
             }
             wait = toNumber(wait) || 0;
-            if (isObject3(options)) {
+            if (isObject4(options)) {
               leading = !!options.leading;
               maxing = "maxWait" in options;
               maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
@@ -3985,7 +3985,7 @@
               return lastCallTime === undefined2 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
             }
             function timerExpired() {
-              var time = now();
+              var time = now2();
               if (shouldInvoke(time)) {
                 return trailingEdge(time);
               }
@@ -4007,10 +4007,10 @@
               lastArgs = lastCallTime = lastThis = timerId = undefined2;
             }
             function flush() {
-              return timerId === undefined2 ? result2 : trailingEdge(now());
+              return timerId === undefined2 ? result2 : trailingEdge(now2());
             }
             function debounced() {
-              var time = now(), isInvoking = shouldInvoke(time);
+              var time = now2(), isInvoking = shouldInvoke(time);
               lastArgs = arguments;
               lastThis = this;
               lastCallTime = time;
@@ -4082,7 +4082,7 @@
             return before(2, func);
           }
           var overArgs = castRest(function(func, transforms) {
-            transforms = transforms.length == 1 && isArray5(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
+            transforms = transforms.length == 1 && isArray6(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
             var funcsLength = transforms.length;
             return baseRest(function(args) {
               var index = -1, length = nativeMin(args.length, funcsLength);
@@ -4123,12 +4123,12 @@
               return apply(func, this, otherArgs);
             });
           }
-          function throttle(func, wait, options) {
+          function throttle2(func, wait, options) {
             var leading = true, trailing = true;
             if (typeof func != "function") {
               throw new TypeError2(FUNC_ERROR_TEXT);
             }
-            if (isObject3(options)) {
+            if (isObject4(options)) {
               leading = "leading" in options ? !!options.leading : leading;
               trailing = "trailing" in options ? !!options.trailing : trailing;
             }
@@ -4149,7 +4149,7 @@
               return [];
             }
             var value = arguments[0];
-            return isArray5(value) ? value : [value];
+            return isArray6(value) ? value : [value];
           }
           function clone2(value) {
             return baseClone(value, CLONE_SYMBOLS_FLAG);
@@ -4180,10 +4180,10 @@
           }()) ? baseIsArguments : function(value) {
             return isObjectLike(value) && hasOwnProperty.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
           };
-          var isArray5 = Array2.isArray;
+          var isArray6 = Array2.isArray;
           var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
           function isArrayLike(value) {
-            return value != null && isLength(value.length) && !isFunction2(value);
+            return value != null && isLength(value.length) && !isFunction3(value);
           }
           function isArrayLikeObject(value) {
             return isObjectLike(value) && isArrayLike(value);
@@ -4200,7 +4200,7 @@
             if (value == null) {
               return true;
             }
-            if (isArrayLike(value) && (isArray5(value) || typeof value == "string" || typeof value.splice == "function" || isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+            if (isArrayLike(value) && (isArray6(value) || typeof value == "string" || typeof value.splice == "function" || isBuffer(value) || isTypedArray(value) || isArguments(value))) {
               return !value.length;
             }
             var tag = getTag(value);
@@ -4235,8 +4235,8 @@
           function isFinite2(value) {
             return typeof value == "number" && nativeIsFinite(value);
           }
-          function isFunction2(value) {
-            if (!isObject3(value)) {
+          function isFunction3(value) {
+            if (!isObject4(value)) {
               return false;
             }
             var tag = baseGetTag(value);
@@ -4248,7 +4248,7 @@
           function isLength(value) {
             return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
           }
-          function isObject3(value) {
+          function isObject4(value) {
             var type2 = typeof value;
             return value != null && (type2 == "object" || type2 == "function");
           }
@@ -4297,14 +4297,14 @@
             return isInteger2(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
           }
           var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
-          function isString5(value) {
-            return typeof value == "string" || !isArray5(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
+          function isString6(value) {
+            return typeof value == "string" || !isArray6(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
           }
           function isSymbol(value) {
             return typeof value == "symbol" || isObjectLike(value) && baseGetTag(value) == symbolTag;
           }
           var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
-          function isUndefined4(value) {
+          function isUndefined5(value) {
             return value === undefined2;
           }
           function isWeakMap(value) {
@@ -4317,12 +4317,12 @@
           var lte = createRelationalOperation(function(value, other) {
             return value <= other;
           });
-          function toArray2(value) {
+          function toArray3(value) {
             if (!value) {
               return [];
             }
             if (isArrayLike(value)) {
-              return isString5(value) ? stringToArray(value) : copyArray(value);
+              return isString6(value) ? stringToArray(value) : copyArray(value);
             }
             if (symIterator && value[symIterator]) {
               return iteratorToArray(value[symIterator]());
@@ -4355,9 +4355,9 @@
             if (isSymbol(value)) {
               return NAN;
             }
-            if (isObject3(value)) {
+            if (isObject4(value)) {
               var other = typeof value.valueOf == "function" ? value.valueOf() : value;
-              value = isObject3(other) ? other + "" : other;
+              value = isObject4(other) ? other + "" : other;
             }
             if (typeof value != "string") {
               return value === 0 ? value : +value;
@@ -4400,7 +4400,7 @@
             var result2 = baseCreate(prototype);
             return properties == null ? result2 : baseAssign(result2, properties);
           }
-          var defaults = baseRest(function(object, sources) {
+          var defaults2 = baseRest(function(object, sources) {
             object = Object2(object);
             var index = -1;
             var length = sources.length;
@@ -4558,7 +4558,7 @@
                 index = length;
                 value = defaultValue;
               }
-              object = isFunction2(value) ? value.call(object) : value;
+              object = isFunction3(value) ? value.call(object) : value;
             }
             return object;
           }
@@ -4572,14 +4572,14 @@
           var toPairs = createToPairs(keys);
           var toPairsIn = createToPairs(keysIn);
           function transform3(object, iteratee2, accumulator) {
-            var isArr = isArray5(object), isArrLike = isArr || isBuffer(object) || isTypedArray(object);
+            var isArr = isArray6(object), isArrLike = isArr || isBuffer(object) || isTypedArray(object);
             iteratee2 = getIteratee(iteratee2, 4);
             if (accumulator == null) {
               var Ctor = object && object.constructor;
               if (isArrLike) {
                 accumulator = isArr ? new Ctor() : [];
-              } else if (isObject3(object)) {
-                accumulator = isFunction2(Ctor) ? baseCreate(getPrototype(object)) : {};
+              } else if (isObject4(object)) {
+                accumulator = isFunction3(Ctor) ? baseCreate(getPrototype(object)) : {};
               } else {
                 accumulator = {};
               }
@@ -4863,7 +4863,7 @@
           }
           function truncate(string, options) {
             var length = DEFAULT_TRUNC_LENGTH, omission = DEFAULT_TRUNC_OMISSION;
-            if (isObject3(options)) {
+            if (isObject4(options)) {
               var separator = "separator" in options ? options.separator : separator;
               length = "length" in options ? toInteger(options.length) : length;
               omission = "omission" in options ? baseToString(options.omission) : omission;
@@ -4993,13 +4993,13 @@
           });
           function mixin(object, source, options) {
             var props = keys(source), methodNames = baseFunctions(source, props);
-            if (options == null && !(isObject3(source) && (methodNames.length || !props.length))) {
+            if (options == null && !(isObject4(source) && (methodNames.length || !props.length))) {
               options = source;
               source = object;
               object = this;
               methodNames = baseFunctions(source, keys(source));
             }
-            var chain3 = !(isObject3(options) && "chain" in options) || !!options.chain, isFunc = isFunction2(object);
+            var chain3 = !(isObject4(options) && "chain" in options) || !!options.chain, isFunc = isFunction3(object);
             arrayEach(methodNames, function(methodName) {
               var func = source[methodName];
               object[methodName] = func;
@@ -5075,7 +5075,7 @@
             return result2;
           }
           function toPath(value) {
-            if (isArray5(value)) {
+            if (isArray6(value)) {
               return arrayMap(value, toKey);
             }
             return isSymbol(value) ? [value] : copyArray(stringToPath(toString2(value)));
@@ -5147,7 +5147,7 @@
           lodash.curry = curry;
           lodash.curryRight = curryRight;
           lodash.debounce = debounce;
-          lodash.defaults = defaults;
+          lodash.defaults = defaults2;
           lodash.defaultsDeep = defaultsDeep;
           lodash.defer = defer;
           lodash.delay = delay;
@@ -5240,9 +5240,9 @@
           lodash.takeRightWhile = takeRightWhile;
           lodash.takeWhile = takeWhile;
           lodash.tap = tap;
-          lodash.throttle = throttle;
+          lodash.throttle = throttle2;
           lodash.thru = thru;
-          lodash.toArray = toArray2;
+          lodash.toArray = toArray3;
           lodash.toPairs = toPairs;
           lodash.toPairsIn = toPairsIn;
           lodash.toPath = toPath;
@@ -5321,7 +5321,7 @@
           lodash.inRange = inRange;
           lodash.invoke = invoke;
           lodash.isArguments = isArguments;
-          lodash.isArray = isArray5;
+          lodash.isArray = isArray6;
           lodash.isArrayBuffer = isArrayBuffer;
           lodash.isArrayLike = isArrayLike;
           lodash.isArrayLikeObject = isArrayLikeObject;
@@ -5334,7 +5334,7 @@
           lodash.isEqualWith = isEqualWith;
           lodash.isError = isError2;
           lodash.isFinite = isFinite2;
-          lodash.isFunction = isFunction2;
+          lodash.isFunction = isFunction3;
           lodash.isInteger = isInteger2;
           lodash.isLength = isLength;
           lodash.isMap = isMap;
@@ -5345,16 +5345,16 @@
           lodash.isNil = isNil2;
           lodash.isNull = isNull2;
           lodash.isNumber = isNumber2;
-          lodash.isObject = isObject3;
+          lodash.isObject = isObject4;
           lodash.isObjectLike = isObjectLike;
           lodash.isPlainObject = isPlainObject5;
           lodash.isRegExp = isRegExp;
           lodash.isSafeInteger = isSafeInteger;
           lodash.isSet = isSet;
-          lodash.isString = isString5;
+          lodash.isString = isString6;
           lodash.isSymbol = isSymbol;
           lodash.isTypedArray = isTypedArray;
-          lodash.isUndefined = isUndefined4;
+          lodash.isUndefined = isUndefined5;
           lodash.isWeakMap = isWeakMap;
           lodash.isWeakSet = isWeakSet;
           lodash.join = join;
@@ -5380,7 +5380,7 @@
           lodash.nth = nth;
           lodash.noConflict = noConflict;
           lodash.noop = noop;
-          lodash.now = now;
+          lodash.now = now2;
           lodash.pad = pad;
           lodash.padEnd = padEnd;
           lodash.padStart = padStart2;
@@ -5533,7 +5533,7 @@
               return;
             }
             lodash.prototype[methodName] = function() {
-              var value = this.__wrapped__, args = isTaker ? [1] : arguments, isLazy = value instanceof LazyWrapper, iteratee2 = args[0], useLazy = isLazy || isArray5(value);
+              var value = this.__wrapped__, args = isTaker ? [1] : arguments, isLazy = value instanceof LazyWrapper, iteratee2 = args[0], useLazy = isLazy || isArray6(value);
               var interceptor = function(value2) {
                 var result3 = lodashFunc.apply(lodash, arrayPush([value2], args));
                 return isTaker && chainAll ? result3[0] : result3;
@@ -5561,10 +5561,10 @@
               var args = arguments;
               if (retUnwrapped && !this.__chain__) {
                 var value = this.value();
-                return func.apply(isArray5(value) ? value : [], args);
+                return func.apply(isArray6(value) ? value : [], args);
               }
               return this[chainName](function(value2) {
-                return func.apply(isArray5(value2) ? value2 : [], args);
+                return func.apply(isArray6(value2) ? value2 : [], args);
               });
             };
           });
@@ -6946,6 +6946,2670 @@
     }, false);
   };
 
+  // node_modules/@glidejs/glide/dist/glide.modular.esm.js
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function(obj2) {
+        return typeof obj2;
+      };
+    } else {
+      _typeof = function(obj2) {
+        return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+      };
+    }
+    return _typeof(obj);
+  }
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor)
+        descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps)
+      _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps)
+      _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass)
+      _setPrototypeOf(subClass, superClass);
+  }
+  function _getPrototypeOf(o) {
+    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf3(o2) {
+      return o2.__proto__ || Object.getPrototypeOf(o2);
+    };
+    return _getPrototypeOf(o);
+  }
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf3(o2, p2) {
+      o2.__proto__ = p2;
+      return o2;
+    };
+    return _setPrototypeOf(o, p);
+  }
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === "undefined" || !Reflect.construct)
+      return false;
+    if (Reflect.construct.sham)
+      return false;
+    if (typeof Proxy === "function")
+      return true;
+    try {
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+      }));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  function _assertThisInitialized(self2) {
+    if (self2 === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+    return self2;
+  }
+  function _possibleConstructorReturn(self2, call) {
+    if (call && (typeof call === "object" || typeof call === "function")) {
+      return call;
+    } else if (call !== void 0) {
+      throw new TypeError("Derived constructors may only return object or undefined");
+    }
+    return _assertThisInitialized(self2);
+  }
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived), result;
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+      return _possibleConstructorReturn(this, result);
+    };
+  }
+  function _superPropBase(object, property) {
+    while (!Object.prototype.hasOwnProperty.call(object, property)) {
+      object = _getPrototypeOf(object);
+      if (object === null)
+        break;
+    }
+    return object;
+  }
+  function _get() {
+    if (typeof Reflect !== "undefined" && Reflect.get) {
+      _get = Reflect.get;
+    } else {
+      _get = function _get2(target, property, receiver) {
+        var base = _superPropBase(target, property);
+        if (!base)
+          return;
+        var desc = Object.getOwnPropertyDescriptor(base, property);
+        if (desc.get) {
+          return desc.get.call(arguments.length < 3 ? target : receiver);
+        }
+        return desc.value;
+      };
+    }
+    return _get.apply(this, arguments);
+  }
+  var defaults = {
+    /**
+     * Type of the movement.
+     *
+     * Available types:
+     * `slider` - Rewinds slider to the start/end when it reaches the first or last slide.
+     * `carousel` - Changes slides without starting over when it reaches the first or last slide.
+     *
+     * @type {String}
+     */
+    type: "slider",
+    /**
+     * Start at specific slide number defined with zero-based index.
+     *
+     * @type {Number}
+     */
+    startAt: 0,
+    /**
+     * A number of slides visible on the single viewport.
+     *
+     * @type {Number}
+     */
+    perView: 1,
+    /**
+     * Focus currently active slide at a specified position in the track.
+     *
+     * Available inputs:
+     * `center` - Current slide will be always focused at the center of a track.
+     * `0,1,2,3...` - Current slide will be focused on the specified zero-based index.
+     *
+     * @type {String|Number}
+     */
+    focusAt: 0,
+    /**
+     * A size of the gap added between slides.
+     *
+     * @type {Number}
+     */
+    gap: 10,
+    /**
+     * Change slides after a specified interval. Use `false` for turning off autoplay.
+     *
+     * @type {Number|Boolean}
+     */
+    autoplay: false,
+    /**
+     * Stop autoplay on mouseover event.
+     *
+     * @type {Boolean}
+     */
+    hoverpause: true,
+    /**
+     * Allow for changing slides with left and right keyboard arrows.
+     *
+     * @type {Boolean}
+     */
+    keyboard: true,
+    /**
+     * Stop running `perView` number of slides from the end. Use this
+     * option if you don't want to have an empty space after
+     * a slider. Works only with `slider` type and a
+     * non-centered `focusAt` setting.
+     *
+     * @type {Boolean}
+     */
+    bound: false,
+    /**
+     * Minimal swipe distance needed to change the slide. Use `false` for turning off a swiping.
+     *
+     * @type {Number|Boolean}
+     */
+    swipeThreshold: 80,
+    /**
+     * Minimal mouse drag distance needed to change the slide. Use `false` for turning off a dragging.
+     *
+     * @type {Number|Boolean}
+     */
+    dragThreshold: 120,
+    /**
+     * A number of slides moved on single swipe.
+     *
+     * Available types:
+     * `` - Moves slider by one slide per swipe
+     * `|` - Moves slider between views per swipe (number of slides defined in `perView` options)
+     *
+     * @type {String}
+     */
+    perSwipe: "",
+    /**
+     * Moving distance ratio of the slides on a swiping and dragging.
+     *
+     * @type {Number}
+     */
+    touchRatio: 0.5,
+    /**
+     * Angle required to activate slides moving on swiping or dragging.
+     *
+     * @type {Number}
+     */
+    touchAngle: 45,
+    /**
+     * Duration of the animation in milliseconds.
+     *
+     * @type {Number}
+     */
+    animationDuration: 400,
+    /**
+     * Allows looping the `slider` type. Slider will rewind to the first/last slide when it's at the start/end.
+     *
+     * @type {Boolean}
+     */
+    rewind: true,
+    /**
+     * Duration of the rewinding animation of the `slider` type in milliseconds.
+     *
+     * @type {Number}
+     */
+    rewindDuration: 800,
+    /**
+     * Easing function for the animation.
+     *
+     * @type {String}
+     */
+    animationTimingFunc: "cubic-bezier(.165, .840, .440, 1)",
+    /**
+     * Wait for the animation to finish until the next user input can be processed
+     *
+     * @type {boolean}
+     */
+    waitForTransition: true,
+    /**
+     * Throttle costly events at most once per every wait milliseconds.
+     *
+     * @type {Number}
+     */
+    throttle: 10,
+    /**
+     * Moving direction mode.
+     *
+     * Available inputs:
+     * - 'ltr' - left to right movement,
+     * - 'rtl' - right to left movement.
+     *
+     * @type {String}
+     */
+    direction: "ltr",
+    /**
+     * The distance value of the next and previous viewports which
+     * have to peek in the current view. Accepts number and
+     * pixels as a string. Left and right peeking can be
+     * set up separately with a directions object.
+     *
+     * For example:
+     * `100` - Peek 100px on the both sides.
+     * { before: 100, after: 50 }` - Peek 100px on the left side and 50px on the right side.
+     *
+     * @type {Number|String|Object}
+     */
+    peek: 0,
+    /**
+     * Defines how many clones of current viewport will be generated.
+     *
+     * @type {Number}
+     */
+    cloningRatio: 1,
+    /**
+     * Collection of options applied at specified media breakpoints.
+     * For example: display two slides per view under 800px.
+     * `{
+     *   '800px': {
+     *     perView: 2
+     *   }
+     * }`
+     */
+    breakpoints: {},
+    /**
+     * Collection of internally used HTML classes.
+     *
+     * @todo Refactor `slider` and `carousel` properties to single `type: { slider: '', carousel: '' }` object
+     * @type {Object}
+     */
+    classes: {
+      swipeable: "glide--swipeable",
+      dragging: "glide--dragging",
+      direction: {
+        ltr: "glide--ltr",
+        rtl: "glide--rtl"
+      },
+      type: {
+        slider: "glide--slider",
+        carousel: "glide--carousel"
+      },
+      slide: {
+        clone: "glide__slide--clone",
+        active: "glide__slide--active"
+      },
+      arrow: {
+        disabled: "glide__arrow--disabled"
+      },
+      nav: {
+        active: "glide__bullet--active"
+      }
+    }
+  };
+  function warn(msg) {
+    console.error("[Glide warn]: ".concat(msg));
+  }
+  function toInt(value) {
+    return parseInt(value);
+  }
+  function toFloat(value) {
+    return parseFloat(value);
+  }
+  function isString(value) {
+    return typeof value === "string";
+  }
+  function isObject(value) {
+    var type2 = _typeof(value);
+    return type2 === "function" || type2 === "object" && !!value;
+  }
+  function isFunction(value) {
+    return typeof value === "function";
+  }
+  function isUndefined(value) {
+    return typeof value === "undefined";
+  }
+  function isArray(value) {
+    return value.constructor === Array;
+  }
+  function mount(glide, extensions, events) {
+    var components = {};
+    for (var name in extensions) {
+      if (isFunction(extensions[name])) {
+        components[name] = extensions[name](glide, components, events);
+      } else {
+        warn("Extension must be a function");
+      }
+    }
+    for (var _name in components) {
+      if (isFunction(components[_name].mount)) {
+        components[_name].mount();
+      }
+    }
+    return components;
+  }
+  function define2(obj, prop, definition) {
+    Object.defineProperty(obj, prop, definition);
+  }
+  function sortKeys(obj) {
+    return Object.keys(obj).sort().reduce(function(r, k) {
+      r[k] = obj[k];
+      return r[k], r;
+    }, {});
+  }
+  function mergeOptions(defaults2, settings) {
+    var options = Object.assign({}, defaults2, settings);
+    if (settings.hasOwnProperty("classes")) {
+      options.classes = Object.assign({}, defaults2.classes, settings.classes);
+      if (settings.classes.hasOwnProperty("direction")) {
+        options.classes.direction = Object.assign({}, defaults2.classes.direction, settings.classes.direction);
+      }
+      if (settings.classes.hasOwnProperty("type")) {
+        options.classes.type = Object.assign({}, defaults2.classes.type, settings.classes.type);
+      }
+      if (settings.classes.hasOwnProperty("slide")) {
+        options.classes.slide = Object.assign({}, defaults2.classes.slide, settings.classes.slide);
+      }
+      if (settings.classes.hasOwnProperty("arrow")) {
+        options.classes.arrow = Object.assign({}, defaults2.classes.arrow, settings.classes.arrow);
+      }
+      if (settings.classes.hasOwnProperty("nav")) {
+        options.classes.nav = Object.assign({}, defaults2.classes.nav, settings.classes.nav);
+      }
+    }
+    if (settings.hasOwnProperty("breakpoints")) {
+      options.breakpoints = Object.assign({}, defaults2.breakpoints, settings.breakpoints);
+    }
+    return options;
+  }
+  var EventsBus = /* @__PURE__ */ function() {
+    function EventsBus2() {
+      var events = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+      _classCallCheck(this, EventsBus2);
+      this.events = events;
+      this.hop = events.hasOwnProperty;
+    }
+    _createClass(EventsBus2, [{
+      key: "on",
+      value: function on(event, handler) {
+        if (isArray(event)) {
+          for (var i = 0; i < event.length; i++) {
+            this.on(event[i], handler);
+          }
+          return;
+        }
+        if (!this.hop.call(this.events, event)) {
+          this.events[event] = [];
+        }
+        var index = this.events[event].push(handler) - 1;
+        return {
+          remove: function remove() {
+            delete this.events[event][index];
+          }
+        };
+      }
+      /**
+       * Runs registered handlers for specified event.
+       *
+       * @param {String|Array} event
+       * @param {Object=} context
+       */
+    }, {
+      key: "emit",
+      value: function emit(event, context) {
+        if (isArray(event)) {
+          for (var i = 0; i < event.length; i++) {
+            this.emit(event[i], context);
+          }
+          return;
+        }
+        if (!this.hop.call(this.events, event)) {
+          return;
+        }
+        this.events[event].forEach(function(item) {
+          item(context || {});
+        });
+      }
+    }]);
+    return EventsBus2;
+  }();
+  var Glide$1 = /* @__PURE__ */ function() {
+    function Glide2(selector) {
+      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      _classCallCheck(this, Glide2);
+      this._c = {};
+      this._t = [];
+      this._e = new EventsBus();
+      this.disabled = false;
+      this.selector = selector;
+      this.settings = mergeOptions(defaults, options);
+      this.index = this.settings.startAt;
+    }
+    _createClass(Glide2, [{
+      key: "mount",
+      value: function mount$1() {
+        var extensions = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+        this._e.emit("mount.before");
+        if (isObject(extensions)) {
+          this._c = mount(this, extensions, this._e);
+        } else {
+          warn("You need to provide a object on `mount()`");
+        }
+        this._e.emit("mount.after");
+        return this;
+      }
+      /**
+       * Collects an instance `translate` transformers.
+       *
+       * @param  {Array} transformers Collection of transformers.
+       * @return {Void}
+       */
+    }, {
+      key: "mutate",
+      value: function mutate() {
+        var transformers = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
+        if (isArray(transformers)) {
+          this._t = transformers;
+        } else {
+          warn("You need to provide a array on `mutate()`");
+        }
+        return this;
+      }
+      /**
+       * Updates glide with specified settings.
+       *
+       * @param {Object} settings
+       * @return {Glide}
+       */
+    }, {
+      key: "update",
+      value: function update() {
+        var settings = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+        this.settings = mergeOptions(this.settings, settings);
+        if (settings.hasOwnProperty("startAt")) {
+          this.index = settings.startAt;
+        }
+        this._e.emit("update");
+        return this;
+      }
+      /**
+       * Change slide with specified pattern. A pattern must be in the special format:
+       * `>` - Move one forward
+       * `<` - Move one backward
+       * `={i}` - Go to {i} zero-based slide (eq. '=1', will go to second slide)
+       * `>>` - Rewinds to end (last slide)
+       * `<<` - Rewinds to start (first slide)
+       * `|>` - Move one viewport forward
+       * `|<` - Move one viewport backward
+       *
+       * @param {String} pattern
+       * @return {Glide}
+       */
+    }, {
+      key: "go",
+      value: function go(pattern) {
+        this._c.Run.make(pattern);
+        return this;
+      }
+      /**
+       * Move track by specified distance.
+       *
+       * @param {String} distance
+       * @return {Glide}
+       */
+    }, {
+      key: "move",
+      value: function move(distance) {
+        this._c.Transition.disable();
+        this._c.Move.make(distance);
+        return this;
+      }
+      /**
+       * Destroy instance and revert all changes done by this._c.
+       *
+       * @return {Glide}
+       */
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this._e.emit("destroy");
+        return this;
+      }
+      /**
+       * Start instance autoplaying.
+       *
+       * @param {Boolean|Number} interval Run autoplaying with passed interval regardless of `autoplay` settings
+       * @return {Glide}
+       */
+    }, {
+      key: "play",
+      value: function play() {
+        var interval = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : false;
+        if (interval) {
+          this.settings.autoplay = interval;
+        }
+        this._e.emit("play");
+        return this;
+      }
+      /**
+       * Stop instance autoplaying.
+       *
+       * @return {Glide}
+       */
+    }, {
+      key: "pause",
+      value: function pause() {
+        this._e.emit("pause");
+        return this;
+      }
+      /**
+       * Sets glide into a idle status.
+       *
+       * @return {Glide}
+       */
+    }, {
+      key: "disable",
+      value: function disable() {
+        this.disabled = true;
+        return this;
+      }
+      /**
+       * Sets glide into a active status.
+       *
+       * @return {Glide}
+       */
+    }, {
+      key: "enable",
+      value: function enable() {
+        this.disabled = false;
+        return this;
+      }
+      /**
+       * Adds cuutom event listener with handler.
+       *
+       * @param  {String|Array} event
+       * @param  {Function} handler
+       * @return {Glide}
+       */
+    }, {
+      key: "on",
+      value: function on(event, handler) {
+        this._e.on(event, handler);
+        return this;
+      }
+      /**
+       * Checks if glide is a precised type.
+       *
+       * @param  {String} name
+       * @return {Boolean}
+       */
+    }, {
+      key: "isType",
+      value: function isType(name) {
+        return this.settings.type === name;
+      }
+      /**
+       * Gets value of the core options.
+       *
+       * @return {Object}
+       */
+    }, {
+      key: "settings",
+      get: function get5() {
+        return this._o;
+      },
+      set: function set8(o) {
+        if (isObject(o)) {
+          this._o = o;
+        } else {
+          warn("Options must be an `object` instance.");
+        }
+      }
+      /**
+       * Gets current index of the slider.
+       *
+       * @return {Object}
+       */
+    }, {
+      key: "index",
+      get: function get5() {
+        return this._i;
+      },
+      set: function set8(i) {
+        this._i = toInt(i);
+      }
+      /**
+       * Gets type name of the slider.
+       *
+       * @return {String}
+       */
+    }, {
+      key: "type",
+      get: function get5() {
+        return this.settings.type;
+      }
+      /**
+       * Gets value of the idle status.
+       *
+       * @return {Boolean}
+       */
+    }, {
+      key: "disabled",
+      get: function get5() {
+        return this._d;
+      },
+      set: function set8(status) {
+        this._d = !!status;
+      }
+    }]);
+    return Glide2;
+  }();
+  function Run(Glide2, Components, Events) {
+    var Run2 = {
+      /**
+       * Initializes autorunning of the glide.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this._o = false;
+      },
+      /**
+       * Makes glides running based on the passed moving schema.
+       *
+       * @param {String} move
+       */
+      make: function make(move) {
+        var _this = this;
+        if (!Glide2.disabled) {
+          !Glide2.settings.waitForTransition || Glide2.disable();
+          this.move = move;
+          Events.emit("run.before", this.move);
+          this.calculate();
+          Events.emit("run", this.move);
+          Components.Transition.after(function() {
+            if (_this.isStart()) {
+              Events.emit("run.start", _this.move);
+            }
+            if (_this.isEnd()) {
+              Events.emit("run.end", _this.move);
+            }
+            if (_this.isOffset()) {
+              _this._o = false;
+              Events.emit("run.offset", _this.move);
+            }
+            Events.emit("run.after", _this.move);
+            Glide2.enable();
+          });
+        }
+      },
+      /**
+       * Calculates current index based on defined move.
+       *
+       * @return {Number|Undefined}
+       */
+      calculate: function calculate() {
+        var move = this.move, length = this.length;
+        var steps = move.steps, direction = move.direction;
+        var viewSize = 1;
+        if (direction === "=") {
+          if (Glide2.settings.bound && toInt(steps) > length) {
+            Glide2.index = length;
+            return;
+          }
+          Glide2.index = steps;
+          return;
+        }
+        if (direction === ">" && steps === ">") {
+          Glide2.index = length;
+          return;
+        }
+        if (direction === "<" && steps === "<") {
+          Glide2.index = 0;
+          return;
+        }
+        if (direction === "|") {
+          viewSize = Glide2.settings.perView || 1;
+        }
+        if (direction === ">" || direction === "|" && steps === ">") {
+          var index = calculateForwardIndex(viewSize);
+          if (index > length) {
+            this._o = true;
+          }
+          Glide2.index = normalizeForwardIndex(index, viewSize);
+          return;
+        }
+        if (direction === "<" || direction === "|" && steps === "<") {
+          var _index = calculateBackwardIndex(viewSize);
+          if (_index < 0) {
+            this._o = true;
+          }
+          Glide2.index = normalizeBackwardIndex(_index, viewSize);
+          return;
+        }
+        warn("Invalid direction pattern [".concat(direction).concat(steps, "] has been used"));
+      },
+      /**
+       * Checks if we are on the first slide.
+       *
+       * @return {Boolean}
+       */
+      isStart: function isStart() {
+        return Glide2.index <= 0;
+      },
+      /**
+       * Checks if we are on the last slide.
+       *
+       * @return {Boolean}
+       */
+      isEnd: function isEnd() {
+        return Glide2.index >= this.length;
+      },
+      /**
+       * Checks if we are making a offset run.
+       *
+       * @param {String} direction
+       * @return {Boolean}
+       */
+      isOffset: function isOffset() {
+        var direction = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : void 0;
+        if (!direction) {
+          return this._o;
+        }
+        if (!this._o) {
+          return false;
+        }
+        if (direction === "|>") {
+          return this.move.direction === "|" && this.move.steps === ">";
+        }
+        if (direction === "|<") {
+          return this.move.direction === "|" && this.move.steps === "<";
+        }
+        return this.move.direction === direction;
+      },
+      /**
+       * Checks if bound mode is active
+       *
+       * @return {Boolean}
+       */
+      isBound: function isBound() {
+        return Glide2.isType("slider") && Glide2.settings.focusAt !== "center" && Glide2.settings.bound;
+      }
+    };
+    function calculateForwardIndex(viewSize) {
+      var index = Glide2.index;
+      if (Glide2.isType("carousel")) {
+        return index + viewSize;
+      }
+      return index + (viewSize - index % viewSize);
+    }
+    function normalizeForwardIndex(index, viewSize) {
+      var length = Run2.length;
+      if (index <= length) {
+        return index;
+      }
+      if (Glide2.isType("carousel")) {
+        return index - (length + 1);
+      }
+      if (Glide2.settings.rewind) {
+        if (Run2.isBound() && !Run2.isEnd()) {
+          return length;
+        }
+        return 0;
+      }
+      if (Run2.isBound()) {
+        return length;
+      }
+      return Math.floor(length / viewSize) * viewSize;
+    }
+    function calculateBackwardIndex(viewSize) {
+      var index = Glide2.index;
+      if (Glide2.isType("carousel")) {
+        return index - viewSize;
+      }
+      var view = Math.ceil(index / viewSize);
+      return (view - 1) * viewSize;
+    }
+    function normalizeBackwardIndex(index, viewSize) {
+      var length = Run2.length;
+      if (index >= 0) {
+        return index;
+      }
+      if (Glide2.isType("carousel")) {
+        return index + (length + 1);
+      }
+      if (Glide2.settings.rewind) {
+        if (Run2.isBound() && Run2.isStart()) {
+          return length;
+        }
+        return Math.floor(length / viewSize) * viewSize;
+      }
+      return 0;
+    }
+    define2(Run2, "move", {
+      /**
+       * Gets value of the move schema.
+       *
+       * @returns {Object}
+       */
+      get: function get5() {
+        return this._m;
+      },
+      /**
+       * Sets value of the move schema.
+       *
+       * @returns {Object}
+       */
+      set: function set8(value) {
+        var step = value.substr(1);
+        this._m = {
+          direction: value.substr(0, 1),
+          steps: step ? toInt(step) ? toInt(step) : step : 0
+        };
+      }
+    });
+    define2(Run2, "length", {
+      /**
+       * Gets value of the running distance based
+       * on zero-indexing number of slides.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        var settings = Glide2.settings;
+        var length = Components.Html.slides.length;
+        if (this.isBound()) {
+          return length - 1 - (toInt(settings.perView) - 1) + toInt(settings.focusAt);
+        }
+        return length - 1;
+      }
+    });
+    define2(Run2, "offset", {
+      /**
+       * Gets status of the offsetting flag.
+       *
+       * @return {Boolean}
+       */
+      get: function get5() {
+        return this._o;
+      }
+    });
+    return Run2;
+  }
+  function now() {
+    return (/* @__PURE__ */ new Date()).getTime();
+  }
+  function throttle(func, wait, options) {
+    var timeout, context, args, result;
+    var previous = 0;
+    if (!options)
+      options = {};
+    var later = function later2() {
+      previous = options.leading === false ? 0 : now();
+      timeout = null;
+      result = func.apply(context, args);
+      if (!timeout)
+        context = args = null;
+    };
+    var throttled = function throttled2() {
+      var at = now();
+      if (!previous && options.leading === false)
+        previous = at;
+      var remaining = wait - (at - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0 || remaining > wait) {
+        if (timeout) {
+          clearTimeout(timeout);
+          timeout = null;
+        }
+        previous = at;
+        result = func.apply(context, args);
+        if (!timeout)
+          context = args = null;
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
+      }
+      return result;
+    };
+    throttled.cancel = function() {
+      clearTimeout(timeout);
+      previous = 0;
+      timeout = context = args = null;
+    };
+    return throttled;
+  }
+  var MARGIN_TYPE = {
+    ltr: ["marginLeft", "marginRight"],
+    rtl: ["marginRight", "marginLeft"]
+  };
+  function Gaps(Glide2, Components, Events) {
+    var Gaps2 = {
+      /**
+       * Applies gaps between slides. First and last
+       * slides do not receive it's edge margins.
+       *
+       * @param {HTMLCollection} slides
+       * @return {Void}
+       */
+      apply: function apply(slides) {
+        for (var i = 0, len = slides.length; i < len; i++) {
+          var style = slides[i].style;
+          var direction = Components.Direction.value;
+          if (i !== 0) {
+            style[MARGIN_TYPE[direction][0]] = "".concat(this.value / 2, "px");
+          } else {
+            style[MARGIN_TYPE[direction][0]] = "";
+          }
+          if (i !== slides.length - 1) {
+            style[MARGIN_TYPE[direction][1]] = "".concat(this.value / 2, "px");
+          } else {
+            style[MARGIN_TYPE[direction][1]] = "";
+          }
+        }
+      },
+      /**
+       * Removes gaps from the slides.
+       *
+       * @param {HTMLCollection} slides
+       * @returns {Void}
+      */
+      remove: function remove(slides) {
+        for (var i = 0, len = slides.length; i < len; i++) {
+          var style = slides[i].style;
+          style.marginLeft = "";
+          style.marginRight = "";
+        }
+      }
+    };
+    define2(Gaps2, "value", {
+      /**
+       * Gets value of the gap.
+       *
+       * @returns {Number}
+       */
+      get: function get5() {
+        return toInt(Glide2.settings.gap);
+      }
+    });
+    define2(Gaps2, "grow", {
+      /**
+       * Gets additional dimensions value caused by gaps.
+       * Used to increase width of the slides wrapper.
+       *
+       * @returns {Number}
+       */
+      get: function get5() {
+        return Gaps2.value * Components.Sizes.length;
+      }
+    });
+    define2(Gaps2, "reductor", {
+      /**
+       * Gets reduction value caused by gaps.
+       * Used to subtract width of the slides.
+       *
+       * @returns {Number}
+       */
+      get: function get5() {
+        var perView = Glide2.settings.perView;
+        return Gaps2.value * (perView - 1) / perView;
+      }
+    });
+    Events.on(["build.after", "update"], throttle(function() {
+      Gaps2.apply(Components.Html.wrapper.children);
+    }, 30));
+    Events.on("destroy", function() {
+      Gaps2.remove(Components.Html.wrapper.children);
+    });
+    return Gaps2;
+  }
+  function siblings(node) {
+    if (node && node.parentNode) {
+      var n = node.parentNode.firstChild;
+      var matched = [];
+      for (; n; n = n.nextSibling) {
+        if (n.nodeType === 1 && n !== node) {
+          matched.push(n);
+        }
+      }
+      return matched;
+    }
+    return [];
+  }
+  function exist(node) {
+    if (node && node instanceof window.HTMLElement) {
+      return true;
+    }
+    return false;
+  }
+  function toArray(nodeList) {
+    return Array.prototype.slice.call(nodeList);
+  }
+  var TRACK_SELECTOR = '[data-glide-el="track"]';
+  function Html(Glide2, Components, Events) {
+    var Html2 = {
+      /**
+       * Setup slider HTML nodes.
+       *
+       * @param {Glide} glide
+       */
+      mount: function mount2() {
+        this.root = Glide2.selector;
+        this.track = this.root.querySelector(TRACK_SELECTOR);
+        this.collectSlides();
+      },
+      /**
+       * Collect slides
+       */
+      collectSlides: function collectSlides() {
+        this.slides = toArray(this.wrapper.children).filter(function(slide) {
+          return !slide.classList.contains(Glide2.settings.classes.slide.clone);
+        });
+      }
+    };
+    define2(Html2, "root", {
+      /**
+       * Gets node of the glide main element.
+       *
+       * @return {Object}
+       */
+      get: function get5() {
+        return Html2._r;
+      },
+      /**
+       * Sets node of the glide main element.
+       *
+       * @return {Object}
+       */
+      set: function set8(r) {
+        if (isString(r)) {
+          r = document.querySelector(r);
+        }
+        if (exist(r)) {
+          Html2._r = r;
+        } else {
+          warn("Root element must be a existing Html node");
+        }
+      }
+    });
+    define2(Html2, "track", {
+      /**
+       * Gets node of the glide track with slides.
+       *
+       * @return {Object}
+       */
+      get: function get5() {
+        return Html2._t;
+      },
+      /**
+       * Sets node of the glide track with slides.
+       *
+       * @return {Object}
+       */
+      set: function set8(t) {
+        if (exist(t)) {
+          Html2._t = t;
+        } else {
+          warn("Could not find track element. Please use ".concat(TRACK_SELECTOR, " attribute."));
+        }
+      }
+    });
+    define2(Html2, "wrapper", {
+      /**
+       * Gets node of the slides wrapper.
+       *
+       * @return {Object}
+       */
+      get: function get5() {
+        return Html2.track.children[0];
+      }
+    });
+    Events.on("update", function() {
+      Html2.collectSlides();
+    });
+    return Html2;
+  }
+  function Peek(Glide2, Components, Events) {
+    var Peek2 = {
+      /**
+       * Setups how much to peek based on settings.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this.value = Glide2.settings.peek;
+      }
+    };
+    define2(Peek2, "value", {
+      /**
+       * Gets value of the peek.
+       *
+       * @returns {Number|Object}
+       */
+      get: function get5() {
+        return Peek2._v;
+      },
+      /**
+       * Sets value of the peek.
+       *
+       * @param {Number|Object} value
+       * @return {Void}
+       */
+      set: function set8(value) {
+        if (isObject(value)) {
+          value.before = toInt(value.before);
+          value.after = toInt(value.after);
+        } else {
+          value = toInt(value);
+        }
+        Peek2._v = value;
+      }
+    });
+    define2(Peek2, "reductor", {
+      /**
+       * Gets reduction value caused by peek.
+       *
+       * @returns {Number}
+       */
+      get: function get5() {
+        var value = Peek2.value;
+        var perView = Glide2.settings.perView;
+        if (isObject(value)) {
+          return value.before / perView + value.after / perView;
+        }
+        return value * 2 / perView;
+      }
+    });
+    Events.on(["resize", "update"], function() {
+      Peek2.mount();
+    });
+    return Peek2;
+  }
+  function Move(Glide2, Components, Events) {
+    var Move2 = {
+      /**
+       * Constructs move component.
+       *
+       * @returns {Void}
+       */
+      mount: function mount2() {
+        this._o = 0;
+      },
+      /**
+       * Calculates a movement value based on passed offset and currently active index.
+       *
+       * @param  {Number} offset
+       * @return {Void}
+       */
+      make: function make() {
+        var _this = this;
+        var offset = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0;
+        this.offset = offset;
+        Events.emit("move", {
+          movement: this.value
+        });
+        Components.Transition.after(function() {
+          Events.emit("move.after", {
+            movement: _this.value
+          });
+        });
+      }
+    };
+    define2(Move2, "offset", {
+      /**
+       * Gets an offset value used to modify current translate.
+       *
+       * @return {Object}
+       */
+      get: function get5() {
+        return Move2._o;
+      },
+      /**
+       * Sets an offset value used to modify current translate.
+       *
+       * @return {Object}
+       */
+      set: function set8(value) {
+        Move2._o = !isUndefined(value) ? toInt(value) : 0;
+      }
+    });
+    define2(Move2, "translate", {
+      /**
+       * Gets a raw movement value.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return Components.Sizes.slideWidth * Glide2.index;
+      }
+    });
+    define2(Move2, "value", {
+      /**
+       * Gets an actual movement value corrected by offset.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        var offset = this.offset;
+        var translate = this.translate;
+        if (Components.Direction.is("rtl")) {
+          return translate + offset;
+        }
+        return translate - offset;
+      }
+    });
+    Events.on(["build.before", "run"], function() {
+      Move2.make();
+    });
+    return Move2;
+  }
+  function Sizes(Glide2, Components, Events) {
+    var Sizes2 = {
+      /**
+       * Setups dimensions of slides.
+       *
+       * @return {Void}
+       */
+      setupSlides: function setupSlides() {
+        var width = "".concat(this.slideWidth, "px");
+        var slides = Components.Html.slides;
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].style.width = width;
+        }
+      },
+      /**
+       * Setups dimensions of slides wrapper.
+       *
+       * @return {Void}
+       */
+      setupWrapper: function setupWrapper() {
+        Components.Html.wrapper.style.width = "".concat(this.wrapperSize, "px");
+      },
+      /**
+       * Removes applied styles from HTML elements.
+       *
+       * @returns {Void}
+       */
+      remove: function remove() {
+        var slides = Components.Html.slides;
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].style.width = "";
+        }
+        Components.Html.wrapper.style.width = "";
+      }
+    };
+    define2(Sizes2, "length", {
+      /**
+       * Gets count number of the slides.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return Components.Html.slides.length;
+      }
+    });
+    define2(Sizes2, "width", {
+      /**
+       * Gets width value of the slider (visible area).
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return Components.Html.track.offsetWidth;
+      }
+    });
+    define2(Sizes2, "wrapperSize", {
+      /**
+       * Gets size of the slides wrapper.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return Sizes2.slideWidth * Sizes2.length + Components.Gaps.grow + Components.Clones.grow;
+      }
+    });
+    define2(Sizes2, "slideWidth", {
+      /**
+       * Gets width value of a single slide.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return Sizes2.width / Glide2.settings.perView - Components.Peek.reductor - Components.Gaps.reductor;
+      }
+    });
+    Events.on(["build.before", "resize", "update"], function() {
+      Sizes2.setupSlides();
+      Sizes2.setupWrapper();
+    });
+    Events.on("destroy", function() {
+      Sizes2.remove();
+    });
+    return Sizes2;
+  }
+  function Build(Glide2, Components, Events) {
+    var Build2 = {
+      /**
+       * Init glide building. Adds classes, sets
+       * dimensions and setups initial state.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        Events.emit("build.before");
+        this.typeClass();
+        this.activeClass();
+        Events.emit("build.after");
+      },
+      /**
+       * Adds `type` class to the glide element.
+       *
+       * @return {Void}
+       */
+      typeClass: function typeClass() {
+        Components.Html.root.classList.add(Glide2.settings.classes.type[Glide2.settings.type]);
+      },
+      /**
+       * Sets active class to current slide.
+       *
+       * @return {Void}
+       */
+      activeClass: function activeClass() {
+        var classes = Glide2.settings.classes;
+        var slide = Components.Html.slides[Glide2.index];
+        if (slide) {
+          slide.classList.add(classes.slide.active);
+          siblings(slide).forEach(function(sibling) {
+            sibling.classList.remove(classes.slide.active);
+          });
+        }
+      },
+      /**
+       * Removes HTML classes applied at building.
+       *
+       * @return {Void}
+       */
+      removeClasses: function removeClasses() {
+        var _Glide$settings$class = Glide2.settings.classes, type2 = _Glide$settings$class.type, slide = _Glide$settings$class.slide;
+        Components.Html.root.classList.remove(type2[Glide2.settings.type]);
+        Components.Html.slides.forEach(function(sibling) {
+          sibling.classList.remove(slide.active);
+        });
+      }
+    };
+    Events.on(["destroy", "update"], function() {
+      Build2.removeClasses();
+    });
+    Events.on(["resize", "update"], function() {
+      Build2.mount();
+    });
+    Events.on("move.after", function() {
+      Build2.activeClass();
+    });
+    return Build2;
+  }
+  function Clones(Glide2, Components, Events) {
+    var Clones2 = {
+      /**
+       * Create pattern map and collect slides to be cloned.
+       */
+      mount: function mount2() {
+        this.items = [];
+        if (Glide2.isType("carousel")) {
+          this.items = this.collect();
+        }
+      },
+      /**
+       * Collect clones with pattern.
+       *
+       * @return {[]}
+       */
+      collect: function collect() {
+        var items = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [];
+        var slides = Components.Html.slides;
+        var _Glide$settings = Glide2.settings, perView = _Glide$settings.perView, classes = _Glide$settings.classes, cloningRatio = _Glide$settings.cloningRatio;
+        if (slides.length !== 0) {
+          var peekIncrementer = +!!Glide2.settings.peek;
+          var cloneCount = perView + peekIncrementer + Math.round(perView / 2);
+          var append = slides.slice(0, cloneCount).reverse();
+          var prepend = slides.slice(cloneCount * -1);
+          for (var r = 0; r < Math.max(cloningRatio, Math.floor(perView / slides.length)); r++) {
+            for (var i = 0; i < append.length; i++) {
+              var clone2 = append[i].cloneNode(true);
+              clone2.classList.add(classes.slide.clone);
+              items.push(clone2);
+            }
+            for (var _i = 0; _i < prepend.length; _i++) {
+              var _clone = prepend[_i].cloneNode(true);
+              _clone.classList.add(classes.slide.clone);
+              items.unshift(_clone);
+            }
+          }
+        }
+        return items;
+      },
+      /**
+       * Append cloned slides with generated pattern.
+       *
+       * @return {Void}
+       */
+      append: function append() {
+        var items = this.items;
+        var _Components$Html = Components.Html, wrapper = _Components$Html.wrapper, slides = _Components$Html.slides;
+        var half = Math.floor(items.length / 2);
+        var prepend = items.slice(0, half).reverse();
+        var append2 = items.slice(half * -1).reverse();
+        var width = "".concat(Components.Sizes.slideWidth, "px");
+        for (var i = 0; i < append2.length; i++) {
+          wrapper.appendChild(append2[i]);
+        }
+        for (var _i2 = 0; _i2 < prepend.length; _i2++) {
+          wrapper.insertBefore(prepend[_i2], slides[0]);
+        }
+        for (var _i3 = 0; _i3 < items.length; _i3++) {
+          items[_i3].style.width = width;
+        }
+      },
+      /**
+       * Remove all cloned slides.
+       *
+       * @return {Void}
+       */
+      remove: function remove() {
+        var items = this.items;
+        for (var i = 0; i < items.length; i++) {
+          Components.Html.wrapper.removeChild(items[i]);
+        }
+      }
+    };
+    define2(Clones2, "grow", {
+      /**
+       * Gets additional dimensions value caused by clones.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        return (Components.Sizes.slideWidth + Components.Gaps.value) * Clones2.items.length;
+      }
+    });
+    Events.on("update", function() {
+      Clones2.remove();
+      Clones2.mount();
+      Clones2.append();
+    });
+    Events.on("build.before", function() {
+      if (Glide2.isType("carousel")) {
+        Clones2.append();
+      }
+    });
+    Events.on("destroy", function() {
+      Clones2.remove();
+    });
+    return Clones2;
+  }
+  var EventsBinder = /* @__PURE__ */ function() {
+    function EventsBinder2() {
+      var listeners = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+      _classCallCheck(this, EventsBinder2);
+      this.listeners = listeners;
+    }
+    _createClass(EventsBinder2, [{
+      key: "on",
+      value: function on(events, el, closure) {
+        var capture = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : false;
+        if (isString(events)) {
+          events = [events];
+        }
+        for (var i = 0; i < events.length; i++) {
+          this.listeners[events[i]] = closure;
+          el.addEventListener(events[i], this.listeners[events[i]], capture);
+        }
+      }
+      /**
+       * Removes event listeners from arrows HTML elements.
+       *
+       * @param  {String|Array} events
+       * @param  {Element|Window|Document} el
+       * @param  {Boolean|Object} capture
+       * @return {Void}
+       */
+    }, {
+      key: "off",
+      value: function off(events, el) {
+        var capture = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
+        if (isString(events)) {
+          events = [events];
+        }
+        for (var i = 0; i < events.length; i++) {
+          el.removeEventListener(events[i], this.listeners[events[i]], capture);
+        }
+      }
+      /**
+       * Destroy collected listeners.
+       *
+       * @returns {Void}
+       */
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        delete this.listeners;
+      }
+    }]);
+    return EventsBinder2;
+  }();
+  function Resize(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var Resize2 = {
+      /**
+       * Initializes window bindings.
+       */
+      mount: function mount2() {
+        this.bind();
+      },
+      /**
+       * Binds `rezsize` listener to the window.
+       * It's a costly event, so we are debouncing it.
+       *
+       * @return {Void}
+       */
+      bind: function bind() {
+        Binder.on("resize", window, throttle(function() {
+          Events.emit("resize");
+        }, Glide2.settings.throttle));
+      },
+      /**
+       * Unbinds listeners from the window.
+       *
+       * @return {Void}
+       */
+      unbind: function unbind() {
+        Binder.off("resize", window);
+      }
+    };
+    Events.on("destroy", function() {
+      Resize2.unbind();
+      Binder.destroy();
+    });
+    return Resize2;
+  }
+  var VALID_DIRECTIONS = ["ltr", "rtl"];
+  var FLIPED_MOVEMENTS = {
+    ">": "<",
+    "<": ">",
+    "=": "="
+  };
+  function Direction(Glide2, Components, Events) {
+    var Direction2 = {
+      /**
+       * Setups gap value based on settings.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this.value = Glide2.settings.direction;
+      },
+      /**
+       * Resolves pattern based on direction value
+       *
+       * @param {String} pattern
+       * @returns {String}
+       */
+      resolve: function resolve(pattern) {
+        var token = pattern.slice(0, 1);
+        if (this.is("rtl")) {
+          return pattern.split(token).join(FLIPED_MOVEMENTS[token]);
+        }
+        return pattern;
+      },
+      /**
+       * Checks value of direction mode.
+       *
+       * @param {String} direction
+       * @returns {Boolean}
+       */
+      is: function is(direction) {
+        return this.value === direction;
+      },
+      /**
+       * Applies direction class to the root HTML element.
+       *
+       * @return {Void}
+       */
+      addClass: function addClass() {
+        Components.Html.root.classList.add(Glide2.settings.classes.direction[this.value]);
+      },
+      /**
+       * Removes direction class from the root HTML element.
+       *
+       * @return {Void}
+       */
+      removeClass: function removeClass() {
+        Components.Html.root.classList.remove(Glide2.settings.classes.direction[this.value]);
+      }
+    };
+    define2(Direction2, "value", {
+      /**
+       * Gets value of the direction.
+       *
+       * @returns {Number}
+       */
+      get: function get5() {
+        return Direction2._v;
+      },
+      /**
+       * Sets value of the direction.
+       *
+       * @param {String} value
+       * @return {Void}
+       */
+      set: function set8(value) {
+        if (VALID_DIRECTIONS.indexOf(value) > -1) {
+          Direction2._v = value;
+        } else {
+          warn("Direction value must be `ltr` or `rtl`");
+        }
+      }
+    });
+    Events.on(["destroy", "update"], function() {
+      Direction2.removeClass();
+    });
+    Events.on("update", function() {
+      Direction2.mount();
+    });
+    Events.on(["build.before", "update"], function() {
+      Direction2.addClass();
+    });
+    return Direction2;
+  }
+  function Rtl(Glide2, Components) {
+    return {
+      /**
+       * Negates the passed translate if glide is in RTL option.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      modify: function modify(translate) {
+        if (Components.Direction.is("rtl")) {
+          return -translate;
+        }
+        return translate;
+      }
+    };
+  }
+  function Gap(Glide2, Components) {
+    return {
+      /**
+       * Modifies passed translate value with number in the `gap` settings.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      modify: function modify(translate) {
+        var multiplier = Math.floor(translate / Components.Sizes.slideWidth);
+        return translate + Components.Gaps.value * multiplier;
+      }
+    };
+  }
+  function Grow(Glide2, Components) {
+    return {
+      /**
+       * Adds to the passed translate width of the half of clones.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      modify: function modify(translate) {
+        return translate + Components.Clones.grow / 2;
+      }
+    };
+  }
+  function Peeking(Glide2, Components) {
+    return {
+      /**
+       * Modifies passed translate value with a `peek` setting.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      modify: function modify(translate) {
+        if (Glide2.settings.focusAt >= 0) {
+          var peek = Components.Peek.value;
+          if (isObject(peek)) {
+            return translate - peek.before;
+          }
+          return translate - peek;
+        }
+        return translate;
+      }
+    };
+  }
+  function Focusing(Glide2, Components) {
+    return {
+      /**
+       * Modifies passed translate value with index in the `focusAt` setting.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      modify: function modify(translate) {
+        var gap = Components.Gaps.value;
+        var width = Components.Sizes.width;
+        var focusAt = Glide2.settings.focusAt;
+        var slideWidth = Components.Sizes.slideWidth;
+        if (focusAt === "center") {
+          return translate - (width / 2 - slideWidth / 2);
+        }
+        return translate - slideWidth * focusAt - gap * focusAt;
+      }
+    };
+  }
+  function mutator(Glide2, Components, Events) {
+    var TRANSFORMERS = [Gap, Grow, Peeking, Focusing].concat(Glide2._t, [Rtl]);
+    return {
+      /**
+       * Piplines translate value with registered transformers.
+       *
+       * @param  {Number} translate
+       * @return {Number}
+       */
+      mutate: function mutate(translate) {
+        for (var i = 0; i < TRANSFORMERS.length; i++) {
+          var transformer = TRANSFORMERS[i];
+          if (isFunction(transformer) && isFunction(transformer().modify)) {
+            translate = transformer(Glide2, Components, Events).modify(translate);
+          } else {
+            warn("Transformer should be a function that returns an object with `modify()` method");
+          }
+        }
+        return translate;
+      }
+    };
+  }
+  function Translate(Glide2, Components, Events) {
+    var Translate2 = {
+      /**
+       * Sets value of translate on HTML element.
+       *
+       * @param {Number} value
+       * @return {Void}
+       */
+      set: function set8(value) {
+        var transform3 = mutator(Glide2, Components).mutate(value);
+        var translate3d = "translate3d(".concat(-1 * transform3, "px, 0px, 0px)");
+        Components.Html.wrapper.style.mozTransform = translate3d;
+        Components.Html.wrapper.style.webkitTransform = translate3d;
+        Components.Html.wrapper.style.transform = translate3d;
+      },
+      /**
+       * Removes value of translate from HTML element.
+       *
+       * @return {Void}
+       */
+      remove: function remove() {
+        Components.Html.wrapper.style.transform = "";
+      },
+      /**
+       * @return {number}
+       */
+      getStartIndex: function getStartIndex() {
+        var length = Components.Sizes.length;
+        var index = Glide2.index;
+        var perView = Glide2.settings.perView;
+        if (Components.Run.isOffset(">") || Components.Run.isOffset("|>")) {
+          return length + (index - perView);
+        }
+        return (index + perView) % length;
+      },
+      /**
+       * @return {number}
+       */
+      getTravelDistance: function getTravelDistance() {
+        var travelDistance = Components.Sizes.slideWidth * Glide2.settings.perView;
+        if (Components.Run.isOffset(">") || Components.Run.isOffset("|>")) {
+          return travelDistance * -1;
+        }
+        return travelDistance;
+      }
+    };
+    Events.on("move", function(context) {
+      if (!Glide2.isType("carousel") || !Components.Run.isOffset()) {
+        return Translate2.set(context.movement);
+      }
+      Components.Transition.after(function() {
+        Events.emit("translate.jump");
+        Translate2.set(Components.Sizes.slideWidth * Glide2.index);
+      });
+      var startWidth = Components.Sizes.slideWidth * Components.Translate.getStartIndex();
+      return Translate2.set(startWidth - Components.Translate.getTravelDistance());
+    });
+    Events.on("destroy", function() {
+      Translate2.remove();
+    });
+    return Translate2;
+  }
+  function Transition(Glide2, Components, Events) {
+    var disabled = false;
+    var Transition2 = {
+      /**
+       * Composes string of the CSS transition.
+       *
+       * @param {String} property
+       * @return {String}
+       */
+      compose: function compose(property) {
+        var settings = Glide2.settings;
+        if (!disabled) {
+          return "".concat(property, " ").concat(this.duration, "ms ").concat(settings.animationTimingFunc);
+        }
+        return "".concat(property, " 0ms ").concat(settings.animationTimingFunc);
+      },
+      /**
+       * Sets value of transition on HTML element.
+       *
+       * @param {String=} property
+       * @return {Void}
+       */
+      set: function set8() {
+        var property = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "transform";
+        Components.Html.wrapper.style.transition = this.compose(property);
+      },
+      /**
+       * Removes value of transition from HTML element.
+       *
+       * @return {Void}
+       */
+      remove: function remove() {
+        Components.Html.wrapper.style.transition = "";
+      },
+      /**
+       * Runs callback after animation.
+       *
+       * @param  {Function} callback
+       * @return {Void}
+       */
+      after: function after(callback) {
+        setTimeout(function() {
+          callback();
+        }, this.duration);
+      },
+      /**
+       * Enable transition.
+       *
+       * @return {Void}
+       */
+      enable: function enable() {
+        disabled = false;
+        this.set();
+      },
+      /**
+       * Disable transition.
+       *
+       * @return {Void}
+       */
+      disable: function disable() {
+        disabled = true;
+        this.set();
+      }
+    };
+    define2(Transition2, "duration", {
+      /**
+       * Gets duration of the transition based
+       * on currently running animation type.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        var settings = Glide2.settings;
+        if (Glide2.isType("slider") && Components.Run.offset) {
+          return settings.rewindDuration;
+        }
+        return settings.animationDuration;
+      }
+    });
+    Events.on("move", function() {
+      Transition2.set();
+    });
+    Events.on(["build.before", "resize", "translate.jump"], function() {
+      Transition2.disable();
+    });
+    Events.on("run", function() {
+      Transition2.enable();
+    });
+    Events.on("destroy", function() {
+      Transition2.remove();
+    });
+    return Transition2;
+  }
+  var supportsPassive = false;
+  try {
+    opts = Object.defineProperty({}, "passive", {
+      get: function get5() {
+        supportsPassive = true;
+      }
+    });
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (e) {
+  }
+  var opts;
+  var supportsPassive$1 = supportsPassive;
+  var START_EVENTS = ["touchstart", "mousedown"];
+  var MOVE_EVENTS = ["touchmove", "mousemove"];
+  var END_EVENTS = ["touchend", "touchcancel", "mouseup", "mouseleave"];
+  var MOUSE_EVENTS = ["mousedown", "mousemove", "mouseup", "mouseleave"];
+  function swipe(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var swipeSin = 0;
+    var swipeStartX = 0;
+    var swipeStartY = 0;
+    var disabled = false;
+    var capture = supportsPassive$1 ? {
+      passive: true
+    } : false;
+    var Swipe = {
+      /**
+       * Initializes swipe bindings.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this.bindSwipeStart();
+      },
+      /**
+       * Handler for `swipestart` event. Calculates entry points of the user's tap.
+       *
+       * @param {Object} event
+       * @return {Void}
+       */
+      start: function start4(event) {
+        if (!disabled && !Glide2.disabled) {
+          this.disable();
+          var swipe2 = this.touches(event);
+          swipeSin = null;
+          swipeStartX = toInt(swipe2.pageX);
+          swipeStartY = toInt(swipe2.pageY);
+          this.bindSwipeMove();
+          this.bindSwipeEnd();
+          Events.emit("swipe.start");
+        }
+      },
+      /**
+       * Handler for `swipemove` event. Calculates user's tap angle and distance.
+       *
+       * @param {Object} event
+       */
+      move: function move(event) {
+        if (!Glide2.disabled) {
+          var _Glide$settings = Glide2.settings, touchAngle = _Glide$settings.touchAngle, touchRatio = _Glide$settings.touchRatio, classes = _Glide$settings.classes;
+          var swipe2 = this.touches(event);
+          var subExSx = toInt(swipe2.pageX) - swipeStartX;
+          var subEySy = toInt(swipe2.pageY) - swipeStartY;
+          var powEX = Math.abs(subExSx << 2);
+          var powEY = Math.abs(subEySy << 2);
+          var swipeHypotenuse = Math.sqrt(powEX + powEY);
+          var swipeCathetus = Math.sqrt(powEY);
+          swipeSin = Math.asin(swipeCathetus / swipeHypotenuse);
+          if (swipeSin * 180 / Math.PI < touchAngle) {
+            event.stopPropagation();
+            Components.Move.make(subExSx * toFloat(touchRatio));
+            Components.Html.root.classList.add(classes.dragging);
+            Events.emit("swipe.move");
+          } else {
+            return false;
+          }
+        }
+      },
+      /**
+       * Handler for `swipeend` event. Finitializes user's tap and decides about glide move.
+       *
+       * @param {Object} event
+       * @return {Void}
+       */
+      end: function end(event) {
+        if (!Glide2.disabled) {
+          var _Glide$settings2 = Glide2.settings, perSwipe = _Glide$settings2.perSwipe, touchAngle = _Glide$settings2.touchAngle, classes = _Glide$settings2.classes;
+          var swipe2 = this.touches(event);
+          var threshold = this.threshold(event);
+          var swipeDistance = swipe2.pageX - swipeStartX;
+          var swipeDeg = swipeSin * 180 / Math.PI;
+          this.enable();
+          if (swipeDistance > threshold && swipeDeg < touchAngle) {
+            Components.Run.make(Components.Direction.resolve("".concat(perSwipe, "<")));
+          } else if (swipeDistance < -threshold && swipeDeg < touchAngle) {
+            Components.Run.make(Components.Direction.resolve("".concat(perSwipe, ">")));
+          } else {
+            Components.Move.make();
+          }
+          Components.Html.root.classList.remove(classes.dragging);
+          this.unbindSwipeMove();
+          this.unbindSwipeEnd();
+          Events.emit("swipe.end");
+        }
+      },
+      /**
+       * Binds swipe's starting event.
+       *
+       * @return {Void}
+       */
+      bindSwipeStart: function bindSwipeStart() {
+        var _this = this;
+        var _Glide$settings3 = Glide2.settings, swipeThreshold = _Glide$settings3.swipeThreshold, dragThreshold = _Glide$settings3.dragThreshold;
+        if (swipeThreshold) {
+          Binder.on(START_EVENTS[0], Components.Html.wrapper, function(event) {
+            _this.start(event);
+          }, capture);
+        }
+        if (dragThreshold) {
+          Binder.on(START_EVENTS[1], Components.Html.wrapper, function(event) {
+            _this.start(event);
+          }, capture);
+        }
+      },
+      /**
+       * Unbinds swipe's starting event.
+       *
+       * @return {Void}
+       */
+      unbindSwipeStart: function unbindSwipeStart() {
+        Binder.off(START_EVENTS[0], Components.Html.wrapper, capture);
+        Binder.off(START_EVENTS[1], Components.Html.wrapper, capture);
+      },
+      /**
+       * Binds swipe's moving event.
+       *
+       * @return {Void}
+       */
+      bindSwipeMove: function bindSwipeMove() {
+        var _this2 = this;
+        Binder.on(MOVE_EVENTS, Components.Html.wrapper, throttle(function(event) {
+          _this2.move(event);
+        }, Glide2.settings.throttle), capture);
+      },
+      /**
+       * Unbinds swipe's moving event.
+       *
+       * @return {Void}
+       */
+      unbindSwipeMove: function unbindSwipeMove() {
+        Binder.off(MOVE_EVENTS, Components.Html.wrapper, capture);
+      },
+      /**
+       * Binds swipe's ending event.
+       *
+       * @return {Void}
+       */
+      bindSwipeEnd: function bindSwipeEnd() {
+        var _this3 = this;
+        Binder.on(END_EVENTS, Components.Html.wrapper, function(event) {
+          _this3.end(event);
+        });
+      },
+      /**
+       * Unbinds swipe's ending event.
+       *
+       * @return {Void}
+       */
+      unbindSwipeEnd: function unbindSwipeEnd() {
+        Binder.off(END_EVENTS, Components.Html.wrapper);
+      },
+      /**
+       * Normalizes event touches points accorting to different types.
+       *
+       * @param {Object} event
+       */
+      touches: function touches(event) {
+        if (MOUSE_EVENTS.indexOf(event.type) > -1) {
+          return event;
+        }
+        return event.touches[0] || event.changedTouches[0];
+      },
+      /**
+       * Gets value of minimum swipe distance settings based on event type.
+       *
+       * @return {Number}
+       */
+      threshold: function threshold(event) {
+        var settings = Glide2.settings;
+        if (MOUSE_EVENTS.indexOf(event.type) > -1) {
+          return settings.dragThreshold;
+        }
+        return settings.swipeThreshold;
+      },
+      /**
+       * Enables swipe event.
+       *
+       * @return {self}
+       */
+      enable: function enable() {
+        disabled = false;
+        Components.Transition.enable();
+        return this;
+      },
+      /**
+       * Disables swipe event.
+       *
+       * @return {self}
+       */
+      disable: function disable() {
+        disabled = true;
+        Components.Transition.disable();
+        return this;
+      }
+    };
+    Events.on("build.after", function() {
+      Components.Html.root.classList.add(Glide2.settings.classes.swipeable);
+    });
+    Events.on("destroy", function() {
+      Swipe.unbindSwipeStart();
+      Swipe.unbindSwipeMove();
+      Swipe.unbindSwipeEnd();
+      Binder.destroy();
+    });
+    return Swipe;
+  }
+  var NAV_SELECTOR = '[data-glide-el="controls[nav]"]';
+  var CONTROLS_SELECTOR = '[data-glide-el^="controls"]';
+  var PREVIOUS_CONTROLS_SELECTOR = "".concat(CONTROLS_SELECTOR, ' [data-glide-dir*="<"]');
+  var NEXT_CONTROLS_SELECTOR = "".concat(CONTROLS_SELECTOR, ' [data-glide-dir*=">"]');
+  function controls(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var capture = supportsPassive$1 ? {
+      passive: true
+    } : false;
+    var Controls = {
+      /**
+       * Inits arrows. Binds events listeners
+       * to the arrows HTML elements.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this._n = Components.Html.root.querySelectorAll(NAV_SELECTOR);
+        this._c = Components.Html.root.querySelectorAll(CONTROLS_SELECTOR);
+        this._arrowControls = {
+          previous: Components.Html.root.querySelectorAll(PREVIOUS_CONTROLS_SELECTOR),
+          next: Components.Html.root.querySelectorAll(NEXT_CONTROLS_SELECTOR)
+        };
+        this.addBindings();
+      },
+      /**
+       * Sets active class to current slide.
+       *
+       * @return {Void}
+       */
+      setActive: function setActive() {
+        for (var i = 0; i < this._n.length; i++) {
+          this.addClass(this._n[i].children);
+        }
+      },
+      /**
+       * Removes active class to current slide.
+       *
+       * @return {Void}
+       */
+      removeActive: function removeActive() {
+        for (var i = 0; i < this._n.length; i++) {
+          this.removeClass(this._n[i].children);
+        }
+      },
+      /**
+       * Toggles active class on items inside navigation.
+       *
+       * @param  {HTMLElement} controls
+       * @return {Void}
+       */
+      addClass: function addClass(controls2) {
+        var settings = Glide2.settings;
+        var item = controls2[Glide2.index];
+        if (!item) {
+          return;
+        }
+        if (item) {
+          item.classList.add(settings.classes.nav.active);
+          siblings(item).forEach(function(sibling) {
+            sibling.classList.remove(settings.classes.nav.active);
+          });
+        }
+      },
+      /**
+       * Removes active class from active control.
+       *
+       * @param  {HTMLElement} controls
+       * @return {Void}
+       */
+      removeClass: function removeClass(controls2) {
+        var item = controls2[Glide2.index];
+        if (item) {
+          item.classList.remove(Glide2.settings.classes.nav.active);
+        }
+      },
+      /**
+       * Calculates, removes or adds `Glide.settings.classes.disabledArrow` class on the control arrows
+       */
+      setArrowState: function setArrowState() {
+        if (Glide2.settings.rewind) {
+          return;
+        }
+        var next = Controls._arrowControls.next;
+        var previous = Controls._arrowControls.previous;
+        this.resetArrowState(next, previous);
+        if (Glide2.index === 0) {
+          this.disableArrow(previous);
+        }
+        if (Glide2.index === Components.Run.length) {
+          this.disableArrow(next);
+        }
+      },
+      /**
+       * Removes `Glide.settings.classes.disabledArrow` from given NodeList elements
+       *
+       * @param {NodeList[]} lists
+       */
+      resetArrowState: function resetArrowState() {
+        var settings = Glide2.settings;
+        for (var _len = arguments.length, lists = new Array(_len), _key = 0; _key < _len; _key++) {
+          lists[_key] = arguments[_key];
+        }
+        lists.forEach(function(list) {
+          toArray(list).forEach(function(element) {
+            element.classList.remove(settings.classes.arrow.disabled);
+          });
+        });
+      },
+      /**
+       * Adds `Glide.settings.classes.disabledArrow` to given NodeList elements
+       *
+       * @param {NodeList[]} lists
+       */
+      disableArrow: function disableArrow() {
+        var settings = Glide2.settings;
+        for (var _len2 = arguments.length, lists = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+          lists[_key2] = arguments[_key2];
+        }
+        lists.forEach(function(list) {
+          toArray(list).forEach(function(element) {
+            element.classList.add(settings.classes.arrow.disabled);
+          });
+        });
+      },
+      /**
+       * Adds handles to the each group of controls.
+       *
+       * @return {Void}
+       */
+      addBindings: function addBindings() {
+        for (var i = 0; i < this._c.length; i++) {
+          this.bind(this._c[i].children);
+        }
+      },
+      /**
+       * Removes handles from the each group of controls.
+       *
+       * @return {Void}
+       */
+      removeBindings: function removeBindings() {
+        for (var i = 0; i < this._c.length; i++) {
+          this.unbind(this._c[i].children);
+        }
+      },
+      /**
+       * Binds events to arrows HTML elements.
+       *
+       * @param {HTMLCollection} elements
+       * @return {Void}
+       */
+      bind: function bind(elements) {
+        for (var i = 0; i < elements.length; i++) {
+          Binder.on("click", elements[i], this.click);
+          Binder.on("touchstart", elements[i], this.click, capture);
+        }
+      },
+      /**
+       * Unbinds events binded to the arrows HTML elements.
+       *
+       * @param {HTMLCollection} elements
+       * @return {Void}
+       */
+      unbind: function unbind(elements) {
+        for (var i = 0; i < elements.length; i++) {
+          Binder.off(["click", "touchstart"], elements[i]);
+        }
+      },
+      /**
+       * Handles `click` event on the arrows HTML elements.
+       * Moves slider in direction given via the
+       * `data-glide-dir` attribute.
+       *
+       * @param {Object} event
+       * @return {void}
+       */
+      click: function click(event) {
+        if (!supportsPassive$1 && event.type === "touchstart") {
+          event.preventDefault();
+        }
+        var direction = event.currentTarget.getAttribute("data-glide-dir");
+        Components.Run.make(Components.Direction.resolve(direction));
+      }
+    };
+    define2(Controls, "items", {
+      /**
+       * Gets collection of the controls HTML elements.
+       *
+       * @return {HTMLElement[]}
+       */
+      get: function get5() {
+        return Controls._c;
+      }
+    });
+    Events.on(["mount.after", "move.after"], function() {
+      Controls.setActive();
+    });
+    Events.on(["mount.after", "run"], function() {
+      Controls.setArrowState();
+    });
+    Events.on("destroy", function() {
+      Controls.removeBindings();
+      Controls.removeActive();
+      Binder.destroy();
+    });
+    return Controls;
+  }
+  function keyboard(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var Keyboard = {
+      /**
+       * Binds keyboard events on component mount.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        if (Glide2.settings.keyboard) {
+          this.bind();
+        }
+      },
+      /**
+       * Adds keyboard press events.
+       *
+       * @return {Void}
+       */
+      bind: function bind() {
+        Binder.on("keyup", document, this.press);
+      },
+      /**
+       * Removes keyboard press events.
+       *
+       * @return {Void}
+       */
+      unbind: function unbind() {
+        Binder.off("keyup", document);
+      },
+      /**
+       * Handles keyboard's arrows press and moving glide foward and backward.
+       *
+       * @param  {Object} event
+       * @return {Void}
+       */
+      press: function press(event) {
+        var perSwipe = Glide2.settings.perSwipe;
+        if (event.code === "ArrowRight") {
+          Components.Run.make(Components.Direction.resolve("".concat(perSwipe, ">")));
+        }
+        if (event.code === "ArrowLeft") {
+          Components.Run.make(Components.Direction.resolve("".concat(perSwipe, "<")));
+        }
+      }
+    };
+    Events.on(["destroy", "update"], function() {
+      Keyboard.unbind();
+    });
+    Events.on("update", function() {
+      Keyboard.mount();
+    });
+    Events.on("destroy", function() {
+      Binder.destroy();
+    });
+    return Keyboard;
+  }
+  function autoplay(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var Autoplay = {
+      /**
+       * Initializes autoplaying and events.
+       *
+       * @return {Void}
+       */
+      mount: function mount2() {
+        this.enable();
+        this.start();
+        if (Glide2.settings.hoverpause) {
+          this.bind();
+        }
+      },
+      /**
+       * Enables autoplaying
+       *
+       * @returns {Void}
+       */
+      enable: function enable() {
+        this._e = true;
+      },
+      /**
+       * Disables autoplaying.
+       *
+       * @returns {Void}
+       */
+      disable: function disable() {
+        this._e = false;
+      },
+      /**
+       * Starts autoplaying in configured interval.
+       *
+       * @param {Boolean|Number} force Run autoplaying with passed interval regardless of `autoplay` settings
+       * @return {Void}
+       */
+      start: function start4() {
+        var _this = this;
+        if (!this._e) {
+          return;
+        }
+        this.enable();
+        if (Glide2.settings.autoplay) {
+          if (isUndefined(this._i)) {
+            this._i = setInterval(function() {
+              _this.stop();
+              Components.Run.make(">");
+              _this.start();
+              Events.emit("autoplay");
+            }, this.time);
+          }
+        }
+      },
+      /**
+       * Stops autorunning of the glide.
+       *
+       * @return {Void}
+       */
+      stop: function stop() {
+        this._i = clearInterval(this._i);
+      },
+      /**
+       * Stops autoplaying while mouse is over glide's area.
+       *
+       * @return {Void}
+       */
+      bind: function bind() {
+        var _this2 = this;
+        Binder.on("mouseover", Components.Html.root, function() {
+          if (_this2._e) {
+            _this2.stop();
+          }
+        });
+        Binder.on("mouseout", Components.Html.root, function() {
+          if (_this2._e) {
+            _this2.start();
+          }
+        });
+      },
+      /**
+       * Unbind mouseover events.
+       *
+       * @returns {Void}
+       */
+      unbind: function unbind() {
+        Binder.off(["mouseover", "mouseout"], Components.Html.root);
+      }
+    };
+    define2(Autoplay, "time", {
+      /**
+       * Gets time period value for the autoplay interval. Prioritizes
+       * times in `data-glide-autoplay` attrubutes over options.
+       *
+       * @return {Number}
+       */
+      get: function get5() {
+        var autoplay2 = Components.Html.slides[Glide2.index].getAttribute("data-glide-autoplay");
+        if (autoplay2) {
+          return toInt(autoplay2);
+        }
+        return toInt(Glide2.settings.autoplay);
+      }
+    });
+    Events.on(["destroy", "update"], function() {
+      Autoplay.unbind();
+    });
+    Events.on(["run.before", "swipe.start", "update"], function() {
+      Autoplay.stop();
+    });
+    Events.on(["pause", "destroy"], function() {
+      Autoplay.disable();
+      Autoplay.stop();
+    });
+    Events.on(["run.after", "swipe.end"], function() {
+      Autoplay.start();
+    });
+    Events.on(["play"], function() {
+      Autoplay.enable();
+      Autoplay.start();
+    });
+    Events.on("update", function() {
+      Autoplay.mount();
+    });
+    Events.on("destroy", function() {
+      Binder.destroy();
+    });
+    return Autoplay;
+  }
+  function sortBreakpoints(points) {
+    if (isObject(points)) {
+      return sortKeys(points);
+    } else {
+      warn("Breakpoints option must be an object");
+    }
+    return {};
+  }
+  function breakpoints(Glide2, Components, Events) {
+    var Binder = new EventsBinder();
+    var settings = Glide2.settings;
+    var points = sortBreakpoints(settings.breakpoints);
+    var defaults2 = Object.assign({}, settings);
+    var Breakpoints = {
+      /**
+       * Matches settings for currectly matching media breakpoint.
+       *
+       * @param {Object} points
+       * @returns {Object}
+       */
+      match: function match(points2) {
+        if (typeof window.matchMedia !== "undefined") {
+          for (var point in points2) {
+            if (points2.hasOwnProperty(point)) {
+              if (window.matchMedia("(max-width: ".concat(point, "px)")).matches) {
+                return points2[point];
+              }
+            }
+          }
+        }
+        return defaults2;
+      }
+    };
+    Object.assign(settings, Breakpoints.match(points));
+    Binder.on("resize", window, throttle(function() {
+      Glide2.settings = mergeOptions(settings, Breakpoints.match(points));
+    }, Glide2.settings.throttle));
+    Events.on("update", function() {
+      points = sortBreakpoints(points);
+      defaults2 = Object.assign({}, settings);
+    });
+    Events.on("destroy", function() {
+      Binder.off("resize", window);
+    });
+    return Breakpoints;
+  }
+  var COMPONENTS = {
+    Html,
+    Translate,
+    Transition,
+    Direction,
+    Peek,
+    Sizes,
+    Gaps,
+    Move,
+    Clones,
+    Resize,
+    Build,
+    Run
+  };
+  var Glide = /* @__PURE__ */ function(_Core) {
+    _inherits(Glide2, _Core);
+    var _super = _createSuper(Glide2);
+    function Glide2() {
+      _classCallCheck(this, Glide2);
+      return _super.apply(this, arguments);
+    }
+    _createClass(Glide2, [{
+      key: "mount",
+      value: function mount2() {
+        var extensions = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+        return _get(_getPrototypeOf(Glide2.prototype), "mount", this).call(this, Object.assign({}, COMPONENTS, extensions));
+      }
+    }]);
+    return Glide2;
+  }(Glide$1);
+
   // node_modules/@wix/image-kit/dist/esm/helpers/imageServiceConstants.js
   var fittingTypes = {
     SCALE_TO_FILL: "fill",
@@ -7461,25 +10125,25 @@
   };
 
   // node_modules/jsonpath-plus/dist/index-browser-esm.js
-  function _typeof(obj) {
+  function _typeof2(obj) {
     "@babel/helpers - typeof";
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function(obj2) {
+      _typeof2 = function(obj2) {
         return typeof obj2;
       };
     } else {
-      _typeof = function(obj2) {
+      _typeof2 = function(obj2) {
         return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
       };
     }
-    return _typeof(obj);
+    return _typeof2(obj);
   }
-  function _classCallCheck(instance, Constructor) {
+  function _classCallCheck2(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
-  function _inherits(subClass, superClass) {
+  function _inherits2(subClass, superClass) {
     if (typeof superClass !== "function" && superClass !== null) {
       throw new TypeError("Super expression must either be null or a function");
     }
@@ -7491,22 +10155,22 @@
       }
     });
     if (superClass)
-      _setPrototypeOf(subClass, superClass);
+      _setPrototypeOf2(subClass, superClass);
   }
-  function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf2(o2) {
+  function _getPrototypeOf2(o) {
+    _getPrototypeOf2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf3(o2) {
       return o2.__proto__ || Object.getPrototypeOf(o2);
     };
-    return _getPrototypeOf(o);
+    return _getPrototypeOf2(o);
   }
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf2(o2, p2) {
+  function _setPrototypeOf2(o, p) {
+    _setPrototypeOf2 = Object.setPrototypeOf || function _setPrototypeOf3(o2, p2) {
       o2.__proto__ = p2;
       return o2;
     };
-    return _setPrototypeOf(o, p);
+    return _setPrototypeOf2(o, p);
   }
-  function _isNativeReflectConstruct() {
+  function _isNativeReflectConstruct2() {
     if (typeof Reflect === "undefined" || !Reflect.construct)
       return false;
     if (Reflect.construct.sham)
@@ -7522,7 +10186,7 @@
     }
   }
   function _construct(Parent, args, Class) {
-    if (_isNativeReflectConstruct()) {
+    if (_isNativeReflectConstruct2()) {
       _construct = Reflect.construct;
     } else {
       _construct = function _construct2(Parent2, args2, Class2) {
@@ -7531,7 +10195,7 @@
         var Constructor = Function.bind.apply(Parent2, a);
         var instance = new Constructor();
         if (Class2)
-          _setPrototypeOf(instance, Class2.prototype);
+          _setPrototypeOf2(instance, Class2.prototype);
         return instance;
       };
     }
@@ -7554,7 +10218,7 @@
         _cache.set(Class2, Wrapper);
       }
       function Wrapper() {
-        return _construct(Class2, arguments, _getPrototypeOf(this).constructor);
+        return _construct(Class2, arguments, _getPrototypeOf2(this).constructor);
       }
       Wrapper.prototype = Object.create(Class2.prototype, {
         constructor: {
@@ -7564,33 +10228,33 @@
           configurable: true
         }
       });
-      return _setPrototypeOf(Wrapper, Class2);
+      return _setPrototypeOf2(Wrapper, Class2);
     };
     return _wrapNativeSuper(Class);
   }
-  function _assertThisInitialized(self2) {
+  function _assertThisInitialized2(self2) {
     if (self2 === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
     }
     return self2;
   }
-  function _possibleConstructorReturn(self2, call) {
+  function _possibleConstructorReturn2(self2, call) {
     if (call && (typeof call === "object" || typeof call === "function")) {
       return call;
     }
-    return _assertThisInitialized(self2);
+    return _assertThisInitialized2(self2);
   }
-  function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  function _createSuper2(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct2();
     return function _createSuperInternal() {
-      var Super = _getPrototypeOf(Derived), result;
+      var Super = _getPrototypeOf2(Derived), result;
       if (hasNativeReflectConstruct) {
-        var NewTarget = _getPrototypeOf(this).constructor;
+        var NewTarget = _getPrototypeOf2(this).constructor;
         result = Reflect.construct(Super, arguments, NewTarget);
       } else {
         result = Super.apply(this, arguments);
       }
-      return _possibleConstructorReturn(this, result);
+      return _possibleConstructorReturn2(this, result);
     };
   }
   function _toConsumableArray(arr) {
@@ -7693,11 +10357,11 @@
     return arr;
   }
   var NewError = /* @__PURE__ */ function(_Error) {
-    _inherits(NewError2, _Error);
-    var _super = _createSuper(NewError2);
+    _inherits2(NewError2, _Error);
+    var _super = _createSuper2(NewError2);
     function NewError2(value) {
       var _this;
-      _classCallCheck(this, NewError2);
+      _classCallCheck2(this, NewError2);
       _this = _super.call(this, 'JSONPath should not be called with "new" (it prevents return of (unwrapped) scalar values)');
       _this.avoidNew = true;
       _this.value = value;
@@ -7724,7 +10388,7 @@
       expr = opts;
       opts = null;
     }
-    var optObj = opts && _typeof(opts) === "object";
+    var optObj = opts && _typeof2(opts) === "object";
     opts = opts || {};
     this.json = opts.json || obj;
     this.path = opts.path || expr;
@@ -7749,7 +10413,7 @@
         args.json = opts.json;
       }
       var ret = this.evaluate(args);
-      if (!ret || _typeof(ret) !== "object") {
+      if (!ret || _typeof2(ret) !== "object") {
         throw new NewError(ret);
       }
       return ret;
@@ -7766,7 +10430,7 @@
     this.currOtherTypeCallback = otherTypeCallback || this.otherTypeCallback;
     json2 = json2 || this.json;
     expr = expr || this.path;
-    if (expr && _typeof(expr) === "object" && !Array.isArray(expr)) {
+    if (expr && _typeof2(expr) === "object" && !Array.isArray(expr)) {
       if (!expr.path && expr.path !== "") {
         throw new TypeError('You must supply a "path" property when providing an object argument to JSONPath.evaluate().');
       }
@@ -7880,7 +10544,7 @@
     } else if (loc === "..") {
       addRet(this._trace(x, val, path, parent, parentPropName, callback, hasArrExpr));
       this._walk(loc, x, val, path, parent, parentPropName, callback, function(m, l, _x, v, p, par, pr, cb) {
-        if (_typeof(v[m]) === "object") {
+        if (_typeof2(v[m]) === "object") {
           addRet(_this3._trace(unshift(l, _x), v[m], push(p, m), v, m, cb, true));
         }
       });
@@ -7923,7 +10587,7 @@
       var valueType = loc.slice(1, -2);
       switch (valueType) {
         case "scalar":
-          if (!val || !["object", "function"].includes(_typeof(val))) {
+          if (!val || !["object", "function"].includes(_typeof2(val))) {
             addType = true;
           }
           break;
@@ -7931,7 +10595,7 @@
         case "string":
         case "undefined":
         case "function":
-          if (_typeof(val) === valueType) {
+          if (_typeof2(val) === valueType) {
             addType = true;
           }
           break;
@@ -7951,7 +10615,7 @@
           }
           break;
         case "object":
-          if (val && _typeof(val) === valueType) {
+          if (val && _typeof2(val) === valueType) {
             addType = true;
           }
           break;
@@ -8026,7 +10690,7 @@
       for (var i = 0; i < n; i++) {
         f(i, loc, expr, val, path, parent, parentPropName, callback);
       }
-    } else if (val && _typeof(val) === "object") {
+    } else if (val && _typeof2(val) === "object") {
       Object.keys(val).forEach(function(m) {
         f(m, loc, expr, val, path, parent, parentPropName, callback);
       });
@@ -9044,10 +11708,10 @@
   function isNothing(subject) {
     return typeof subject === "undefined" || subject === null;
   }
-  function isObject(subject) {
+  function isObject2(subject) {
     return typeof subject === "object" && subject !== null;
   }
-  function toArray(sequence) {
+  function toArray2(sequence) {
     if (Array.isArray(sequence))
       return sequence;
     else if (isNothing(sequence))
@@ -9076,8 +11740,8 @@
     return number === 0 && Number.NEGATIVE_INFINITY === 1 / number;
   }
   var isNothing_1 = isNothing;
-  var isObject_1 = isObject;
-  var toArray_1 = toArray;
+  var isObject_1 = isObject2;
+  var toArray_1 = toArray2;
   var repeat_1 = repeat;
   var isNegativeZero_1 = isNegativeZero;
   var extend_1 = extend;
@@ -12181,9 +14845,9 @@
     var params = {};
     Object.entries(data).forEach(function(_a14) {
       var key = _a14[0], value = _a14[1];
-      var isObject3 = value !== null && typeof value === "object" && !Array.isArray(value);
+      var isObject4 = value !== null && typeof value === "object" && !Array.isArray(value);
       var fieldPath = resolvePath2(path, key);
-      if (isObject3) {
+      if (isObject4) {
         var serializedObject = flattenParams(value, fieldPath);
         Object.assign(params, serializedObject);
       } else {
@@ -14941,8 +17605,8 @@
     }
     return {};
   };
-  var isObject2 = (val) => val && typeof val === "object" && !Array.isArray(val);
-  var isHostModule = (val) => isObject2(val) && val.__type === "host";
+  var isObject3 = (val) => val && typeof val === "object" && !Array.isArray(val);
+  var isHostModule = (val) => isObject3(val) && val.__type === "host";
   function buildHostModule(val, host) {
     return val.create(host);
   }
@@ -15065,7 +17729,7 @@
           metadata != null ? metadata : {},
           boundFetch
         );
-      } else if (isObject2(modules)) {
+      } else if (isObject3(modules)) {
         return Object.fromEntries(
           Object.entries(
             modules
@@ -15104,8 +17768,8 @@
     return token.expiresAt < currentDate;
   }
   function createAccessToken(accessToken, expiresIn) {
-    const now = getCurrentDate();
-    return { value: accessToken, expiresAt: Number(expiresIn) + now };
+    const now2 = getCurrentDate();
+    return { value: accessToken, expiresAt: Number(expiresIn) + now2 };
   }
   function addListener(eventTarget, name, fn) {
     if (eventTarget.addEventListener) {
@@ -16481,7 +19145,7 @@
 
   // node_modules/@wix/filter-builder/dist/esm/type-utils.js
   var import_kind_of = __toESM(require_kind_of());
-  function isArray4(arr) {
+  function isArray5(arr) {
     return (0, import_kind_of.default)(arr) === "array";
   }
   function isDate(obj) {
@@ -16490,17 +19154,17 @@
   function isNumber(obj) {
     return (0, import_kind_of.default)(obj) === "number";
   }
-  function isString3(obj) {
+  function isString4(obj) {
     return (0, import_kind_of.default)(obj) === "string";
   }
-  function isFunction(obj) {
+  function isFunction2(obj) {
     return (0, import_kind_of.default)(obj) === "function";
   }
   function typeForDisplay(obj) {
     return upperCaseFirst((0, import_kind_of.default)(obj));
   }
   function upperCaseFirst(str2) {
-    if (!isString3(str2)) {
+    if (!isString4(str2)) {
       return str2;
     }
     var first = str2.slice(0, 1).toUpperCase();
@@ -16536,7 +19200,7 @@
     FilterValidator2.prototype.typeIsString = function(value) {
       var _this = this;
       return this.addValidation(function() {
-        return isString3(value);
+        return isString4(value);
       }, function() {
         return "Invalid ".concat(_this.operatorName, " parameter value [").concat(typeForDisplay(value), "]. ").concat(_this.operatorName, " parameter must be a String.");
       });
@@ -16568,7 +19232,7 @@
     FilterValidator2.prototype.validFieldName = function(field) {
       var _this = this;
       return this.addValidation(function() {
-        return isString3(field);
+        return isString4(field);
       }, function() {
         return "Invalid ".concat(_this.operatorName, " field value [").concat(typeForDisplay(field), "]. ").concat(_this.operatorName, " field must be a String.");
       });
@@ -16638,7 +19302,7 @@
     return FilterValidator2;
   }();
   function isDateStringOrNumber(value) {
-    return isString3(value) || isNumber(value) || isDate(value);
+    return isString4(value) || isNumber(value) || isDate(value);
   }
 
   // node_modules/@wix/filter-builder/dist/esm/query-optimiser.js
@@ -16994,7 +19658,7 @@
       };
       class_2.prototype._AndSetOperand = function(filterOperatorName, operatorName, args) {
         var _a14 = Array.prototype.slice.call(args), field = _a14[0], rawOperands = _a14.slice(1);
-        var operands = isArray4(rawOperands[0]) ? rawOperands[0] : rawOperands;
+        var operands = isArray5(rawOperands[0]) ? rawOperands[0] : rawOperands;
         var newInvalidArguments = this._filterValidator(operatorName).arityIsAtLeastTwo(args).validFieldName(field).typeIsStringNumberOrDateForAll(operands).validateAndAggregate()[0];
         var newFilterTree = this._makeNewFilter(field, filterOperatorName, operands);
         return this._copy(newFilterTree, newInvalidArguments);
@@ -17003,7 +19667,7 @@
         var newFilterTree = clone(this.filterTree);
         var serializableOperand = operand === void 0 ? null : operand;
         var newFilter = this._buildFilter(field, filterOperatorName, serializableOperand);
-        if (isArray4(newFilterTree.$and)) {
+        if (isArray5(newFilterTree.$and)) {
           newFilterTree.$and.push(newFilter);
           return newFilterTree;
         } else {
@@ -17024,7 +19688,7 @@
         }
       };
       class_2.prototype._encode = function(operand) {
-        if (isFunction(this.encoder)) {
+        if (isFunction2(this.encoder)) {
           return this.encoder(operand);
         } else {
           return operand;
@@ -17040,7 +19704,7 @@
     }(Base);
   };
   function isConjunctiveFormFilter(filterTree) {
-    return isArray4(filterTree.$and);
+    return isArray5(filterTree.$and);
   }
   function isEmptyObject(obj) {
     return Object.keys(obj).length === 0;
@@ -20196,7 +22860,6 @@
     }
     updateItems(el) {
       const collectionData = this.dataItems[el.dataset.collectionId];
-      console.log(collectionData);
       for (const item of collectionData) {
         const id = item._id;
         const itemEl = id === "SINGLE_ITEM_ID" ? el : el.querySelector(`[data-item-id="${id}"]`);
@@ -20223,6 +22886,44 @@
   var isIndex = document.querySelector(".index") || false;
 
   // javascript/app.js
+  window.onload = () => {
+    const indexOptions = {
+      type: "carousel",
+      focusAt: "center",
+      startAt: 0,
+      peek: 0,
+      perView: 6,
+      gap: 150,
+      autoplay: 2e3,
+      breakpoints: {
+        960: {
+          perView: 1,
+          peek: 0,
+          focusAt: 0,
+          gap: 0
+        }
+      }
+    };
+    const ageingOptions = {
+      type: "carousel",
+      focusAt: "center",
+      startAt: 0,
+      peek: 0,
+      perView: 4,
+      gap: 30,
+      hoverpause: true,
+      breakpoints: {
+        960: {
+          perView: 1,
+          peek: 0,
+          focusAt: 0,
+          gap: 0
+        }
+      }
+    };
+    const options = isIndex ? indexOptions : ageingOptions;
+    let glide = new Glide(".glide", options).mount({ Autoplay: autoplay, Breakpoints: breakpoints, Controls: controls, Keyboard: keyboard, Swipe: swipe });
+  };
   if (isIndex)
     delayedLoopLandingVideo();
   var populateWixData = async () => {
@@ -20230,7 +22931,28 @@
     await wix.fetchDataItems();
     wix.updateCollections();
   };
+  var stickyModels = () => {
+    models = document.querySelectorAll(".image__feature--model");
+    models.forEach((model) => {
+      const style = getComputedStyle(model);
+      const isSticky = style.getPropertyValue("position") === "sticky";
+      if (isSticky)
+        model.style.top = `${window.innerHeight - model.clientHeight}px`;
+    });
+  };
+  var indexBody = () => {
+    const isHomepage = document.querySelector("body.index");
+    if (isHomepage) {
+      const header = document.querySelector("header");
+      const headerHeight = getComputedStyle(header).getPropertyValue("height");
+      const hero = document.querySelector(".hero");
+      hero.style.marginTop = `-${headerHeight}`;
+    }
+  };
+  indexBody();
   populateWixData();
+  stickyModels();
+  window.addEventListener("resize", stickyModels);
 })();
 /*! Bundled license information:
 
@@ -20242,6 +22964,13 @@ lodash/lodash.js:
    * Released under MIT license <https://lodash.com/license>
    * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
    * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+   *)
+
+@glidejs/glide/dist/glide.modular.esm.js:
+  (*!
+   * Glide.js v3.6.0
+   * (c) 2013-2022 Jędrzej Chałubek (https://github.com/jedrzejchalubek/)
+   * Released under the MIT License.
    *)
 
 js-yaml/dist/js-yaml.mjs:

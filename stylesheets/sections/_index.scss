@@ -2,3 +2,11 @@
 @use "base";
 @use "centered";
 @use "two-column";
+
+.section__press {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  padding: 4rem 0;
+}

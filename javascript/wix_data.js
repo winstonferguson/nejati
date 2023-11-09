@@ -40,8 +40,6 @@ export default class WixData {
   updateItems(el) {
     const collectionData = this.dataItems[el.dataset.collectionId];
 
-    console.log(collectionData);
-
     for (const item of collectionData) {
       const id = item._id;
 

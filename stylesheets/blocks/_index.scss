@@ -3,5 +3,6 @@
 .block {
   &--left {
     @extend %flex-column--start;
+    margin-bottom: 1rem;
   }
 }
