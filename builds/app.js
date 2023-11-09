@@ -22933,6 +22933,7 @@
     const wix = new WixData();
     await wix.fetchDataItems();
     wix.updateCollections();
+    stickyModels();
   };
   var stickyModels = () => {
     models = document.querySelectorAll(".image__feature--model");
@@ -22954,7 +22955,6 @@
   };
   indexBody();
   populateWixData();
-  stickyModels();
   window.addEventListener("resize", stickyModels);
 })();
 /*! Bundled license information:

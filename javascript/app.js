@@ -59,6 +59,8 @@ const populateWixData = async () => {
   const wix = new WixData();
   await wix.fetchDataItems();
   wix.updateCollections();
+
+  stickyModels();
 }
 
 const stickyModels = () => {
@@ -87,7 +89,5 @@ const indexBody = () => {
 indexBody();
 
 populateWixData();
-
-stickyModels();
 
 window.addEventListener('resize', stickyModels);
