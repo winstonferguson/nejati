@@ -2,7 +2,7 @@
 
 .header {
   background-color: $color-accent-2;
-  padding: 2rem 0 1.5rem 0;
+  padding: 0 2rem;
   position: relative;
   width: 100%;
 
@@ -12,7 +12,7 @@
   }
 
   &__inner {
-    @extend %flex-column--center;
+    @extend %flex-row--start;
 
     gap: 0.5rem;
   }

@@ -17,7 +17,7 @@
       }
 
       .nav__subnav-content {
-        @extend %flex-column--center;
+        @extend %flex-column--start;
 
         animation:
           fade-in 1000ms,
@@ -25,7 +25,7 @@
         font-size: 0.75rem;
         gap: 0.1rem;
         padding: 1rem;
-        text-align: center;
+        text-align: left;
         width: 100%;
 
         .nav__link {

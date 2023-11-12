@@ -2,6 +2,10 @@
 
 .header {
   &__branding {
-    max-width: 150px;
+    left: 50%;
+    max-width: 130px;
+    position: absolute;
+    transform: translateX(-50%);
+    top: 10px;
   }
 }
