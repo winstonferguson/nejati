@@ -14,8 +14,53 @@
   </head>
   <body class="index">
     <header class="header">
+      <div class="wrapper hide-on-desktop">
+        <nav class="header__inner">
+          <input type="checkbox" id="menu" name="menu" class="m-menu__checkbox">
+          <label class="m-menu__toggle" for="menu">
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="arcs"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </label>
+          <label class="m-menu__overlay" for="menu"></label>
+        
+          <div class="m-menu">
+            <div class="m-menu__header">
+              <label class="m-menu__toggle" for="menu">
+                <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="arcs">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </label>
+              <span>MENU</span>
+            </div>
+            <ul>
+              <li><a class="nav__link" href="index.html">Home</a></li>     
+              <li>
+                <label class="nav__link a-label__chevron" for="item-2">Treatments</label>
+                <input type="checkbox" id="item-2" name="item-2" class="m-menu__checkbox">
+                <div class="m-menu">
+                  <div class="m-menu__header">
+                    <label class="m-menu__toggle" for="item-2">
+                      <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="arcs">
+                        <path d="M19 12H6M12 5l-7 7 7 7"/>
+                      </svg>
+                    </label>
+                    <span>Treatments</span>
+                  </div>
+                  <ul>
+                    <li><a class="nav__link" href="anti-ageing-dentistry-and-dental-rejuvenation.html">Anti Ageing Dentistry & Dental Rejuvenation</a></li>
+                    <li><a class="nav__link" href="examination-and-diagnostics.html">Examination & Diagnositcs</a></li>
+                    <li><a class="nav__link" href="oral-hygiene-treatment-well-being-experience.html">Oral Hygiene Treatment & Well Being Experience</a></li>
+                </div>
+              </li>
+              <li><button class="nav__link" data-a11y-dialog-show="contact-dialog">Contact</button></li>
+            </ul>  
+          </div>
+        </nav>
+      </div>
+
+
       <div class="header__inner">
-        <nav class="header__nav">
+        <nav class="header__nav hide-on-mobile">
           <ul class="nav">
             <li><a class="nav__link" href="index.html">Home</a></li>             
             <li class="nav__subnav">
@@ -29,6 +74,14 @@
             <li><button class="nav__link" data-a11y-dialog-show="contact-dialog">Contact</button></li>
           </ul>
         </nav>
+        
+
+
+
+
+
+
+
         <div class="header__branding">
           <img src="images/logo.svg" alt="Nejati Clinic logo">
         </div>

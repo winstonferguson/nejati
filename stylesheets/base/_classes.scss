@@ -4,6 +4,18 @@
   padding: 2rem 0;
 }
 
+.hide-on-mobile {
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  @media (min-width: 960px) {
+    display: none;
+  }
+}
+
 .title {
   font-size: 1.5rem;
   font-weight: 600;
