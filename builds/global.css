@@ -61,6 +61,15 @@ html {
   font-weight: 400;
 }
 
+.row-1 {
+  grid-row: 1;
+}
+@media (min-width: 960px) {
+  .row-1 {
+    grid-column: 2;
+  }
+}
+
 .padded {
   padding: 2rem 0;
 }
@@ -380,7 +389,17 @@ header .nav__link {
   gap: 0.5rem;
   margin: 0 auto;
   max-width: 2000px;
-  padding: 0 2rem;
+  padding: 0 1rem;
+}
+@media (min-width: 767px) {
+  .header__inner {
+    padding: 0 2rem;
+  }
+}
+@media (min-width: 960px) {
+  .header__inner {
+    padding: 0 3rem;
+  }
 }
 
 .header__branding {

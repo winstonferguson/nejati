@@ -1,5 +1,14 @@
 @use "../utilities" as *;
 
+.row-1 {
+  grid-row: 1;
+
+  @media (min-width: 960px) {
+    grid-column: 2;
+  }
+
+
+}
 .padded {
   padding: 2rem 0;
 }
@@ -85,7 +94,7 @@ h3.subtitle {
 
   .index & {
     padding: 6rem;
-    
+
     @media (min-width: 960px) {
       padding: 0;
     }
