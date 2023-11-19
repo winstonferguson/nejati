@@ -8,7 +8,6 @@
 
     @media (min-width: 960px) {
       grid-template-columns: 1fr 50%;
-      gap: 2rem;
       max-width: 1800px;
       margin: 0 auto;
     }
@@ -26,6 +25,12 @@
     left: 0;
     position: sticky;
     top: 0;
+  }
+
+  .section__two-column--reverse & {
+    @media (min-width: 960px) {
+      grid-column: 1;
+    }
   }
 }
 

@@ -1,0 +1,10 @@
+@use "../utilities" as *;
+
+.dialog {
+  &__header {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1rem;
+    min-height: 88px;
+  }
+}

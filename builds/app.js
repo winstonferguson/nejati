@@ -9611,6 +9611,12 @@
   }(Glide$1);
 
   // node_modules/@wix/image-kit/dist/esm/helpers/imageServiceConstants.js
+  var API_VERSION = "v1";
+  var MAX_DEVICE_PIXEL_RATIO = 2;
+  var DSKTP_MAX_BG_SITE_LEGACY_WIDTH = 1920;
+  var DSKTP_MAX_BG_SITE_LEGACY_HEIGHT = 1920;
+  var MOBILE_MAX_BG_SITE_LEGACY_WIDTH = 1e3;
+  var MOBILE_MAX_BG_SITE_LEGACY_HEIGHT = 1e3;
   var fittingTypes = {
     SCALE_TO_FILL: "fill",
     SCALE_TO_FIT: "fit",
@@ -9636,6 +9642,14 @@
     LEGACY_BG_FIT_AND_TILE_VERTICAL: "legacy_tile_vertical",
     LEGACY_BG_NORMAL: "legacy_normal"
   };
+  var transformTypes = {
+    FIT: "fit",
+    FILL: "fill",
+    FILL_FOCAL: "fill_focal",
+    CROP: "crop",
+    LEGACY_CROP: "legacy_crop",
+    LEGACY_FILL: "legacy_fill"
+  };
   var alignTypes = {
     CENTER: "center",
     TOP: "top",
@@ -9658,9 +9672,40 @@
     [alignTypes.RIGHT]: { x: 1, y: 0.5 },
     [alignTypes.LEFT]: { x: 0, y: 0.5 }
   };
+  var alignTypesMap = {
+    center: "c",
+    top: "t",
+    top_left: "tl",
+    top_right: "tr",
+    bottom: "b",
+    bottom_left: "bl",
+    bottom_right: "br",
+    left: "l",
+    right: "r"
+  };
+  var htmlTag = {
+    BG: "bg",
+    IMG: "img",
+    SVG: "svg"
+  };
+  var upscaleMethods = {
+    AUTO: "auto",
+    CLASSIC: "classic",
+    SUPER: "super"
+  };
+  var upscaleMethodsValues = {
+    classic: 1,
+    super: 2
+  };
+  var defaultUSM = {
+    radius: "0.66",
+    amount: "1.00",
+    threshold: "0.01"
+  };
   var MAX_TRANSFORMED_IMAGE_WIDTH = 5e3;
   var MAX_TRANSFORMED_IMAGE_HEIGHT = 5e3;
   var SAFE_TRANSFORMED_AREA = MAX_TRANSFORMED_IMAGE_WIDTH * MAX_TRANSFORMED_IMAGE_HEIGHT;
+  var SUPER_UPSCALE_MODELS = [1.5, 2, 4];
   var imageScaleDefaults = {
     HIGH: {
       size: 1400 * 1400,
@@ -9682,6 +9727,12 @@
       quality: 80,
       maxUpscale: 1.4
     }
+  };
+  var imageQuality = {
+    HIGH: "HIGH",
+    MEDIUM: "MEDIUM",
+    LOW: "LOW",
+    TINY: "TINY"
   };
   var imageFilters = {
     CONTRAST: "contrast",
@@ -9718,6 +9769,9 @@
      */
     isMobile: false
   };
+  var getFeature = function(feature) {
+    return globalFeaturesSupportObj[feature];
+  };
   var setFeature = function(feature, value) {
     globalFeaturesSupportObj[feature] = value;
   };
@@ -9743,6 +9797,9 @@
       return result.join("");
     };
   }
+  function last(array) {
+    return array[array.length - 1];
+  }
 
   // node_modules/@wix/image-kit/dist/esm/helpers/imageServiceUtils.js
   var SUPPORTED_IMAGE_EXTENSIONS = [
@@ -9759,7 +9816,245 @@
     fileType.JPG,
     fileType.JPE
   ];
+  function isImageTypeSupported(uri) {
+    return SUPPORTED_IMAGE_EXTENSIONS.includes(getFileExtension(uri));
+  }
+  function isValidRequest(fittingType, src, target) {
+    return target && src && !isUrlEmptyOrNone(src.id) && Object.values(fittingTypes).includes(fittingType);
+  }
+  function isImageTransformApplicable(uri, hasAnimation) {
+    return !isNotTransformableWEBP(uri, hasAnimation) && isImageTypeSupported(uri) && !isExternalUrl(uri);
+  }
+  function isNotTransformableWEBP(uri, hasAnimation = true) {
+    return isWEBP(uri) && hasAnimation;
+  }
+  function isJPG(uri) {
+    return JPG_EXTENSIONS.includes(getFileExtension(uri));
+  }
+  function isPNG(uri) {
+    return getFileExtension(uri) === fileType.PNG;
+  }
+  function isWEBP(uri) {
+    return getFileExtension(uri) === fileType.WEBP;
+  }
+  function isExternalUrl(url) {
+    return /(^https?)|(^data)|(^\/\/)/.test(url);
+  }
+  function isUrlEmptyOrNone(url) {
+    return !url || !url.trim() || url.toLowerCase() === "none";
+  }
+  function isSEOBot(options) {
+    var _a14;
+    return (_a14 = options === null || options === void 0 ? void 0 : options.isSEOBot) !== null && _a14 !== void 0 ? _a14 : false;
+  }
   var ILLEGAL_CHARS = ["/", "\\", "?", "<", ">", "|", "\u201C", ":", '"'].map(encodeURIComponent);
+  var URL_SAFE_ILLEGAL_CHARS = ["\\.", "\\*"];
+  var ILLEGAL_CHARS_REPLACEMENT = "_";
+  function getFileName(uri, name) {
+    const beforeLeadingSlashRegexp = /\/(.*?)$/;
+    const fileExtensionRegexp = /\.([^.]*)$/;
+    const illegalCharsRegex = new RegExp(`(${ILLEGAL_CHARS.concat(URL_SAFE_ILLEGAL_CHARS).join("|")})`, "g");
+    if (name && name.length) {
+      let fileName2 = name;
+      const extension = name.match(fileExtensionRegexp);
+      if (extension && SUPPORTED_IMAGE_EXTENSIONS.includes(extension[1])) {
+        fileName2 = name.replace(fileExtensionRegexp, "");
+      }
+      return encodeURIComponent(fileName2).replace(illegalCharsRegex, ILLEGAL_CHARS_REPLACEMENT);
+    }
+    const trimmed = uri.match(beforeLeadingSlashRegexp);
+    const fileName = trimmed ? trimmed[1] : uri;
+    return fileName.replace(fileExtensionRegexp, "");
+  }
+  function getFileType(uri) {
+    if (isJPG(uri)) {
+      return fileType.JPG;
+    } else if (isPNG(uri)) {
+      return fileType.PNG;
+    } else if (isWEBP(uri)) {
+      return fileType.WEBP;
+    }
+    return fileType.UNRECOGNIZED;
+  }
+  function getFileExtension(uri) {
+    const splitURI = /[.]([^.]+)$/.exec(uri);
+    return (splitURI && /[.]([^.]+)$/.exec(uri)[1] || "").toLowerCase();
+  }
+  function getFitScaleFactor(sWidth, sHeight, dWidth, dHeight) {
+    return Math.min(dWidth / sWidth, dHeight / sHeight);
+  }
+  function getFillScaleFactor(sWidth, sHeight, dWidth, dHeight) {
+    return Math.max(dWidth / sWidth, dHeight / sHeight);
+  }
+  function getScaleFactor(sWidth, sHeight, dWidth, dHeight, transformType) {
+    let scaleFactor;
+    if (transformType === transformTypes.FILL) {
+      scaleFactor = getFillScaleFactor(sWidth, sHeight, dWidth, dHeight);
+    } else if (transformType === transformTypes.FIT) {
+      scaleFactor = getFitScaleFactor(sWidth, sHeight, dWidth, dHeight);
+    } else {
+      scaleFactor = 1;
+    }
+    return scaleFactor;
+  }
+  function getSafeTransformData(sWidth, sHeight, dWidth, dHeight, transformType) {
+    let scaleFactor;
+    let width = dWidth;
+    let height = dHeight;
+    scaleFactor = getScaleFactor(sWidth, sHeight, dWidth, dHeight, transformType);
+    if (transformType === transformTypes.FIT) {
+      width = sWidth * scaleFactor;
+      height = sHeight * scaleFactor;
+    }
+    if (width && height && width * height > SAFE_TRANSFORMED_AREA) {
+      const dimensionScaleFactor = Math.sqrt(SAFE_TRANSFORMED_AREA / (width * height));
+      width *= dimensionScaleFactor;
+      height *= dimensionScaleFactor;
+      scaleFactor = getScaleFactor(sWidth, sHeight, width, height, transformType);
+    }
+    return {
+      scaleFactor,
+      width,
+      height
+    };
+  }
+  function getTransformData(sWidth, sHeight, transformType, target, dpr, upscaleMethod) {
+    sWidth = sWidth || target.width;
+    sHeight = sHeight || target.height;
+    const { scaleFactor, width, height } = getSafeTransformData(sWidth, sHeight, target.width * dpr, target.height * dpr, transformType);
+    return getOptimizedTransformData(sWidth, sHeight, width, height, upscaleMethod, scaleFactor, transformType);
+  }
+  function getFocalPointFrom9GridAlignment(alignment = alignTypes.CENTER) {
+    return ALIGN_TYPE_TO_FOCAL_POINT[alignment];
+  }
+  function getAlignedRect(sRect, dRect, sFP, alignment) {
+    const fp = getFocalPoint(sFP) || getFocalPointFrom9GridAlignment(alignment);
+    const x = Math.max(0, Math.min(sRect.width - dRect.width, fp.x * sRect.width - dRect.width / 2));
+    const y = Math.max(0, Math.min(sRect.height - dRect.height, fp.y * sRect.height - dRect.height / 2));
+    return {
+      x,
+      y,
+      width: Math.min(sRect.width, dRect.width),
+      height: Math.min(sRect.height, dRect.height)
+    };
+  }
+  function getOverlappingRect(sRect, dRect) {
+    const width = Math.max(0, Math.min(sRect.width, dRect.x + dRect.width) - Math.max(0, dRect.x));
+    const height = Math.max(0, Math.min(sRect.height, dRect.y + dRect.height) - Math.max(0, dRect.y));
+    const isValidRect = width && height && (sRect.width !== width || sRect.height !== height);
+    return isValidRect ? {
+      x: Math.max(0, dRect.x),
+      y: Math.max(0, dRect.y),
+      width,
+      height
+    } : null;
+  }
+  function getDevicePixelRatio(target) {
+    return Math.min(target.pixelAspectRatio || 1, MAX_DEVICE_PIXEL_RATIO);
+  }
+  function getAlignment(target) {
+    return target.alignment && alignTypesMap[target.alignment] || alignTypesMap[alignTypes.CENTER];
+  }
+  function getFocalPoint(focalPoint) {
+    let fp;
+    if (focalPoint && typeof focalPoint.x === "number" && !isNaN(focalPoint.x) && typeof focalPoint.y === "number" && !isNaN(focalPoint.y)) {
+      fp = {
+        x: roundToFixed(Math.max(0, Math.min(100, focalPoint.x)) / 100, 2),
+        y: roundToFixed(Math.max(0, Math.min(100, focalPoint.y)) / 100, 2)
+      };
+    }
+    return fp;
+  }
+  function getPreferredImageQuality(imageWidth, imageHeight) {
+    return imageScaleDefaults[getImageQualityKey(imageWidth, imageHeight)].quality;
+  }
+  function getClassicScaleData(sWidth, sHeight) {
+    const imageKey = getImageQualityKey(sWidth, sHeight);
+    return {
+      optimizedScaleFactor: imageScaleDefaults[imageKey].maxUpscale,
+      upscaleMethodValue: upscaleMethodsValues.classic,
+      forceUSM: false
+    };
+  }
+  function getAutoScaleData(sWidth, sHeight) {
+    const imageKey = getImageQualityKey(sWidth, sHeight);
+    return {
+      optimizedScaleFactor: imageScaleDefaults[imageKey].maxUpscale,
+      upscaleMethodValue: upscaleMethodsValues.classic,
+      forceUSM: false
+    };
+  }
+  function getSuperScaleData(scaleFactor) {
+    return {
+      optimizedScaleFactor: last(SUPER_UPSCALE_MODELS),
+      upscaleMethodValue: upscaleMethodsValues.super,
+      forceUSM: !(SUPER_UPSCALE_MODELS.includes(scaleFactor) || scaleFactor > last(SUPER_UPSCALE_MODELS))
+    };
+  }
+  function getOptimizedScaleData(sWidth, sHeight, scaleFactor, upscaleMethod) {
+    if (upscaleMethod === "auto") {
+      return getAutoScaleData(sWidth, sHeight);
+    } else if (upscaleMethod === "super") {
+      return getSuperScaleData(scaleFactor);
+    }
+    return getClassicScaleData(sWidth, sHeight);
+  }
+  function getOptimizedTransformData(sWidth, sHeight, tWidth, tHeight, upscaleMethod, scaleFactor, transformType) {
+    const { optimizedScaleFactor, upscaleMethodValue, forceUSM } = getOptimizedScaleData(sWidth, sHeight, scaleFactor, upscaleMethod);
+    let width = tWidth;
+    let height = tHeight;
+    if (scaleFactor <= optimizedScaleFactor) {
+      return {
+        width,
+        height,
+        scaleFactor,
+        upscaleMethodValue,
+        forceUSM,
+        cssUpscaleNeeded: false
+      };
+    }
+    switch (transformType) {
+      case transformTypes.FILL:
+        width = tWidth * (optimizedScaleFactor / scaleFactor);
+        height = tHeight * (optimizedScaleFactor / scaleFactor);
+        break;
+      case transformTypes.FIT:
+        width = sWidth * optimizedScaleFactor;
+        height = sHeight * optimizedScaleFactor;
+        break;
+      default:
+        break;
+    }
+    return {
+      width,
+      height,
+      scaleFactor: optimizedScaleFactor,
+      upscaleMethodValue,
+      forceUSM,
+      cssUpscaleNeeded: true
+    };
+  }
+  function getImageQualityKey(imageWidth, imageHeight) {
+    const size = imageWidth * imageHeight;
+    if (size > imageScaleDefaults[imageQuality.HIGH].size) {
+      return imageQuality.HIGH;
+    } else if (size > imageScaleDefaults[imageQuality.MEDIUM].size) {
+      return imageQuality.MEDIUM;
+    } else if (size > imageScaleDefaults[imageQuality.LOW].size) {
+      return imageQuality.LOW;
+    }
+    return imageQuality.TINY;
+  }
+  function roundToFixed(value, precision) {
+    const truncatePrecision = Math.pow(10, precision || 0);
+    return (value * truncatePrecision / truncatePrecision).toFixed(precision);
+  }
+  function getUpscaleString(options) {
+    if (!options || !options.upscaleMethod) {
+      return upscaleMethods.AUTO;
+    }
+    return upscaleMethods[options.upscaleMethod.toUpperCase()] || upscaleMethods.AUTO;
+  }
 
   // node_modules/@wix/image-kit/dist/esm/engines/attributes/imgAttributes.js
   var alignTypeToPositionStr = {
@@ -9773,6 +10068,302 @@
     [alignTypes.LEFT]: "left",
     [alignTypes.RIGHT]: "right"
   };
+
+  // node_modules/@wix/image-kit/dist/esm/helpers/browserFeatureSupport.js
+  function isMobile() {
+    return getFeature("isMobile");
+  }
+
+  // node_modules/@wix/image-kit/dist/esm/helpers/imageTransformParts.js
+  function setTransformParts(transformsObj, src, target) {
+    let rect;
+    if (src.crop) {
+      rect = getOverlappingRect(src, src.crop);
+      if (rect) {
+        transformsObj.src.width = rect.width;
+        transformsObj.src.height = rect.height;
+        transformsObj.src.isCropped = true;
+        transformsObj.parts.push(getCropPart(rect));
+      }
+    }
+    switch (transformsObj.fittingType) {
+      case fittingTypes.SCALE_TO_FIT:
+      case fittingTypes.LEGACY_FIT_WIDTH:
+      case fittingTypes.LEGACY_FIT_HEIGHT:
+      case fittingTypes.LEGACY_FULL:
+      case fittingTypes.FIT_AND_TILE:
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE:
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE_HORIZONTAL:
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE_VERTICAL:
+      case fittingTypes.LEGACY_BG_NORMAL:
+        transformsObj.parts.push(getFitPart(transformsObj, target));
+        break;
+      case fittingTypes.SCALE_TO_FILL:
+        transformsObj.parts.push(getFillPart(transformsObj, target));
+        break;
+      case fittingTypes.STRETCH:
+        transformsObj.parts.push(getStretchPart(transformsObj, target));
+        break;
+      case fittingTypes.TILE_HORIZONTAL:
+      case fittingTypes.TILE_VERTICAL:
+      case fittingTypes.TILE:
+      case fittingTypes.LEGACY_ORIGINAL_SIZE:
+      case fittingTypes.ORIGINAL_SIZE:
+        rect = getAlignedRect(transformsObj.src, target, transformsObj.focalPoint, target.alignment);
+        if (transformsObj.src.isCropped) {
+          Object.assign(transformsObj.parts[0], rect);
+          transformsObj.src.width = rect.width;
+          transformsObj.src.height = rect.height;
+        } else {
+          transformsObj.parts.push(getCropPart(rect));
+        }
+        break;
+      case fittingTypes.LEGACY_STRIP_TILE_HORIZONTAL:
+      case fittingTypes.LEGACY_STRIP_TILE_VERTICAL:
+      case fittingTypes.LEGACY_STRIP_TILE:
+      case fittingTypes.LEGACY_STRIP_ORIGINAL_SIZE:
+        transformsObj.parts.push(getLegacyCropPart(target));
+        break;
+      case fittingTypes.LEGACY_STRIP_SCALE_TO_FIT:
+      case fittingTypes.LEGACY_STRIP_FIT_AND_TILE:
+        transformsObj.parts.push(getLegacyFitPart(target));
+        break;
+      case fittingTypes.LEGACY_STRIP_SCALE_TO_FILL:
+        transformsObj.parts.push(getLegacyFillPart(target));
+        break;
+    }
+  }
+  function getFitPart(transformsObj, target) {
+    const transformedData = getTransformData(transformsObj.src.width, transformsObj.src.height, transformTypes.FIT, target, transformsObj.devicePixelRatio, transformsObj.upscaleMethod);
+    const transformType = transformTypes.FILL;
+    return {
+      transformType,
+      width: Math.round(transformedData.width),
+      height: Math.round(transformedData.height),
+      alignment: alignTypesMap.center,
+      upscale: transformedData.scaleFactor > 1,
+      forceUSM: transformedData.forceUSM,
+      scaleFactor: transformedData.scaleFactor,
+      cssUpscaleNeeded: transformedData.cssUpscaleNeeded,
+      upscaleMethodValue: transformedData.upscaleMethodValue
+    };
+  }
+  function getFillPart(transformsObj, target) {
+    const transformedData = getTransformData(transformsObj.src.width, transformsObj.src.height, transformTypes.FILL, target, transformsObj.devicePixelRatio, transformsObj.upscaleMethod);
+    const focalPoint = getFocalPoint(transformsObj.focalPoint);
+    const transformType = focalPoint ? transformTypes.FILL_FOCAL : transformTypes.FILL;
+    return {
+      transformType,
+      width: Math.round(transformedData.width),
+      height: Math.round(transformedData.height),
+      alignment: getAlignment(target),
+      focalPointX: focalPoint && focalPoint.x,
+      focalPointY: focalPoint && focalPoint.y,
+      upscale: transformedData.scaleFactor > 1,
+      forceUSM: transformedData.forceUSM,
+      scaleFactor: transformedData.scaleFactor,
+      cssUpscaleNeeded: transformedData.cssUpscaleNeeded,
+      upscaleMethodValue: transformedData.upscaleMethodValue
+    };
+  }
+  function getStretchPart(transformsObj, target) {
+    const scaleFactor = getScaleFactor(transformsObj.src.width, transformsObj.src.height, target.width, target.height, transformTypes.FILL);
+    const clonedTarget = Object.assign({}, target);
+    clonedTarget.width = transformsObj.src.width * scaleFactor;
+    clonedTarget.height = transformsObj.src.height * scaleFactor;
+    return getFitPart(transformsObj, clonedTarget);
+  }
+  function getCropPart(rect) {
+    return {
+      transformType: transformTypes.CROP,
+      x: Math.round(rect.x),
+      y: Math.round(rect.y),
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+      upscale: false,
+      forceUSM: false,
+      scaleFactor: 1,
+      cssUpscaleNeeded: false
+    };
+  }
+  function getLegacyFitPart(target) {
+    return {
+      transformType: transformTypes.FIT,
+      width: Math.round(target.width),
+      height: Math.round(target.height),
+      upscale: false,
+      forceUSM: true,
+      scaleFactor: 1,
+      cssUpscaleNeeded: false
+    };
+  }
+  function getLegacyFillPart(target) {
+    return {
+      transformType: transformTypes.LEGACY_FILL,
+      width: Math.round(target.width),
+      height: Math.round(target.height),
+      alignment: getAlignment(target),
+      upscale: false,
+      forceUSM: true,
+      scaleFactor: 1,
+      cssUpscaleNeeded: false
+    };
+  }
+  function getLegacyCropPart(target) {
+    return {
+      transformType: transformTypes.LEGACY_CROP,
+      width: Math.round(target.width),
+      height: Math.round(target.height),
+      alignment: getAlignment(target),
+      upscale: false,
+      forceUSM: false,
+      scaleFactor: 1,
+      cssUpscaleNeeded: false
+    };
+  }
+
+  // node_modules/@wix/image-kit/dist/esm/helpers/imageTransformOptions.js
+  function setTransformOptions(transformsObj, options) {
+    var _a14;
+    options = options || {};
+    transformsObj.quality = getQuality(transformsObj, options);
+    transformsObj.progressive = getProgressive(options);
+    transformsObj.watermark = getWatermark(options);
+    transformsObj.autoEncode = (_a14 = options.autoEncode) !== null && _a14 !== void 0 ? _a14 : true;
+    transformsObj.unsharpMask = getUnsharpMask(transformsObj, options);
+    transformsObj.filters = getFilters(options);
+  }
+  function getWatermark(options) {
+    return options.watermark;
+  }
+  function getProgressive(options) {
+    return options.progressive !== false;
+  }
+  function getQuality(transformsObj, options) {
+    const isPNG2 = transformsObj.fileType === fileType.PNG;
+    const isJPG2 = transformsObj.fileType === fileType.JPG;
+    const isWEBP2 = transformsObj.fileType === fileType.WEBP;
+    const isQualitySupported = isJPG2 || isPNG2 || isWEBP2;
+    if (isQualitySupported) {
+      const transformData = last(transformsObj.parts);
+      const defaultQuality = getPreferredImageQuality(transformData.width, transformData.height);
+      let quality = options.quality && options.quality >= 5 && options.quality <= 90 ? options.quality : defaultQuality;
+      quality = isPNG2 ? quality + 5 : quality;
+      return quality;
+    }
+    return 0;
+  }
+  function getFilters(options) {
+    const filterOptions = options.filters || {};
+    const filters = {};
+    if (isValidImageFilter(filterOptions[imageFilters.CONTRAST], -100, 100)) {
+      filters[imageFilters.CONTRAST] = filterOptions[imageFilters.CONTRAST];
+    }
+    if (isValidImageFilter(filterOptions[imageFilters.BRIGHTNESS], -100, 100)) {
+      filters[imageFilters.BRIGHTNESS] = filterOptions[imageFilters.BRIGHTNESS];
+    }
+    if (isValidImageFilter(filterOptions[imageFilters.SATURATION], -100, 100)) {
+      filters[imageFilters.SATURATION] = filterOptions[imageFilters.SATURATION];
+    }
+    if (isValidImageFilter(filterOptions[imageFilters.HUE], -180, 180)) {
+      filters[imageFilters.HUE] = filterOptions[imageFilters.HUE];
+    }
+    if (isValidImageFilter(filterOptions[imageFilters.BLUR], 0, 100)) {
+      filters[imageFilters.BLUR] = filterOptions[imageFilters.BLUR];
+    }
+    return filters;
+  }
+  function isValidImageFilter(filterValue, minValue, maxValue) {
+    return typeof filterValue === "number" && !isNaN(filterValue) && filterValue !== 0 && filterValue >= minValue && filterValue <= maxValue;
+  }
+  function getUnsharpMask(transformsObj, options) {
+    var _a14, _b, _c;
+    if (isUSMValid(options.unsharpMask)) {
+      return {
+        radius: roundToFixed((_a14 = options.unsharpMask) === null || _a14 === void 0 ? void 0 : _a14.radius, 2),
+        amount: roundToFixed((_b = options.unsharpMask) === null || _b === void 0 ? void 0 : _b.amount, 2),
+        threshold: roundToFixed((_c = options.unsharpMask) === null || _c === void 0 ? void 0 : _c.threshold, 2)
+      };
+    } else if (!isZeroUSM(options.unsharpMask) && isUSMNeeded(transformsObj)) {
+      return defaultUSM;
+    }
+    return;
+  }
+  function isUSMNeeded(transformsObj) {
+    const transformPart = last(transformsObj.parts);
+    const upscale = transformPart.scaleFactor >= 1;
+    return !upscale || transformPart.forceUSM;
+  }
+  function isUSMValid(usm) {
+    usm = usm || {};
+    const radius = typeof usm.radius === "number" && !isNaN(usm.radius) && usm.radius >= 0.1 && usm.radius <= 500;
+    const amount = typeof usm.amount === "number" && !isNaN(usm.amount) && usm.amount >= 0 && usm.amount <= 10;
+    const threshold = typeof usm.threshold === "number" && !isNaN(usm.threshold) && usm.threshold >= 0 && usm.threshold <= 255;
+    return radius && amount && threshold;
+  }
+  function isZeroUSM(usm) {
+    usm = usm || {};
+    return typeof usm.radius === "number" && !isNaN(usm.radius) && usm.radius === 0 && typeof usm.amount === "number" && !isNaN(usm.amount) && usm.amount === 0 && typeof usm.threshold === "number" && !isNaN(usm.threshold) && usm.threshold === 0;
+  }
+
+  // node_modules/@wix/image-kit/dist/esm/api/transform.js
+  function getTransform(fittingType, src, target, options) {
+    const _isSEOBot = isSEOBot(options);
+    const fileType2 = getFileType(src.id);
+    const fileName = getFileName(src.id, src.name);
+    const devicePixelRatio2 = _isSEOBot ? 1 : getDevicePixelRatio(target);
+    const fileExtension = getFileExtension(src.id);
+    const preferredExtension = fileExtension;
+    const canTransformImage = isImageTransformApplicable(src.id, options === null || options === void 0 ? void 0 : options.hasAnimation);
+    const transformsObj = {
+      fileName,
+      fileExtension,
+      fileType: fileType2,
+      fittingType,
+      preferredExtension,
+      src: {
+        id: src.id,
+        width: src.width,
+        height: src.height,
+        isCropped: false
+      },
+      focalPoint: {
+        x: src.focalPoint && src.focalPoint.x,
+        y: src.focalPoint && src.focalPoint.y
+      },
+      parts: [],
+      // options - general
+      devicePixelRatio: devicePixelRatio2,
+      quality: 0,
+      upscaleMethod: getUpscaleString(options),
+      progressive: true,
+      watermark: "",
+      unsharpMask: {},
+      filters: {},
+      transformed: canTransformImage
+    };
+    if (canTransformImage) {
+      setTransformParts(transformsObj, src, target);
+      setTransformOptions(transformsObj, options);
+    }
+    return transformsObj;
+  }
+  function getTarget(fittingType, src, target) {
+    const targetObj = Object.assign({}, target);
+    const _isMobile = isMobile();
+    switch (fittingType) {
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE:
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE_HORIZONTAL:
+      case fittingTypes.LEGACY_BG_FIT_AND_TILE_VERTICAL:
+      case fittingTypes.LEGACY_BG_NORMAL:
+        const maxBGSiteLegacyWidth = _isMobile ? MOBILE_MAX_BG_SITE_LEGACY_WIDTH : DSKTP_MAX_BG_SITE_LEGACY_WIDTH;
+        const maxBGSiteLegacyHeight = _isMobile ? MOBILE_MAX_BG_SITE_LEGACY_HEIGHT : DSKTP_MAX_BG_SITE_LEGACY_HEIGHT;
+        targetObj.width = Math.min(maxBGSiteLegacyWidth, src.width);
+        targetObj.height = Math.min(maxBGSiteLegacyHeight, Math.round(targetObj.width / (src.width / src.height)));
+        targetObj.pixelAspectRatio = 1;
+    }
+    return targetObj;
+  }
 
   // node_modules/@wix/image-kit/dist/esm/engines/transforms.js
   var fitTemplate = template`fit/w_${"width"},h_${"height"}`;
@@ -9794,6 +10385,76 @@
     [imageFilters.BLUR]: template`,blur_${"blur"}`
   };
   var autoEncodeTemplate = template`,enc_auto`;
+  function getImageURI(transformsObj) {
+    const transformsObjStrArr = [];
+    transformsObj.parts.forEach((transformPart) => {
+      switch (transformPart.transformType) {
+        case transformTypes.CROP:
+          transformsObjStrArr.push(cropTemplate(transformPart));
+          break;
+        case transformTypes.LEGACY_CROP:
+          transformsObjStrArr.push(legacyCropTemplate(transformPart));
+          break;
+        case transformTypes.LEGACY_FILL:
+          let legacyFillStr = legacyFillTemplate(transformPart);
+          if (transformPart.upscale) {
+            legacyFillStr += upscaleTemplate(transformPart);
+          }
+          transformsObjStrArr.push(legacyFillStr);
+          break;
+        case transformTypes.FIT:
+          let fitStr = fitTemplate(transformPart);
+          if (transformPart.upscale) {
+            fitStr += upscaleTemplate(transformPart);
+          }
+          transformsObjStrArr.push(fitStr);
+          break;
+        case transformTypes.FILL:
+          let fillStr = fillTemplate(transformPart);
+          if (transformPart.upscale) {
+            fillStr += upscaleTemplate(transformPart);
+          }
+          transformsObjStrArr.push(fillStr);
+          break;
+        case transformTypes.FILL_FOCAL:
+          let fillFocalStr = fillFocalTemplate(transformPart);
+          if (transformPart.upscale) {
+            fillFocalStr += upscaleTemplate(transformPart);
+          }
+          transformsObjStrArr.push(fillFocalStr);
+          break;
+      }
+    });
+    let transformsStr = transformsObjStrArr.join("/");
+    if (transformsObj.quality) {
+      transformsStr += qualityTemplate(transformsObj);
+    }
+    if (transformsObj.unsharpMask) {
+      transformsStr += unSharpMaskTemplate(transformsObj.unsharpMask);
+    }
+    if (!transformsObj.progressive) {
+      transformsStr += nonProgressiveTemplate(transformsObj);
+    }
+    if (transformsObj.watermark) {
+      transformsStr += watermarkTemplate(transformsObj);
+    }
+    if (transformsObj.filters) {
+      transformsStr += Object.keys(transformsObj.filters).map((filterName) => filterTemplatesMap[filterName](transformsObj.filters)).join("");
+    }
+    if (transformsObj.autoEncode && transformsObj.fileType !== fileType.GIF) {
+      transformsStr += autoEncodeTemplate(transformsObj);
+    }
+    return `${transformsObj.src.id}/${API_VERSION}/${transformsStr}/${transformsObj.fileName}.${transformsObj.preferredExtension}`;
+  }
+
+  // node_modules/@wix/image-kit/dist/esm/api/uri.js
+  function getURI(fittingType, src, target, options = {}, transformObj) {
+    if (isImageTransformApplicable(src.id, options === null || options === void 0 ? void 0 : options.hasAnimation)) {
+      transformObj = transformObj || getTransform(fittingType, src, target, options);
+      return getImageURI(transformObj);
+    }
+    return src.id;
+  }
 
   // node_modules/@wix/image-kit/dist/esm/helpers/imagePlaceholderUtils.js
   var ALIGN_TYPE_TO_POSITION = {
@@ -9825,14 +10486,94 @@
     fittingTypes.LEGACY_BG_NORMAL
   ];
 
+  // node_modules/@wix/image-kit/dist/esm/api/uri/index.js
+  function getData(fittingType, src, target, options) {
+    if (isValidRequest(fittingType, src, target)) {
+      const targetObj = getTarget(fittingType, src, target);
+      const transformObj = getTransform(fittingType, src, targetObj, options);
+      return {
+        uri: getURI(fittingType, src, targetObj, options || {}, transformObj)
+      };
+    }
+    return { uri: "" };
+  }
+
   // node_modules/@wix/image-kit/dist/esm/sdk/api.js
+  var wixStatic = "https://static.wixstatic.com/";
+  var wixStaticWithMedia = "https://static.wixstatic.com/media/";
+  var HAS_MEDIA_PREFIX_RE = /^media\//i;
   var devicePixelRatio = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  var getWixStaticURL = (uri) => HAS_MEDIA_PREFIX_RE.test(uri) ? `${wixStatic}${uri}` : `${wixStaticWithMedia}${uri}`;
+  var getURL = (uri, options) => {
+    const baseHostURL = options && options.baseHostURL;
+    return baseHostURL ? `${baseHostURL}${uri}` : getWixStaticURL(uri);
+  };
+  function getScaleToFitImageURL(relativeUrl, sourceWidth, sourceHeight, targetWidth, targetHeight, options) {
+    const data = getData(fittingTypes.SCALE_TO_FIT, {
+      id: relativeUrl,
+      width: sourceWidth,
+      height: sourceHeight,
+      name: options && options.name
+    }, {
+      width: targetWidth,
+      height: targetHeight,
+      htmlTag: htmlTag.IMG,
+      alignment: alignTypes.CENTER,
+      pixelAspectRatio: devicePixelRatio
+    }, options);
+    return getURL(data.uri, options);
+  }
+  function getScaleToFillImageURL(relativeUrl, sourceWidth, sourceHeight, targetWidth, targetHeight, options) {
+    const data = getData(fittingTypes.SCALE_TO_FILL, {
+      id: relativeUrl,
+      width: sourceWidth,
+      height: sourceHeight,
+      name: options && options.name,
+      focalPoint: {
+        x: options && options.focalPoint && options.focalPoint.x,
+        y: options && options.focalPoint && options.focalPoint.y
+      }
+    }, {
+      width: targetWidth,
+      height: targetHeight,
+      htmlTag: htmlTag.IMG,
+      alignment: alignTypes.CENTER,
+      pixelAspectRatio: devicePixelRatio
+    }, options);
+    return getURL(data.uri, options);
+  }
+  function getCropImageURL(relativeUrl, sourceWidth, sourceHeight, cropX, cropY, cropWidth, cropHeight, targetWidth, targetHeight, options) {
+    const data = getData(fittingTypes.SCALE_TO_FILL, {
+      id: relativeUrl,
+      width: sourceWidth,
+      height: sourceHeight,
+      name: options && options.name,
+      crop: {
+        x: cropX,
+        y: cropY,
+        width: cropWidth,
+        height: cropHeight
+      }
+    }, {
+      width: targetWidth,
+      height: targetHeight,
+      htmlTag: htmlTag.IMG,
+      alignment: alignTypes.CENTER,
+      pixelAspectRatio: devicePixelRatio
+    }, options);
+    return getURL(data.uri, options);
+  }
 
   // node_modules/@wix/image-kit/dist/esm/sdk/index.js
   populateGlobalFeatureSupport();
 
   // node_modules/@wix/image-kit/dist/esm/api/max/index.js
   populateGlobalFeatureSupport();
+  var sdk = {
+    getScaleToFitImageURL,
+    getScaleToFillImageURL,
+    getCropImageURL
+  };
 
   // node_modules/@wix/api-client/build/browser/index.mjs
   var import_querystring5 = __toESM(require_querystring(), 1);
@@ -17760,6 +18501,94 @@
       }
     };
   }
+  var URL_HASH_PREFIX3 = "#";
+  var WIX_PROTOCOL2 = "wix:";
+  var WIX_IMAGE2 = "image";
+  var WIX_IMAGE_URL = "https://static.wixstatic.com/media/";
+  function getScaledToFillImageUrl(wixMediaIdentifier, targetWidth, targetHeight, options) {
+    const img = getImageUrl(wixMediaIdentifier);
+    return sdk.getScaleToFillImageURL(
+      img.id,
+      img.height,
+      img.width,
+      targetWidth,
+      targetHeight,
+      options
+    );
+  }
+  function getScaledToFitImageUrl(wixMediaIdentifier, targetWidth, targetHeight, options) {
+    const img = getImageUrl(wixMediaIdentifier);
+    return sdk.getScaleToFitImageURL(
+      img.id,
+      img.height,
+      img.width,
+      targetWidth,
+      targetHeight,
+      options
+    );
+  }
+  function getCroppedImageUrl(wixMediaIdentifier, cropX, cropY, cropWidth, cropHeight, targetWidth, targetHeight, options) {
+    const img = getImageUrl(wixMediaIdentifier);
+    return sdk.getCropImageURL(
+      img.id,
+      img.height,
+      img.width,
+      cropX,
+      cropY,
+      cropWidth,
+      cropHeight,
+      targetWidth,
+      targetHeight,
+      options
+    );
+  }
+  function getImageUrl(val) {
+    let id, filenameOrAltText;
+    let height, width;
+    if (val.startsWith(WIX_IMAGE_URL)) {
+      id = val.split(WIX_IMAGE_URL).pop().split("/")[0];
+      width = val.split("/w_").pop().split(",")[0];
+      height = val.split(",h_").pop().split(",")[0];
+    } else {
+      const alignedImage = alignIfLegacy2(val, WIX_IMAGE2);
+      const { hash, pathname } = new URL(alignedImage);
+      ({ originHeight: height, originWidth: width } = (0, import_querystring5.parse)(
+        hash.replace(URL_HASH_PREFIX3, "")
+      ));
+      [id, filenameOrAltText] = pathname.replace(`${WIX_IMAGE2}://v1/`, "").split("/");
+    }
+    const decodedFilenameOrAltText = decodeText2(filenameOrAltText);
+    const res = {
+      id,
+      url: `${WIX_IMAGE_URL}${id}`,
+      height: Number(height),
+      width: Number(width)
+    };
+    if (!decodedFilenameOrAltText) {
+      return res;
+    }
+    return {
+      ...res,
+      altText: decodedFilenameOrAltText,
+      filename: decodedFilenameOrAltText
+    };
+  }
+  function decodeText2(s) {
+    if (!s) {
+      return s;
+    }
+    return decodeURIComponent(s);
+  }
+  function alignIfLegacy2(url, type2) {
+    const { protocol } = new URL(url);
+    return protocol === `${type2}:` ? `${WIX_PROTOCOL2}${url}` : url;
+  }
+  var media = {
+    getCroppedImageUrl,
+    getScaledToFillImageUrl,
+    getScaledToFitImageUrl,
+    getImageUrl
+  };
   function getCurrentDate() {
     return Math.floor(Date.now() / 1e3);
   }
@@ -22853,30 +23682,32 @@
         this.dataItems[id] = response.items;
       }
     }
-    updateCollections() {
+    async updateCollections() {
       for (const el of this.collectionElements) {
-        this.updateItems(el);
+        await this.updateItems(el);
       }
     }
-    updateItems(el) {
+    async updateItems(el) {
       const collectionData = this.dataItems[el.dataset.collectionId];
       for (const item of collectionData) {
         const id = item._id;
         const itemEl = id === "SINGLE_ITEM_ID" ? el : el.querySelector(`[data-item-id="${id}"]`);
         if (!itemEl)
           continue;
-        this.updateItem(itemEl, item.data);
+        await this.updateItem(itemEl, item.data);
       }
     }
-    updateItem(el, data) {
+    async updateItem(el, data) {
       for (const [key, value] of Object.entries(data)) {
         if (key.startsWith("_"))
           continue;
         const itemEl = el.querySelector(`[data-item-key="${key}"]`);
         if (!itemEl)
           continue;
-        if (itemEl.href)
-          itemEl.href = value;
+        if (key === "image") {
+          const img = await media.getImageUrl(value);
+          itemEl.src = img.url;
+        }
         itemEl.innerHTML = value;
       }
     }

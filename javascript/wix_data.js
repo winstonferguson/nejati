@@ -1,4 +1,4 @@
-import { createClient, OAuthStrategy } from '@wix/api-client';
+import { createClient, OAuthStrategy, media } from '@wix/api-client';
 import { items } from '@wix/data';
 import { files } from '@wix/media';
 
@@ -25,19 +25,18 @@ export default class WixData {
       const id = el.dataset.collectionId;
       const response = await this.wixClient.items.queryDataItems({ dataCollectionId: id }).ascending('orderId').find();
       // todo: response error handling
-
       this.dataItems[id] = response.items;
     }
   }
 
-  updateCollections() {
+  async updateCollections() {
     for (const el of this.collectionElements) {
-      this.updateItems(el)    
+      await this.updateItems(el)    
     }
   }
 
 
-  updateItems(el) {
+  async updateItems(el) {
     const collectionData = this.dataItems[el.dataset.collectionId];
 
     for (const item of collectionData) {
@@ -47,11 +46,11 @@ export default class WixData {
 
       if (!itemEl) continue;
 
-      this.updateItem(itemEl, item.data);
+      await this.updateItem(itemEl, item.data);
     }
   }
 
-  updateItem(el, data) {
+  async updateItem(el, data) {
     for (const [key, value] of Object.entries(data)) {
       if (key.startsWith("_")) continue;
 
@@ -59,7 +58,14 @@ export default class WixData {
 
       if (!itemEl) continue;
 
-      if (itemEl.href) itemEl.href = value;
+      
+
+      if (key === "image") {
+        const img = await media.getImageUrl(value);
+        itemEl.src = img.url
+      }
+
+      // if (itemEl.href) itemEl.href = await wixClient.files.generateFileDownloadUrl(data._id);
 
       itemEl.innerHTML = value;
     }

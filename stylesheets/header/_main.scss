@@ -1,6 +1,7 @@
 @use "../utilities" as *;
 
 .header {
+  background-color: $color-accent-2;
   
   
   position: relative;
@@ -8,17 +9,17 @@
 
   .index & {
     z-index: 9;
+    background-color: rgba($color-accent-2, 0.6);
   }
 
   &__inner {
     @extend %flex-row--start;
 
-    background-color: $color-accent-2;
+    
     gap: 0.5rem;
+    margin: 0 auto;
+    max-width: 2000px;
     padding: 0 2rem;
 
-    .index & {
-      background-color: rgba($color-accent-2, 0.6);
-    }
   }
 }

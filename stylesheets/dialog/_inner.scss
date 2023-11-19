@@ -3,11 +3,11 @@
   &__inner {
     animation: fade-in 400ms 100ms both, slide-in 400ms 100ms both;
     min-height: 100%;
-    padding: 1rem;
+    padding: 0 2rem 1rem 2rem;
     position: fixed;
     right: 0;
     top: 0;
-    width: 90%;
-    max-width: 500px;
+    width: calc(100vw - 30px);
+    max-width: 450px;
   }
 }

@@ -4,6 +4,16 @@
   padding: 2rem 0;
 }
 
+.button {
+  background-color: $color-accent-2;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+  text-transform: uppercase;
+}
+
 .hide-on-mobile {
   @media (max-width: 960px) {
     display: none;
@@ -17,7 +27,7 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 1rem;
@@ -25,7 +35,6 @@
 
 .subtitle {
   font-size: 1.25rem;
-  font-weight: 400;
   text-transform: uppercase;
 }
 
@@ -76,12 +85,18 @@ h3.subtitle {
 
   .index & {
     padding: 6rem;
-
+    
     @media (min-width: 960px) {
       padding: 0;
     }
 
+    img {
+      width: 100%;
+      max-width:250px;
+    }
   }
+
+  
 
 }
 
