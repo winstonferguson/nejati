@@ -1,0 +1,93 @@
+%main
+  .hero
+    .hero__media
+      = image_tag 'star-clinic-photo.webp'
+      -# %video#landingVideo{autoplay: "", muted: "", poster: "images/clinic-photo.jpg"}
+      -#   %source#landingVideo{src: "images/landingVideo.mp4", type: "video/mp4"}
+      -#     Your browser does not support the video tag.
+  .section--extra-padding.section__centered.color-accent-2
+    %div
+      %h1.title{style: 'margin: 0;'} Nejati Clinic
+      .subtitle Belgravia, London
+    %div{style: 'max-width: 650px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;'}
+      %p Focusing on longevity and taking a holistic approach to dental and orofacial care, our Spa clinic offers the most advanced wellness program in absolute luxury.
+      %p With 20 years of experience specialising in non-invasive smile enhancement, anti-ageing dentistry and smile makeover, while using the most advanced and modern technology, we take a gentle and unique approach into rejuvenating and enhancing smiles in the most natural way.
+      %p The experience is truly one of a kind.
+      -# %p Experience treatments designed to bridge the gap between holistic, cosmetic and medical dentistry. Alongside the treatments offered from a general practice, the new dental concept seeks to keep overall body, including teeth, younger and healthier and thus breaking the ageing cycle.
+  .color-accent-1.section__press
+    %h2.subtitle Press
+    .glide
+      .glide__track{"data-glide-el" => "track"}
+        %ul.glide__slides
+          %li.glide__slide
+            %img{alt: "", src: "images/daily-mail.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/ES_Magazine_Logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/bazaar.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/Get_The_Gloss_Logo_24081049-4aab-44d9-bc39-4cafbae6fdea.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/AnOther_Logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/Glamour_Logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/vogue_logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/tatler_logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/GQ_logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/country_and_town_house_logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/red_logo.png"}/
+          %li.glide__slide
+            %img{alt: "", src: "images/the_times_logo.png"}/
+  .section--extra-padding.section__centered.color-accent-2.justified
+    = image_tag 'vitruvian-man.png', class: :vitruvian 
+    %br
+    %p Dr. Nejati practices refined cosmetic dentistry, seamlessly integrating the timeless principles of Golden Proportion, inspired by Leonardo da Vinci, into non-surgical smile enhancements. Each smile transformation reflects an artful harmony with individual facial features, ensuring enduring beauty.
+    %details 
+      %summary.center Philosophy
+      .block--left
+        %p While stained teeth can betray age, an excessively white smile may lack natural allure. Dr. Nejati offers effective remedies for aging and worn teeth, preserving both aesthetics and functionality.
+        %p Through meticulous assessment and application of the Golden Proportion, he orchestrates smile makeovers with hand-layered porcelain veneers and direct composite micro-layering, combining Renaissance artistry with modern dentistry. This enhances not just dental aesthetics but overall facial proportions.
+        %p Laugh lines and wrinkles find subtle correction through dental techniques, seamlessly integrating with the natural contours of the face. Achieving a youthful, natural smile entails a comprehensive dental evaluation, carefully considering tooth dimensions, facial symmetry, lip position, and gum architecture.
+        %p Dr. Nejati’s expertise ensures not only aesthetic perfection but also the long-term health and durability of dental enhancements. Each procedure, whether widening, lengthening, or reinforcing teeth, is tailored to accentuate natural beauty and restore facial proportions.
+    
+
+  .hero
+    .hero__media
+      = image_tag 'anti-aging.webp'
+    .hero__content
+      %h1.title{style: 'margin-bottom: 0;'} 
+        = 'Anti Ageing Dentistry & Dental Rejuvenation'
+      %p{style: 'margin-bottom: 1rem;'} The Micro-Layering Treatment stands as Nejati’s foundational pillar for holistic oral rejuvenation. It seeks to grant not only youthful appearance but also the preservation of dental vitality.
+      = link_to 'Learn more', 'anti-ageing-dentistry-and-dental-rejuvenation', class: 'button', style: 'border: 1px solid #fff; background-color: transparent; color: #fff;'    
+  .section__two-column.color-accent-1
+    .section--extra-padding.section--center.content__copy
+      .block--left
+        %h2.subtitle Examination & Diagnostics
+        %p 
+        = link_to 'Learn more', 'examination-and-diagnostics', class: 'button'   
+    %img.image__feature{src: "images/clinic-photo3.jpg"}/
+  .section__two-column.section__two-column--reverse.color-accent-1
+    %img.image__feature{src: "images/well-being.webp"}/
+    .section--extra-padding.section--center.content__copy
+      .block--left
+        %h2.subtitle Oral hygiene treatment & well-being experience
+        = link_to 'Learn more', 'oral-hygiene-treatment-well-being-experience', class: 'button'
+  .section__two-column.color-accent-1
+    .section--extra-padding.section--center.content__copy
+      .block--left
+        %h2.subtitle Mahsa X Sarah Bradden Combined Body Cleansing Treatment
+        %p The mouth is the gateway to the rest of the body. When your mouth is healthy, your body is healthy!
+        = link_to 'Learn more', 'sarah-bradden-combined-body-treatment', class: 'button'
+    %img.image__feature{src: "images/peaceful-woman.jpg"}/
+  .section__two-column.section__two-column--reverse.color-accent-1
+    %img.image__feature{src: "images/tooth-whitening.webp"}/
+    .section--extra-padding.section--center.content__copy
+      .block--left
+        %h2.subtitle Signature Mahsa led teeth whitening in clinic treatment
+        %p Keep your youth with a white smile.
+        = link_to 'Learn more', 'signature-mahsa-led-treatment', class: 'button'

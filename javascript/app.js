@@ -1,5 +1,7 @@
 import './dialog.js';
-import './landing_video.js';
+
+import { stickToBottom } from './stick-to-bottom.js';
+
 import Glide, { Autoplay, Breakpoints, Controls, Keyboard, Swipe } from '@glidejs/glide/dist/glide.modular.esm';
 
 
@@ -8,7 +10,7 @@ window.onload = () => {
   const hasGlide = document.querySelector(".glide") || false;
 
   if (!hasGlide) return;
-  
+
   const indexOptions = {
     type: 'carousel',
     focusAt: 'center',
@@ -45,33 +47,15 @@ window.onload = () => {
     }
   }
 
-  const options = isIndex ? indexOptions : ageingOptions;
+  
+
+  const options = (window.location.href.split('/').pop().length == 0)  ? indexOptions : ageingOptions;
+
+  console.log(options);
 
   let glide = new Glide('.glide', options).mount({ Autoplay, Breakpoints, Controls, Keyboard, Swipe })
-}
 
-import WixData from './wix_data.js';
-import { isIndex } from './utilities.js';
-
-if (isIndex) delayedLoopLandingVideo();
-
-const stickyModels = () => {
-  models = document.querySelectorAll('.image__feature--model');
-
-  models.forEach(model => {
-    const style = getComputedStyle(model);
-    const isSticky = style.getPropertyValue('position') === 'sticky';
-
-    if (isSticky) model.style.top = `${window.innerHeight - model.clientHeight}px`;
-  });
-}
-
-const populateWixData = async () => {
-  const wix = new WixData();
-  await wix.fetchDataItems();
-  wix.updateCollections();
-
-  stickyModels();
+  stickToBottom();
 }
 
 
@@ -84,12 +68,12 @@ const indexBody = () => {
     const headerHeight = getComputedStyle(header).getPropertyValue('height');
 
     const hero = document.querySelector('.hero');
-    hero.style.marginTop = `-${headerHeight}`;
+
+    if (hero) hero.style.marginTop = `-${headerHeight}`;
   }
 }
 
 indexBody();
 
-populateWixData();
 
-window.addEventListener('resize', stickyModels);
+window.addEventListener('resize', stickToBottom);

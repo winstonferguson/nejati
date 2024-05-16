@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/de4f9525-6180-4a86-b47e-970d8b25dcbe/tooth-whitening.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20240515%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20240515T143228Z&X-Amz-Expires=86400&X-Amz-Signature=37084366e19c52f01b4ab01da27fa749fb6b6d28509268bd7125550b34c78d5c&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22tooth-whitening.webp%22&response-content-type=image%2Fwebp&x-id=GetObject

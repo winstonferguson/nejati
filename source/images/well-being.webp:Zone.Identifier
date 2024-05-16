@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://cloudconvert.com/
+HostUrl=https://eu-central.storage.cloudconvert.com/tasks/f7fc4224-31a3-42fa-ab1a-bca325dd29ae/well-being.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=cloudconvert-production%2F20240515%2Ffra%2Fs3%2Faws4_request&X-Amz-Date=20240515T144448Z&X-Amz-Expires=86400&X-Amz-Signature=e3d64199a04fdd2723046c2943bb3725ae1902a23831d99f1844c5993e67b191&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22well-being.webp%22&response-content-type=image%2Fwebp&x-id=GetObject

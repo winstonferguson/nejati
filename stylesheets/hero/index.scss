@@ -2,19 +2,20 @@
 
 .hero {
   min-width: 100%;
+  position: relative;
 
   &__media {
     width: 100%;
 
     > * {
-      height: 60vh;
+      height: 90vh;
       margin: 0 auto;
       max-width: 2000px;
       object-fit: cover;
       width: 100%;
 
       @media (min-width: $breakpoint-large) {
-        height: 90vh;
+        height: 100vh;
       }
 
       @media (min-width: $breakpoint-xxlarge) {
@@ -26,4 +27,27 @@
       margin-top: -180.5px;
     }    
   }
+}
+
+.hero__content {
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+
+  height: 100%;
+  width: 100%;
+
+  p {
+    max-width: 650px;
+  }
+
 }

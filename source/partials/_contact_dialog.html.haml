@@ -1,0 +1,29 @@
+#contact-dialog.dialog{"aria-hidden" => "true", "aria-labelledby" => "nejati-contact-dialog"}
+  / 2. The dialog overlay
+  .dialog__aside{"data-a11y-dialog-hide" => ""}
+  / 3. The actual dialog
+  .dialog__inner.color-accent-1{"data-collection-id" => "contact", role: "document"}
+    .dialog__header
+      / 4. The close button
+      %button{"aria-label" => "Close dialog", "data-a11y-dialog-hide" => "", type: "button"}
+        %svg{fill: "none", height: "35", stroke: "#000000", "stroke-linecap" => "butt", "stroke-linejoin" => "arcs", "stroke-width" => "2", viewbox: "0 0 24 24", width: "35"}
+          %line{x1: "18", x2: "6", y1: "6", y2: "18"}
+          %line{x1: "6", x2: "18", y1: "6", y2: "18"}
+      / 5. The dialog title
+      %h2.dialog__content-title Contact
+    / 6. Dialog content
+    .dialog__content
+      %div
+        %h3 Phone
+        %p +44 020 3906 1715
+      %div
+        %h3 Email
+        %p info@nejaticlinic.com
+      %div
+        %h3 Address
+        %p 25A Lowndes Street 
+        %p Belgravia, London
+        %p SW1X 9JF
+      %div
+        %iframe{allowfullscreen: "", height: "300", loading: "lazy", referrerpolicy: "no-referrer-when-downgrade", src: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4967.549104797748!2d-0.16155520407720902!3d51.49900452221932!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876053c0641b10d%3A0xcc95b9b5f2bafc8d!2sNEJATI%20CLINIC!5e0!3m2!1sen!2suk!4v1695216902850!5m2!1sen!2suk", style: "border:0;", width: "100%"}
+        
