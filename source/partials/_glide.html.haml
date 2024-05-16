@@ -1,0 +1,14 @@
+- controls ||= nil
+
+.glide
+  - if controls
+    .glide__arrows{data: { glide_el: "controls" } }
+      %button.glide__arrow.glide__arrow--left{data: { glide_dir: "<" } }
+        %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
+      %button.glide__arrow.glide__arrow--right{data: { glide_dir: ">" } }
+        %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
+  .glide__track{ data: { glide_el: :track } }
+    %ul.glide__slides
+      - slides.each do |slide|
+        %li.glide__slide
+          = image_tag slide[:url], alt: slide[:alt]

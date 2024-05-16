@@ -32,6 +32,8 @@
               %p The procedure involves digitally scanning the patient’s teeth before and after the initial layering, then trimming the layerings back, followed by a final scan. This provides our master ceramist with an exact blueprint and recipe, created by Dr. Nejati, to craft the ultra-customized, non-invasive veneer restorations.
               %p This method is highly predictable, as patients can see, feel, and approve the veneers in their initial form. Our unique approach not only allows for the reinforcement and restoration of dentition in a minimally invasive manner but also achieves the most natural-looking results, perfectly aligned with the patient’s facial symmetry.
         %h3.subtitle Before and After
+    .content__carousel
+      = partial 'partials/glide', locals: { controls: true, slides: data.carousel_porcelain_veneers_images }
     .section.section__two-column.section--extra-padding
       .block--left.content__copy
         %h2.subtitle 
@@ -44,27 +46,4 @@
               %p In the process of Nano-composite coating, a meticulous application of ultra-fine porcelain infused, composite layers is employed to restore lost volume and rectify damage caused by erosion. This method emulates the natural growth of enamel on the root, serving to seal and safeguard the root surface. By closing the pores that serve as gateways for bacteria and irritants, it not only ensures protection but also rejuvenates the tooth's youthful and healthy aesthetics.
         %h3.subtitle Before and After
     .content__carousel
-      .glide
-        .glide__arrows{data: { glide_el: "controls" }}
-          %button.glide__arrow.glide__arrow--left{data: { glide_dir: "<" }}
-            %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
-          %button.glide__arrow.glide__arrow--right{data: { glide_dir: ">" }}
-            %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
-        .glide__track{"data-glide-el" => "track"}
-          %ul.glide__slides
-            %li.glide__slide
-              %img{alt: "", src: "images/ba1.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba2.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba3.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba4.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba5.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba6.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba7.jpg"}/
-            %li.glide__slide
-              %img{alt: "", src: "images/ba8.jpg"}/
+      = partial 'partials/glide', locals: { controls: true, slides: data.carousel_micro_coating_images }

@@ -2,9 +2,6 @@
   .hero
     .hero__media
       = image_tag 'star-clinic-photo.webp'
-      -# %video#landingVideo{autoplay: "", muted: "", poster: "images/clinic-photo.jpg"}
-      -#   %source#landingVideo{src: "images/landingVideo.mp4", type: "video/mp4"}
-      -#     Your browser does not support the video tag.
   .section--extra-padding.section__centered.color-accent-2
     %div
       %h1.title{style: 'margin: 0;'} Nejati Clinic
@@ -16,33 +13,7 @@
       -# %p Experience treatments designed to bridge the gap between holistic, cosmetic and medical dentistry. Alongside the treatments offered from a general practice, the new dental concept seeks to keep overall body, including teeth, younger and healthier and thus breaking the ageing cycle.
   .color-accent-1.section__press
     %h2.subtitle Press
-    .glide
-      .glide__track{"data-glide-el" => "track"}
-        %ul.glide__slides
-          %li.glide__slide
-            %img{alt: "", src: "images/daily-mail.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/ES_Magazine_Logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/bazaar.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/Get_The_Gloss_Logo_24081049-4aab-44d9-bc39-4cafbae6fdea.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/AnOther_Logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/Glamour_Logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/vogue_logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/tatler_logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/GQ_logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/country_and_town_house_logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/red_logo.png"}/
-          %li.glide__slide
-            %img{alt: "", src: "images/the_times_logo.png"}/
+    = partial 'partials/glide', locals: { slides: data.carousel_press_images }
   .section--extra-padding.section__centered.color-accent-2.justified
     = image_tag 'vitruvian-man.png', class: :vitruvian 
     %br
@@ -54,8 +25,6 @@
         %p Through meticulous assessment and application of the Golden Proportion, he orchestrates smile makeovers with hand-layered porcelain veneers and direct composite micro-layering, combining Renaissance artistry with modern dentistry. This enhances not just dental aesthetics but overall facial proportions.
         %p Laugh lines and wrinkles find subtle correction through dental techniques, seamlessly integrating with the natural contours of the face. Achieving a youthful, natural smile entails a comprehensive dental evaluation, carefully considering tooth dimensions, facial symmetry, lip position, and gum architecture.
         %p Dr. Nejati’s expertise ensures not only aesthetic perfection but also the long-term health and durability of dental enhancements. Each procedure, whether widening, lengthening, or reinforcing teeth, is tailored to accentuate natural beauty and restore facial proportions.
-    
-
   .hero
     .hero__media
       = image_tag 'anti-aging.webp'
