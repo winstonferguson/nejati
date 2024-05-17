@@ -483,7 +483,7 @@ header .nav__link {
 }
 @media (min-width: 1024px) {
   .hero__media > * {
-    height: 100vh;
+    height: 90vh;
   }
 }
 @media (min-width: 2000px) {
@@ -549,9 +549,13 @@ header .nav__link {
   .section__two-column {
     -ms-grid-columns: 1fr 50%;
     grid-template-columns: 1fr 50%;
-    gap: 2rem;
     max-width: 1800px;
     margin: 0 auto;
+  }
+}
+@media (min-width: 960px) {
+  .section.gap {
+    gap: 2rem;
   }
 }
 

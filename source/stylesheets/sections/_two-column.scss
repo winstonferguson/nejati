@@ -8,9 +8,14 @@
 
     @media (min-width: 960px) {
       grid-template-columns: 1fr 50%;
-      gap: 2rem;
       max-width: 1800px;
       margin: 0 auto;
+    }
+  }
+
+  &.gap {
+    @media (min-width: 960px) {
+      gap: 2rem;
     }
   }
 }
