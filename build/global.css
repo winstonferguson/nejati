@@ -80,6 +80,10 @@ html {
   font-weight: 400;
 }
 
+.referral h3 {
+  font-weight: 600;
+}
+
 .row-1 {
   -ms-grid-row: 1;
   grid-row: 1;
@@ -123,15 +127,19 @@ html {
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 40px;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
+}
+@media (min-width: 1024px) {
+  .subtitle {
+    font-size: 1.25rem;
+  }
 }
 .index .subtitle {
   font-weight: 400;
@@ -139,6 +147,16 @@ html {
 
 h3.subtitle {
   font-size: 0.75rem;
+}
+
+.indent {
+  padding-left: 1rem;
+}
+
+.underline {
+  border-bottom: 1px solid #111;
+  padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 .content__copy {
@@ -483,7 +501,7 @@ header .nav__link {
   width: 100%;
 }
 .hero__media > * {
-  height: 90vh;
+  height: 60vh;
   margin: 0 auto;
   max-width: 2000px;
   -o-object-fit: cover;
@@ -567,6 +585,11 @@ header .nav__link {
     gap: 2rem;
   }
 }
+@media (min-width: 960px) {
+  .section.gap--large {
+    gap: 4rem;
+  }
+}
 
 .image__feature {
   -ms-grid-row: 1;
@@ -591,6 +614,9 @@ header .nav__link {
     -ms-grid-column: 1;
     grid-column: 1;
   }
+}
+.image__feature.row {
+  height: inherit;
 }
 
 .image__feature--model {
@@ -869,6 +895,11 @@ header .nav__link {
 
 .center {
   text-align: center;
+}
+
+.small {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 summary {

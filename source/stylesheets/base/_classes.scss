@@ -1,5 +1,11 @@
 @use "../utilities" as *;
 
+.referral {
+  h3 {
+    font-weight: 600;
+  }
+}
+
 .row-1 {
   grid-row: 1;
 
@@ -40,15 +46,20 @@
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 40px;
+
   margin-bottom: 1rem;
   text-transform: uppercase; 
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
+
+  @media (min-width: $breakpoint-large){
+    font-size: 1.25rem;
+    
+  }
 
   .index & {
     font-weight: 400;
@@ -57,6 +68,16 @@
 
 h3.subtitle {
   font-size: 0.75rem;
+}
+
+.indent {
+  padding-left: 1rem;
+}
+
+.underline {
+  border-bottom: 1px solid #111;
+  padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 .content__copy {
@@ -69,7 +90,6 @@ h3.subtitle {
   display: flex;
   flex-direction: row;
   justify-content: center;
-
 }
 
 .glide__arrows {

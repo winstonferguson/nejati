@@ -17,6 +17,12 @@
     @media (min-width: 960px) {
       gap: 2rem;
     }
+
+    &--large {
+      @media (min-width: 960px) {
+        gap: 4rem;
+      }
+    }
   }
 }
 
@@ -25,6 +31,7 @@
   height: 60vh;
   object-fit: cover;
   min-width: 100%;
+
 
   @media (min-width: 960px) {
     grid-column: 2;
@@ -38,6 +45,11 @@
     @media (min-width: 960px) {
       grid-column: 1;
     }
+  }
+
+  &.row {
+    height: inherit;
+
   }
 }
 
