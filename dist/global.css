@@ -26,7 +26,7 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.nav__link, .header__inner, .footer__branding, .header__nav .nav {
+.row, .nav__link, .header__inner, .footer__branding, .header__nav .nav {
   align-items: center;
   display: flex;
   gap: 1rem;
@@ -732,6 +732,15 @@ header .nav__link {
 .vitruvian {
   max-width: 100%;
   width: 500px;
+}
+
+.row {
+  gap: 0;
+  align-items: flex-start;
+  justify-content: start;
+}
+.row img {
+  object-fit: contain;
 }
 
 .justified {
