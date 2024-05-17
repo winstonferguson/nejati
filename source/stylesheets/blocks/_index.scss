@@ -1,0 +1,29 @@
+@use "../utilities" as *;
+
+.block {
+  @extend %flex-column--start;
+    margin-bottom: 1rem;
+
+    .section--center & {
+      justify-content: center;
+    }
+
+  &--left {
+    @extend %flex-column--start;
+    margin-bottom: 1rem;
+
+    .section--center & {
+      justify-content: center;
+    }
+  }
+}
+
+.col {
+  @extend %flex-column--start;
+
+  margin-bottom: 1rem;
+
+  .section--center & {
+    justify-content: center;
+  }
+}

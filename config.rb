@@ -16,9 +16,9 @@ page '/*.txt', layout: false
 
 activate :external_pipeline,
   name: :esbuild,
-  command: 'yarn build',
+  command: 'yarn build; yarn build:css',
   latency: 2,
-  source: "./builds/"
+  source: "./dist/"
 
 
 # With alternative layout

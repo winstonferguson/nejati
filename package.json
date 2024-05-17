@@ -9,7 +9,7 @@
     "esbuild": "^0.19.2"
   },
   "scripts": {
-    "build": "esbuild javascript/app.js --bundle --outfile=builds/app.js",
-    "build:css": "dart-sass stylesheets/global.scss:./builds/global.css"
+    "build": "esbuild source/javascripts/app.js --bundle --outfile=dist/app.js",
+    "build:css": "dart-sass source/stylesheets/global.scss:./dist/global.css"
   }
 }
