@@ -13,6 +13,10 @@
   padding: 2rem 0;
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+}
 .button {
   background-color: $color-accent-2;
   color: #000;

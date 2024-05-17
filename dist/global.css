@@ -74,6 +74,11 @@ html {
   padding: 2rem 0;
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
 .button {
   background-color: #efe9dc;
   color: #000;
