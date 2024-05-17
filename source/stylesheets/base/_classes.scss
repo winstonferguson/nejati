@@ -44,9 +44,13 @@
 
 .title {
   font-family: 'Italiana', 'Montserrat',sans-serif;
-  font-size: 40px;
+  font-size: 32px;
   margin-bottom: 1rem;
   text-transform: uppercase; 
+
+  @media (min-width: $breakpoint-large){
+    font-size: 40px;
+  }
 }
 
 .subtitle {
