@@ -44,7 +44,7 @@ const options = (autoplay = false) => {
     focusAt: 'center',
     startAt: 0,
     peek: 0,
-    perView: 6,
+    perView: 4,
     gap: 30,
     hoverpause: true,
     breakpoints: {
@@ -52,7 +52,7 @@ const options = (autoplay = false) => {
         perView: 3,
         peek: 0,
         focusAt: 0,
-        gap: 0
+        gap: 30
       },
       768: {
         perView: 1,

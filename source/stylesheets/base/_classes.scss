@@ -65,6 +65,13 @@ h3.subtitle {
   width: 100%;
 }
 
+.glide__slide {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
 .glide__arrows {
   display: flex;
   gap: 1rem;
