@@ -470,6 +470,7 @@ header .nav__link {
 @media (min-width: 960px) {
   .section__two-column {
     grid-template-columns: 1fr 50%;
+    gap: 2rem;
     max-width: 1800px;
     margin: 0 auto;
   }
