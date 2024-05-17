@@ -555,6 +555,7 @@ header .nav__link {
   height: 60vh;
   -o-object-fit: cover;
      object-fit: cover;
+  min-width: 100%;
 }
 @media (min-width: 960px) {
   .image__feature {

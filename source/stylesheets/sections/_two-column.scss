@@ -18,6 +18,7 @@
   grid-row: 1;
   height: 60vh;
   object-fit: cover;
+  min-width: 100%;
 
   @media (min-width: 960px) {
     grid-column: 2;
