@@ -4,15 +4,17 @@ import Glide, { Autoplay, Breakpoints, Controls, Keyboard, Swipe } from '@glidej
 export default function initCarousels() {
   let glideElements = document.querySelectorAll('.glide');
 
-  console.log(glideElements);
+
 
   if (glideElements.length < 1) return;
 
   for (const el of glideElements) {
-    if (el.dataset.autoplay) {
-      new Glide(el, options(el.dataset.autoplay)).mount({ Autoplay, Breakpoints, Keyboard, Swipe })
+    const autoplay = el.dataset.autoplay == 'true'
+
+    if (autoplay) {
+      new Glide(el, options(autoplay)).mount({ Autoplay, Breakpoints, Keyboard, Swipe })
     } else {
-      new Glide(el, options(el.dataset.autoplay)).mount({ Breakpoints, Controls, Keyboard, Swipe })
+      new Glide(el, options(autoplay)).mount({ Breakpoints, Controls, Keyboard, Swipe })
     }
     
   }
@@ -42,11 +44,17 @@ const options = (autoplay = false) => {
     focusAt: 'center',
     startAt: 0,
     peek: 0,
-    perView: 4,
+    perView: 6,
     gap: 30,
     hoverpause: true,
     breakpoints: {
       960: {
+        perView: 3,
+        peek: 0,
+        focusAt: 0,
+        gap: 0
+      },
+      768: {
         perView: 1,
         peek: 0,
         focusAt: 0,

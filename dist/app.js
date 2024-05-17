@@ -2933,14 +2933,14 @@
   // source/javascripts/init_carousels.js
   function initCarousels() {
     let glideElements = document.querySelectorAll(".glide");
-    console.log(glideElements);
     if (glideElements.length < 1)
       return;
     for (const el of glideElements) {
-      if (el.dataset.autoplay) {
-        new Glide(el, options(el.dataset.autoplay)).mount({ Autoplay: autoplay, Breakpoints: breakpoints, Keyboard: keyboard, Swipe: swipe });
+      const autoplay2 = el.dataset.autoplay == "true";
+      if (autoplay2) {
+        new Glide(el, options(autoplay2)).mount({ Autoplay: autoplay, Breakpoints: breakpoints, Keyboard: keyboard, Swipe: swipe });
       } else {
-        new Glide(el, options(el.dataset.autoplay)).mount({ Breakpoints: breakpoints, Controls: controls, Keyboard: keyboard, Swipe: swipe });
+        new Glide(el, options(autoplay2)).mount({ Breakpoints: breakpoints, Controls: controls, Keyboard: keyboard, Swipe: swipe });
       }
     }
   }
@@ -2967,11 +2967,17 @@
       focusAt: "center",
       startAt: 0,
       peek: 0,
-      perView: 4,
+      perView: 6,
       gap: 30,
       hoverpause: true,
       breakpoints: {
         960: {
+          perView: 3,
+          peek: 0,
+          focusAt: 0,
+          gap: 0
+        },
+        768: {
           perView: 1,
           peek: 0,
           focusAt: 0,
@@ -3008,7 +3014,10 @@
     if (isHome)
       overlayHeader();
   };
-  window.addEventListener("resize", stickToBottom);
+  window.resize = () => {
+    initCarousels();
+    stickToBottom();
+  };
 })();
 /*! Bundled license information:
 

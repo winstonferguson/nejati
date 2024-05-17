@@ -1,12 +1,15 @@
 - controls ||= nil
+- autoplay = !controls
 
-.glide
+.glide{ data: { autoplay: autoplay.to_s } }
   - if controls
-    .glide__arrows{data: { glide_el: "controls" } }
-      %button.glide__arrow.glide__arrow--left{data: { glide_dir: "<" } }
-        %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
-      %button.glide__arrow.glide__arrow--right{data: { glide_dir: ">" } }
-        %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
+    .section--side-padding.section__two-column
+      .col.content__copy
+        .glide__arrows{data: { glide_el: "controls" } }
+          %button.glide__arrow.glide__arrow--left{data: { glide_dir: "<" } }
+            %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
+          %button.glide__arrow.glide__arrow--right{data: { glide_dir: ">" } }
+            %img.nav__subnav-caret{src: "images/icon-caret.svg"}/
   .glide__track{ data: { glide_el: :track } }
     %ul.glide__slides
       - slides.each do |slide|
