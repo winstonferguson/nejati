@@ -385,7 +385,7 @@ header .nav__link {
   position: relative;
   width: 100%;
 }
-.index .header {
+.header.overlay {
   z-index: 9;
   background-color: rgba(239, 233, 220, 0.8);
 }

@@ -183,15 +183,15 @@
     /**
      * Register a new callback for the given event type
      */
-    on(type, handler, options) {
-      this.$el.addEventListener(type, handler, options);
+    on(type, handler, options2) {
+      this.$el.addEventListener(type, handler, options2);
       return this;
     }
     /**
      * Unregister an existing callback for the given event type
      */
-    off(type, handler, options) {
-      this.$el.removeEventListener(type, handler, options);
+    off(type, handler, options2) {
+      this.$el.removeEventListener(type, handler, options2);
       return this;
     }
     /**
@@ -260,19 +260,11 @@
     }
   }
 
-  // source/javascripts/dialog.js
-  var container = document.querySelector("#contact-dialog");
-  var dialog = new A11yDialog(container);
-
-  // source/javascripts/stick-to-bottom.js
-  var stickToBottom = () => {
-    elements = document.querySelectorAll(".stick-to-bottom");
-    if (!elements)
-      return;
-    elements.forEach((el) => {
-      el.style.top = `${window.innerHeight - el.clientHeight}px`;
-    });
-  };
+  // source/javascripts/init_dialog.js
+  function initDialog() {
+    const container = document.querySelector("#contact-dialog");
+    const dialog = new A11yDialog(container);
+  }
 
   // node_modules/@glidejs/glide/dist/glide.modular.esm.js
   function _typeof(obj) {
@@ -659,29 +651,29 @@
     }, {});
   }
   function mergeOptions(defaults2, settings) {
-    var options = Object.assign({}, defaults2, settings);
+    var options2 = Object.assign({}, defaults2, settings);
     if (settings.hasOwnProperty("classes")) {
-      options.classes = Object.assign({}, defaults2.classes, settings.classes);
+      options2.classes = Object.assign({}, defaults2.classes, settings.classes);
       if (settings.classes.hasOwnProperty("direction")) {
-        options.classes.direction = Object.assign({}, defaults2.classes.direction, settings.classes.direction);
+        options2.classes.direction = Object.assign({}, defaults2.classes.direction, settings.classes.direction);
       }
       if (settings.classes.hasOwnProperty("type")) {
-        options.classes.type = Object.assign({}, defaults2.classes.type, settings.classes.type);
+        options2.classes.type = Object.assign({}, defaults2.classes.type, settings.classes.type);
       }
       if (settings.classes.hasOwnProperty("slide")) {
-        options.classes.slide = Object.assign({}, defaults2.classes.slide, settings.classes.slide);
+        options2.classes.slide = Object.assign({}, defaults2.classes.slide, settings.classes.slide);
       }
       if (settings.classes.hasOwnProperty("arrow")) {
-        options.classes.arrow = Object.assign({}, defaults2.classes.arrow, settings.classes.arrow);
+        options2.classes.arrow = Object.assign({}, defaults2.classes.arrow, settings.classes.arrow);
       }
       if (settings.classes.hasOwnProperty("nav")) {
-        options.classes.nav = Object.assign({}, defaults2.classes.nav, settings.classes.nav);
+        options2.classes.nav = Object.assign({}, defaults2.classes.nav, settings.classes.nav);
       }
     }
     if (settings.hasOwnProperty("breakpoints")) {
-      options.breakpoints = Object.assign({}, defaults2.breakpoints, settings.breakpoints);
+      options2.breakpoints = Object.assign({}, defaults2.breakpoints, settings.breakpoints);
     }
-    return options;
+    return options2;
   }
   var EventsBus = /* @__PURE__ */ function() {
     function EventsBus2() {
@@ -736,14 +728,14 @@
   }();
   var Glide$1 = /* @__PURE__ */ function() {
     function Glide2(selector) {
-      var options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      var options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
       _classCallCheck(this, Glide2);
       this._c = {};
       this._t = [];
       this._e = new EventsBus();
       this.disabled = false;
       this.selector = selector;
-      this.settings = mergeOptions(defaults, options);
+      this.settings = mergeOptions(defaults, options2);
       this.index = this.settings.startAt;
     }
     _createClass(Glide2, [{
@@ -1200,13 +1192,13 @@
   function now() {
     return (/* @__PURE__ */ new Date()).getTime();
   }
-  function throttle(func, wait, options) {
+  function throttle(func, wait, options2) {
     var timeout, context, args, result;
     var previous = 0;
-    if (!options)
-      options = {};
+    if (!options2)
+      options2 = {};
     var later = function later2() {
-      previous = options.leading === false ? 0 : now();
+      previous = options2.leading === false ? 0 : now();
       timeout = null;
       result = func.apply(context, args);
       if (!timeout)
@@ -1214,7 +1206,7 @@
     };
     var throttled = function throttled2() {
       var at = now();
-      if (!previous && options.leading === false)
+      if (!previous && options2.leading === false)
         previous = at;
       var remaining = wait - (at - previous);
       context = this;
@@ -1228,7 +1220,7 @@
         result = func.apply(context, args);
         if (!timeout)
           context = args = null;
-      } else if (!timeout && options.trailing !== false) {
+      } else if (!timeout && options2.trailing !== false) {
         timeout = setTimeout(later, remaining);
       }
       return result;
@@ -2938,12 +2930,22 @@
     return Glide2;
   }(Glide$1);
 
-  // source/javascripts/app.js
-  window.onload = () => {
-    const hasGlide = document.querySelector(".glide") || false;
-    if (!hasGlide)
+  // source/javascripts/init_carousels.js
+  function initCarousels() {
+    let glideElements = document.querySelectorAll(".glide");
+    console.log(glideElements);
+    if (glideElements.length < 1)
       return;
-    const indexOptions = {
+    for (const el of glideElements) {
+      if (el.dataset.autoplay) {
+        new Glide(el, options(el.dataset.autoplay)).mount({ Autoplay: autoplay, Breakpoints: breakpoints, Keyboard: keyboard, Swipe: swipe });
+      } else {
+        new Glide(el, options(el.dataset.autoplay)).mount({ Breakpoints: breakpoints, Controls: controls, Keyboard: keyboard, Swipe: swipe });
+      }
+    }
+  }
+  var options = (autoplay2 = false) => {
+    const autoplayOptions = {
       type: "carousel",
       focusAt: "center",
       startAt: 0,
@@ -2960,7 +2962,7 @@
         }
       }
     };
-    const ageingOptions = {
+    const controlOptions = {
       type: "carousel",
       focusAt: "center",
       startAt: 0,
@@ -2977,22 +2979,35 @@
         }
       }
     };
-    const options = window.location.href.split("/").pop().length == 0 ? indexOptions : ageingOptions;
-    console.log(options);
-    let glide = new Glide(".glide", options).mount({ Autoplay: autoplay, Breakpoints: breakpoints, Controls: controls, Keyboard: keyboard, Swipe: swipe });
+    return autoplay2 ? autoplayOptions : controlOptions;
+  };
+
+  // source/javascripts/utilities.js
+  var isHome = window.location.href.split("/").pop().length == 0;
+  var stickToBottom = () => {
+    elements = document.querySelectorAll(".stick-to-bottom");
+    if (!elements)
+      return;
+    elements.forEach((el) => {
+      el.style.top = `${window.innerHeight - el.clientHeight}px`;
+    });
+  };
+  var overlayHeader = () => {
+    const header = document.querySelector("header");
+    const headerHeight = getComputedStyle(header).getPropertyValue("height");
+    const firstChild = document.querySelector("main").firstElementChild;
+    firstChild.style.marginTop = `-${headerHeight}`;
+    header.classList.add("overlay");
+  };
+
+  // source/javascripts/app.js
+  window.onload = () => {
+    initCarousels();
+    initDialog();
     stickToBottom();
+    if (isHome)
+      overlayHeader();
   };
-  var indexBody = () => {
-    const isHomepage = document.querySelector("body.index");
-    if (isHomepage) {
-      const header = document.querySelector("header");
-      const headerHeight = getComputedStyle(header).getPropertyValue("height");
-      const hero = document.querySelector(".hero");
-      if (hero)
-        hero.style.marginTop = `-${headerHeight}`;
-    }
-  };
-  indexBody();
   window.addEventListener("resize", stickToBottom);
 })();
 /*! Bundled license information:
