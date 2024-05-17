@@ -490,7 +490,7 @@ header .nav__link {
   position: absolute;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  top: 0px;
+  top: 10px;
 }
 .header__branding img {
   width: 60px;
