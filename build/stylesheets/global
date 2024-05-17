@@ -65,6 +65,15 @@
 .padding-top {
   padding-top: 4rem; }
 
+.referral {
+  max-width: 1200px;
+  margin: 0 auto; }
+  .referral .image__feature {
+    height: 50vh;
+    margin-bottom: 3rem; }
+    @media (min-width: 1024px) {
+      .referral .image__feature {
+        margin-bottom: 2rem; } }
 .section__press .glide__slide img {
   max-width: 200px; }
 
