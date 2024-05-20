@@ -1,7 +1,8 @@
 - controls ||= nil
+- css_class ||= ''
 - autoplay = !controls
 
-.glide{ data: { autoplay: autoplay.to_s } }
+.glide{class: css_class, data: { autoplay: autoplay.to_s } }
   - if controls
     .section--side-padding.section__two-column
       .col.content__copy

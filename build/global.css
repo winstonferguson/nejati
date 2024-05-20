@@ -868,6 +868,16 @@ header .nav__link {
 .glide--rtl {
   direction: rtl;
 }
+.press .glide__slide img {
+  max-width: 30%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .press .glide__slide img {
+    max-width: 50%;
+  }
+}
+
 form {
   max-width: 650px;
   width: 100%;
@@ -1034,7 +1044,9 @@ nav .m-menu ul {
   overflow-y: auto;
 }
 
-nav .m-menu ul li a, nav .m-menu ul li label, nav .m-menu ul li button {
+nav .m-menu ul li a,
+nav .m-menu ul li label,
+nav .m-menu ul li button {
   display: block;
   text-align: left;
   padding: 1rem 2rem;

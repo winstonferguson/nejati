@@ -13,7 +13,7 @@
       -# %p Experience treatments designed to bridge the gap between holistic, cosmetic and medical dentistry. Alongside the treatments offered from a general practice, the new dental concept seeks to keep overall body, including teeth, younger and healthier and thus breaking the ageing cycle.
   .color-accent-1.section__press
     %h2.subtitle Press
-    = partial 'partials/glide', locals: { slides: data.carousel_press_images }
+    = partial 'partials/glide', locals: { slides: data.carousel_press_images, css_class: :press }
   .section--extra-padding.section__centered.color-accent-2.justified
     = image_tag 'vitruvian-man.png', class: :vitruvian 
     %br
