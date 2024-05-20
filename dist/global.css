@@ -779,11 +779,13 @@ header .nav__link {
   margin: 0 auto;
 }
 .referral .image__feature {
-  height: 50vh;
+  height: 30vh;
   margin-bottom: 3rem;
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .referral .image__feature {
+    height: auto;
+    width: 100%;
     margin-bottom: 2rem;
   }
 }

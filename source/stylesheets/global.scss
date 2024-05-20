@@ -18,10 +18,13 @@
   margin: 0 auto;
 
   .image__feature {
-    height: 50vh;
+    height: 30vh;
     margin-bottom: 3rem;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 768px) {
+      height: auto;
+      width: 100%;
+      
       margin-bottom: 2rem;
     }
   }
