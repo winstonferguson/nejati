@@ -1,0 +1,24 @@
+%main
+  .section__two-column.gap.color-accent-1
+    .section--extra-padding.content__copy
+      %h1.title Enquiries
+      .col.content__copy
+        %form{action: 'mailer.php', method: 'post'}
+          .col
+            .group
+              %label{for: 'name'} Name
+              %br
+              %input{type: 'text', name: 'name', required: true}
+            .group
+              %label{for: 'email'} Email
+              %br
+              %input{type: 'email', name: 'email', required: true}
+            .group
+              %label{for: 'telephone'} Telephone
+              %br
+              %input{type: 'tel', name: 'telephone', required: true}
+            %label{for: 'message'} Message
+            %textarea#message{name: 'message', required: true}
+            %br
+            %button.button Send
+    = image_tag 'IMG_2957.webp', class: :image__feature

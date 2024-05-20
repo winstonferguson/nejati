@@ -10,4 +10,8 @@
 
 .row {
   @extend %flex-row;
+
+  &--between {
+    justify-content: space-between;
+  }
 }
