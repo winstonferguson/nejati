@@ -195,8 +195,8 @@ h4 {
 }
 
 .content__carousel {
-  margin-top: -2rem;
-  padding-bottom: 4rem;
+  margin-top: -4rem;
+  padding-bottom: 6rem;
 }
 .content__carousel .subtitle {
   border-top: 1px solid #111;
@@ -877,17 +877,15 @@ header .nav__link {
   margin: 0 auto;
 }
 .referral .image__feature {
-  height: 50vh;
+  height: 30vh;
   margin-bottom: 3rem;
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .referral .image__feature {
+    height: auto;
+    width: 100%;
     margin-bottom: 2rem;
   }
-}
-
-.section__press .glide__slide img {
-  max-width: 200px;
 }
 
 .vitruvian {

@@ -27,7 +27,7 @@ const options = (autoplay = false) => {
     startAt: 0,
     peek: 0,
     perView: 6,
-    gap: 150,
+    gap: 50,
     autoplay: 2000,
     breakpoints: {
       960: {

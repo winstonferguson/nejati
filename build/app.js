@@ -2951,7 +2951,7 @@
       startAt: 0,
       peek: 0,
       perView: 6,
-      gap: 150,
+      gap: 50,
       autoplay: 2e3,
       breakpoints: {
         960: {
