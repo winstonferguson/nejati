@@ -868,6 +868,21 @@ header .nav__link {
 .glide--rtl {
   direction: rtl;
 }
+form {
+  max-width: 650px;
+  width: 100%;
+}
+form input {
+  border: 1px solid #999;
+  padding: 0.5rem 1rem;
+}
+form textarea {
+  border: 1px solid #999;
+  padding: 0.5rem 1rem;
+  min-height: 200px;
+  width: 100%;
+}
+
 .padding-top {
   padding-top: 4rem;
 }
