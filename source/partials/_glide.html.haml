@@ -14,4 +14,8 @@
     %ul.glide__slides
       - slides.each do |slide|
         %li.glide__slide
-          = image_tag slide[:url], alt: slide[:alt]
+          - if slide[:href]
+            %a{href: slide[:href]}
+              = image_tag slide[:url], alt: slide[:alt]
+          - else
+            = image_tag slide[:url], alt: slide[:alt]
