@@ -38,6 +38,7 @@
 
   &__slideshow {
     height: 60vh;
+    margin-top: -88px;
 
     @media (min-width: $breakpoint-large) {
       height: 90vh;
