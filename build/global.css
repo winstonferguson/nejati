@@ -424,7 +424,6 @@ video {
   text-transform: uppercase;
   outline: inherit;
   padding: 0.5rem 0.25rem;
-  width: 100%;
 }
 header .nav__link {
   padding: 2rem 0.25rem;
@@ -496,6 +495,41 @@ header .nav__link {
   width: 60px;
 }
 
+@-webkit-keyframes xfade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes xfade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 1;
+  }
+  53% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .hero {
   min-width: 100%;
   position: relative;
@@ -523,6 +557,54 @@ header .nav__link {
 }
 .index .hero__media {
   margin-top: -180.5px;
+}
+.hero__slideshow {
+  height: 60vh;
+}
+@media (min-width: 1024px) {
+  .hero__slideshow {
+    height: 90vh;
+  }
+}
+.hero__slideshow img {
+  display: flex;
+  align-items: center;
+  height: 60vh;
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+  max-width: 2000px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 1024px) {
+  .hero__slideshow img {
+    height: 90vh;
+  }
+}
+.hero__slideshow img:first-of-type {
+  position: absolute;
+  z-index: 3;
+  -webkit-animation: xfade 12s -4s infinite;
+          animation: xfade 12s -4s infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+.hero__slideshow img:nth-of-type(2) {
+  position: absolute;
+  z-index: 2;
+  -webkit-animation: xfade 12s -8s infinite;
+          animation: xfade 12s -8s infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+.hero__slideshow img:last-of-type {
+  position: absolute;
+  z-index: 1;
+  -webkit-animation: xfade 12s -12s infinite;
+          animation: xfade 12s -12s infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
 }
 
 .hero__content {
@@ -784,6 +866,22 @@ header .nav__link {
 }
 .section--center .col {
   justify-content: center;
+}
+
+.accreditation-links {
+  align-items: center;
+  background-color: #fffefa;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  padding: 3rem;
+}
+@media (min-width: 768px) {
+  .accreditation-links {
+    flex-direction: row;
+    gap: 6rem;
+  }
 }
 
 .glide {

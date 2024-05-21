@@ -7,6 +7,21 @@
 @use "dialog";
 @use "blocks";
 
+.accreditation-links {
+  align-items: center; 
+  background-color: #fffefa;
+  display: flex; 
+  flex-direction: column;
+  gap: 4rem; 
+  justify-content: center; 
+  padding: 3rem; 
+
+  @media (min-width: 768px) {
+    flex-direction: row; 
+    gap: 6rem; 
+  }
+}
+
 .glide {
   position: relative;
   width: 100%;

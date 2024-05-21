@@ -1,5 +1,13 @@
 @use "../utilities" as *;
 
+@keyframes xfade{
+  0% {opacity: 0;}
+ 20% {opacity: 1;}
+ 33% {opacity: 1;}
+ 53% {opacity: 0;}
+ 100% {opacity: 0;}
+}
+
 .hero {
   min-width: 100%;
   position: relative;
@@ -27,7 +35,51 @@
       margin-top: -180.5px;
     }    
   }
+
+  &__slideshow {
+    height: 60vh;
+
+    @media (min-width: $breakpoint-large) {
+      height: 90vh;
+    }
+
+    img {
+      display: flex; 
+      align-items: center;
+      height: 60vh;
+      width: 100%;
+      background-position: center center;
+      background-size: cover;
+      max-width: 2000px;
+      object-fit: cover;
+
+
+      @media (min-width: $breakpoint-large) {
+        height: 90vh;
+      }
+
+      &:first-of-type {
+        position: absolute;
+        z-index: 3;
+        animation: xfade 12s -4s infinite;
+        animation-timing-function: ease-in-out;
+      }
+      &:nth-of-type(2) {
+        position: absolute;
+        z-index: 2;
+        animation: xfade 12s -8s infinite;
+        animation-timing-function: ease-in-out;
+      }
+      &:last-of-type {
+        position: absolute;
+        z-index: 1;
+        animation: xfade 12s -12s infinite;
+        animation-timing-function: ease-in-out;
+      }
+    }    
+  }
 }
+
 
 .hero__content {
   background: rgba(0, 0, 0, 0.5);

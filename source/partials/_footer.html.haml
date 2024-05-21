@@ -13,13 +13,15 @@
       %ul.nav
         %li= link_to 'Home', '/', class: :nav__link
         %li= link_to 'About', 'about', class: :nav__link
-        %li= link_to 'Anti Ageing Dentistry & Dental Rejuvenation', 'anti-ageing-dentistry-and-dental-rejuvenation', class: :nav__link
+        %li= link_to 'Anti Ageing Dentistry', 'anti-ageing-dentistry', class: :nav__link
         %li= link_to 'Examination & Diagnostics', 'examination-and-diagnostics', class: :nav__link
         %li= link_to 'Oral Hygiene Treatment & Well Being Experience', 'oral-hygiene-treatment-well-being-experience', class: :nav__link
-        %li= link_to 'Mahsa X Sarah Bradden Combined Body Cleansing Treatment', 'sarah-bradden-combined-body-treatment', class: :nav__link
+        %li= link_to 'Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment', 'sarah-bradden-combined-body-treatment', class: :nav__link
         %li= link_to 'Signature Mahsa LED Teeth Whitening in Clinic Treatment', 'signature-mahsa-led-treatment', class: :nav__link
         %li
-          %a.nav__link{href: "about.html#specialist-referrals"} Specialist Dentistry Referrals
+          %a.nav__link{href: 'about.html#specialist-referrals'} Other Specialties & Referrals
+        %li
+          %a.nav__link{href: "https://www.mahsa.co.uk/"} Shop
         %li
           %button.nav__link{"data-a11y-dialog-show" => "contact-dialog"} Contact
         %li
@@ -28,7 +30,7 @@
       %img{alt: "Nejati Clinic logo", src: "images/device.svg"}/
   %br
   %br
-%div{style: 'align-items: center; display: flex; justify-content: center; gap: 6rem; padding: 3rem; background-color: #fffefa;'}
+.accreditation-links
   %a{href: "https://www.bacd.com/"}
     = image_tag 'british-academy-of-cosmetic-dentistry.png', style: 'width: 150px;'
   %a{href: "https://aacd.com/"}

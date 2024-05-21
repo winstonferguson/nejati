@@ -1,6 +1,8 @@
 %main
   .hero
-    .hero__media
+    .hero__slideshow
+      = image_tag 'interior0135.webp'
+      = image_tag 'IMG_2949-large.webp'
       = image_tag 'star-clinic-photo.webp'
   .section--extra-padding.section__centered.color-accent-2
     %div
@@ -25,38 +27,44 @@
         %p Through meticulous assessment and application of the Golden Proportion, he orchestrates smile makeovers with hand-layered porcelain veneers and direct composite micro-layering, combining Renaissance artistry with modern dentistry. This enhances not just dental aesthetics but overall facial proportions.
         %p Laugh lines and wrinkles find subtle correction through dental techniques, seamlessly integrating with the natural contours of the face. Achieving a youthful, natural smile entails a comprehensive dental evaluation, carefully considering tooth dimensions, facial symmetry, lip position, and gum architecture.
         %p Dr. Nejati’s expertise ensures not only aesthetic perfection but also the long-term health and durability of dental enhancements. Each procedure, whether widening, lengthening, or reinforcing teeth, is tailored to accentuate natural beauty and restore facial proportions.
-  .hero{style: 'margin-bottom: 2rem;'}
-    .hero__media
-      = image_tag 'anti-aging.webp'
-    .hero__content
-      %h1.title{style: 'margin-bottom: 0; line-height: 1;'}
-        = 'Anti Ageing & Rejuvenation Dentistry'
-      %p{style: 'margin-bottom: 1rem;'} The Micro-Layering Treatment, Nejati’s cornerstone, aims to rejuvenate oral health and maintain dental vitality.
-      = link_to 'Learn more', 'anti-ageing-dentistry-and-dental-rejuvenation', class: 'button', style: 'border: 1px solid #fff; background-color: transparent; color: #fff;'    
+  .section__two-column.section__two-column--reverse.color-accent-1
+    .section--extra-padding.section--center.content__copy
+      .col
+        %h2.subtitle Anti Ageing Dentistry
+        %p The Micro-Layering Treatment, Nejati’s magnum opus, aims to rejuvenate oral health and maintain dental vitality.
+        = link_to 'Learn more', 'anti-ageing-dentistry', class: 'button'   
+    %img.image__feature{src: "images/anti-aging.webp"}
   .section__two-column.color-accent-1
     .section--extra-padding.section--center.content__copy
       .col
         %h2.subtitle Examination & Diagnostics
-        %p 
+        %p During routine examinations, we assess dental and soft tissues, screen for oral cancer, take necessary x-rays, and evaluate gum health to provide personalized preventative care.
         = link_to 'Learn more', 'examination-and-diagnostics', class: 'button'   
-    %img.image__feature{src: "images/examination.jpg"}/
+    %img.image__feature{src: "images/examination.jpg"}
   .section__two-column.section__two-column--reverse.color-accent-1
-    %img.image__feature{src: "images/well-being.webp"}/
+    %img.image__feature{src: "images/well-being.webp"}
     .section--extra-padding.section--center.content__copy
       .col
         %h2.subtitle Oral hygiene treatment & well-being experience
+        %p At Nejati Clinic, we've transformed dental care with Guided Biofilm Therapy (GBT), turning routine cleanings into luxurious spa-like experiences
         = link_to 'Learn more', 'oral-hygiene-treatment-well-being-experience', class: 'button'
   .section__two-column.color-accent-1
     .section--extra-padding.section--center.content__copy
       .col
-        %h2.subtitle Mahsa X Sarah Bradden Combined Body Cleansing Treatment
+        %h2.subtitle Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment
         %p The mouth is the gateway to the rest of the body. When your mouth is healthy, your body is healthy!
         = link_to 'Learn more', 'sarah-bradden-combined-body-treatment', class: 'button'
-    %img.image__feature{src: "images/peaceful-woman.jpg"}/
+    %img.image__feature{src: "images/peaceful-woman.jpg"}
   .section__two-column.section__two-column--reverse.color-accent-1
-    %img.image__feature{src: "images/tooth-whitening.webp"}/
+    %img.image__feature{src: "images/tooth-whitening.webp"}
     .section--extra-padding.section--center.content__copy
       .col
         %h2.subtitle Signature Mahsa led teeth whitening in clinic treatment
-        %p Keep your youth with a white smile.
+        %p Achieve up to 8 shades whiter teeth in just 60 minutes with MAHSA in-chair whitening.
         = link_to 'Learn more', 'signature-mahsa-led-treatment', class: 'button'
+  .section__two-column.color-accent-1
+    %img.image__feature{src: "images/other-specialties.webp"}
+    .section--extra-padding.section--center.content__copy
+      .col
+        %h2.subtitle Other Specialties & referrals
+        = link_to 'Learn more', 'about.html#specialist-referrals', class: 'button'
