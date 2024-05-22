@@ -392,6 +392,7 @@ header .nav__link {
   background-color: #efe9dc;
   position: relative;
   width: 100%;
+  z-index: 9;
 }
 .header.overlay {
   z-index: 9999;
