@@ -463,7 +463,7 @@ header .nav__link {
   width: 100%;
 }
 .header.overlay {
-  z-index: 9;
+  z-index: 9999;
   background-color: rgba(239, 233, 220, 0.8);
 }
 .header__inner {
@@ -1110,7 +1110,7 @@ nav .m-menu__overlay {
   top: 0;
   width: 100%;
   bottom: 0;
-  z-index: 1;
+  z-index: 9999;
   display: none;
 }
 
