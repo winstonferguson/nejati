@@ -1,0 +1,34 @@
+%main
+  .section__two-column.gap.color-accent-1
+    .section--extra-padding.content__copy
+      %h1.title Careers
+      .col
+        .col
+          %p We are continually seeking like-minded professionals, including surgeons, doctors, nurses, and administrative staff, who can contribute positively and deliver a service of exceptional calibre within our unique and prestigious environment.
+          %p If you believe you can make a valuable addition to our team, please forward your CV in the form below.
+        %form{action: 'mailer', method: :post}
+          .col
+            .group
+              %label{for: 'name'} Name
+              %br
+              %input{type: 'text', name: 'name', required: true}
+            .group
+              %label{for: 'email'} Email
+              %br
+              %input{type: 'email', name: 'email', required: true}
+            .group
+              %label{for: 'telephone'} Telephone
+              %br
+              %input{type: 'tel', name: 'telephone', required: true}
+            .group
+              %label{for: 'cv'} CV
+              %br
+              %input{type: 'file', name: 'cv', accept: 'application/pdf', required: true}
+              %br
+              %small 
+                *Please upload your CV in PDF format. If you need to convert your CV to PDF, you may use a free online tool like <strong><a href='https://acrobat.adobe.com/link/acrobat/word-to-pdf' target='_blank'>here</a></strong>.
+            %label{for: 'message'} Message
+            %textarea#message{name: 'message', required: true}
+            %br
+            %button{type: :submit, class: :button} Send
+    = image_tag 'IMG_2957.webp', class: :image__feature
