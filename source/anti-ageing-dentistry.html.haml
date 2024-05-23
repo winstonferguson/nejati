@@ -1,8 +1,8 @@
-%main
+%main.color-accent-1
   .section__two-column.gap.color-accent-1
-    .section--extra-padding.content__copy
+    .section--extra-padding.content__copy{style: 'padding-bottom: 2rem;'}
       %h1.title Anti Ageing Dentistry
-      .col.content__copy
+      .col
         %h2.subtitle Micro-layering and sculpting
         .col
           %p With a legacy spanning two decades, leading London-based aesthetic dentist, Dr. Brandon Nejati, founder of the Nejati Clinic, has been transforming smiles into natural and exquisite works of art in a totally non-invasive way.
@@ -16,7 +16,12 @@
               %p This is an important and integral part of Nejati’s oral rejuvenation process which aims to create a youthful appearance, whilst restoring and sealing the wear and tear, which is the most common sign of ageing in the dental tissue. The barrier created, will in turn protect the teeth against further wear and damage.
               %p As we stand at the crossroads of innovation and tradition, the Nejati Clinic beckons - a sanctuary where art, science, and care converges to create enduring, timeless smiles.
               %p The Micro-Layering Treatment stands as Nejati’s foundational pillar for holistic oral rejuvenation. It seeks to grant not only youthful appearance but also the preservation of dental vitality.
-    = image_tag 'anti-aging.webp', class: 'image__feature'     
+    = image_tag 'anti-aging.webp', class: 'image__feature'
+  .content__carousel
+    .section--side-padding.section__two-column
+      .col.content__copy
+        %h4.subtitle Before and After
+    = partial 'partials/glide', locals: { controls: true, slides: data.carousel_micro_layering_images }     
   .color-accent-2
     .section.section__two-column.padding-top
       .col.content__copy
@@ -51,4 +56,4 @@
       .section--side-padding.section__two-column
         .col.content__copy
           %h4.subtitle Before and After
-      = partial 'partials/glide', locals: { controls: true, slides: data.carousel_micro_coating_images }
+      = partial 'partials/glide', locals: { controls: true, slides: data.carousel_nano_images }

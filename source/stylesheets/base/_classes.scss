@@ -29,13 +29,13 @@
 }
 
 .hide-on-mobile {
-  @media (max-width: 960px) {
+  @media (max-width: 1260px) {
     display: none;
   }
 }
 
 .hide-on-desktop {
-  @media (min-width: 960px) {
+  @media (min-width: 1260px) {
     display: none;
   }
 }

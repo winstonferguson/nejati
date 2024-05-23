@@ -89,13 +89,13 @@ html {
   text-transform: uppercase;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1260px) {
   .hide-on-mobile {
     display: none;
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1260px) {
   .hide-on-desktop {
     display: none;
   }
@@ -978,7 +978,7 @@ nav .m-menu {
   -o-transition: transform 0.35s;
   -webkit-transition: transform 0.35s;
   transition: transform 0.35s;
-  z-index: 1;
+  z-index: 9;
   overflow: hidden;
   background-color: #fffefa;
 }
@@ -989,7 +989,7 @@ nav .m-menu__overlay {
   top: 0;
   width: 100%;
   bottom: 0;
-  z-index: 9999;
+  z-index: 9;
   display: none;
 }
 
