@@ -1,5 +1,7 @@
 import initDialog from './init_dialog.js';
 import initCarousels from './init_carousels.js';
+import initForms from './init_forms.js';
+
 import { isHome, overlayHeader, stickToBottom } from './utilities.js';
 
 
