@@ -34,11 +34,15 @@
     ba3.jpg
   alt: 
     ''
-# - url: 
-#     ba1.jpg
-#   alt: 
-#     ''
-# - url: 
-#     ba2.jpg
-#   alt: 
-#     ''
+- url: 
+    ba1.jpg
+  alt: 
+    ''
+- url: 
+    ba2.jpg
+  alt: 
+    ''
+- url: 
+    nano-12.jpg
+  alt: 
+    ''
