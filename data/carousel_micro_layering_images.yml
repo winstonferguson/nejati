@@ -1,25 +1,9 @@
 - url: 
-    ba1.jpg
-  alt: 
-    ''
-- url: 
-    ba2.jpg
-  alt: 
-    ''
-- url: 
-    ba3.jpg
-  alt: 
-    ''
-- url: 
-    ba4.jpg
-  alt: 
-    ''
-- url: 
-    ba5.jpg
-  alt: 
-    ''
-- url: 
     ba6.jpg
+  alt: 
+    ''
+- url: 
+    ba11.jpg
   alt: 
     ''
 - url: 
@@ -39,6 +23,22 @@
   alt: 
     ''
 - url: 
-    ba11.jpg
+    ba4.jpg
   alt: 
     ''
+- url: 
+    ba5.jpg
+  alt: 
+    ''
+- url: 
+    ba3.jpg
+  alt: 
+    ''
+# - url: 
+#     ba1.jpg
+#   alt: 
+#     ''
+# - url: 
+#     ba2.jpg
+#   alt: 
+#     ''
