@@ -1,5 +1,7 @@
 let isHome = (window.location.href.split('/').pop().length == 0);
 
+let isSuccess = window.location.href.split('/').pop().includes('success');
+
 // sticky positioned elements that stick to bottom of the viewport 
 const stickToBottom = () => {
   elements = document.querySelectorAll('.stick-to-bottom');
@@ -22,6 +24,7 @@ const overlayHeader = () => {
 
 export {
   isHome,
+  isSuccess,
   overlayHeader,
   stickToBottom
 }

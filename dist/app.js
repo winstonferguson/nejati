@@ -2990,6 +2990,7 @@
 
   // source/javascripts/utilities.js
   var isHome = window.location.href.split("/").pop().length == 0;
+  var isSuccess = window.location.href.split("/").pop().includes("success");
   var stickToBottom = () => {
     elements = document.querySelectorAll(".stick-to-bottom");
     if (!elements)
