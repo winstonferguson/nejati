@@ -20,7 +20,7 @@
             %li
               %a.nav__link{href: '/'} Home
             %li
-              = link_to 'About', '/about', class: :nav__link
+              = link_to 'About', 'about', class: :nav__link
             %li
               %label.nav__link.a-label__chevron{for: "item-2"} Treatments
               %input#item-2.m-menu__checkbox{name: "item-2", type: "checkbox"}/
@@ -31,64 +31,48 @@
                       %path{d: "M19 12H6M12 5l-7 7 7 7"}
                   %span Treatments
                 %ul
-                  %li
-                    = link_to 'Anti Ageing Dentistry', '/anti-ageing-dentistry', class: 'nav__link'
-                  %li
-                    %a.nav__link{href: "/examination-and-diagnostics"} Examination &amp; Diagnositcs
-                  %li
-                    %a.nav__link{href: "/oral-hygiene-treatment-well-being-experience"} Oral Hygiene Treatment &amp; Well Being Experience
-                  %li
-                    %a.nav__link{href: "/sarah-bradden-combined-body-treatment"} Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment
-                  %li
-                    %a.nav__link{href: "/signature-mahsa-led-treatment"} Signature Mahsa LED Teeth Whitening in Clinic Treatment
-                  %li
-                    %a.nav__link{href: "/sarah-bradden-dr-tim-combined"} Sarah Bradden X Dr Tim Combined for TMJ Conditions and Migraines
-                  %li
-                    %a.nav__link{href: "/about#specialist-referrals"} Other Specialties & Referrals
+                  %li= link_to 'Anti Ageing Dentistry', 'anti-ageing-dentistry', class: 'nav__link'
+                  %li= link_to 'Examination & Diagnositcs', 'examination-and-diagnostics', class: 'nav__link'
+                  %li= link_to 'Oral Hygiene Treatment & Well Being Experience', 'oral-hygiene-treatment-well-being-experience', class: 'nav__link'
+                  %li= link_to 'Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment', 'sarah-bradden-combined-body-treatment', class: 'nav__link'
+                  %li= link_to 'Signature Mahsa LED Teeth Whitening in Clinic Treatment', 'signature-mahsa-led-treatment', class: 'nav__link'
+                  %li= link_to 'Sarah Bradden X Dr Tim Combined for TMJ Conditions and Migraines', 'sarah-bradden-dr-tim-combined', class: 'nav__link'
+                  %li= link_to 'Other Specialties & Referrals', 'about.html#specialist-referrals', class: 'nav__link'
             %li
               %a.nav__link{href: "https://www.mahsa.co.uk/collections/all"} Shop
             %li
               %button.nav__link{"data-a11y-dialog-show" => "contact-dialog"} Contact
             %li
-              = link_to 'Careers', '/careers', class: :nav__link
+              = link_to 'Careers', 'careers', class: :nav__link
         .row
           
-          = link_to 'Enquiries', '/enquiries', class: :nav__link
+          = link_to 'Enquiries', 'enquiries', class: :nav__link
   .header__inner
     .row{style: 'align-items: center; justify-content: space-between; width: 100%;'}
       %nav.header__nav.hide-on-mobile
         %ul.nav
-          %li
-            = link_to 'Home', '/', class: 'nav__link'
-          %li
-            = link_to 'About', '/about', class: :nav__link
+          %li= link_to 'Home', '/', class: 'nav__link'
+          %li= link_to 'About', 'about', class: :nav__link
           %li.nav__subnav
             %button.nav__link
               Treatments
               %img.nav__subnav-caret{src: "images/icon-caret.svg"}
             %ul.nav__subnav-content.color-invert
-              %li
-                = link_to 'Anti Ageing Dentistry', '/anti-ageing-dentistry', class: 'nav__link'
-              %li
-                %a.nav__link{href: "/examination-and-diagnostics"} Examination & Diagnositcs
-              %li
-                %a.nav__link{href: "/oral-hygiene-treatment-well-being-experience"} Oral Hygiene Treatment & Well Being Experience
-              %li
-                %a.nav__link{href: "/sarah-bradden-combined-body-treatment"} Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment
-              %li
-                %a.nav__link{href: "/signature-mahsa-led-treatment"} Signature Mahsa LED Teeth Whitening in Clinic Treatment
-              %li
-                %a.nav__link{href: "/sarah-bradden-dr-tim-combined"} Sarah Bradden X Dr Tim Combined for TMJ Conditions and Migraines
-              %li
-                %a.nav__link{href: "/about#specialist-referrals"} Other Specialties & Referrals
+              %li= link_to 'Anti Ageing Dentistry', 'anti-ageing-dentistry', class: 'nav__link'
+              %li= link_to 'Examination & Diagnositcs', 'examination-and-diagnostics', class: 'nav__link'
+              %li= link_to 'Oral Hygiene Treatment & Well Being Experience', 'oral-hygiene-treatment-well-being-experience', class: 'nav__link'
+              %li= link_to 'Mahsa X Sarah Bradden Combined Body Cleansing & Oral Detox Treatment', 'sarah-bradden-combined-body-treatment', class: 'nav__link'
+              %li= link_to 'Signature Mahsa LED Teeth Whitening in Clinic Treatment', 'signature-mahsa-led-treatment', class: 'nav__link'
+              %li= link_to 'Sarah Bradden X Dr Tim Combined for TMJ Conditions and Migraines', 'sarah-bradden-dr-tim-combined', class: 'nav__link'
+              %li= link_to 'Other Specialties & Referrals', 'about.html#specialist-referrals', class: 'nav__link'
           %li
             %a.nav__link{href: "https://www.mahsa.co.uk/collections/all"} Shop
           %li
             %button.nav__link{"data-a11y-dialog-show" => "contact-dialog"} Contact
       .hide-on-mobile
         .row{style: 'gap: 1rem;'}
-          = link_to 'Careers', '/careers', class: :nav__link
-          = link_to 'Enquiries', '/enquiries', class: :nav__link
+          = link_to 'Careers', 'careers', class: :nav__link
+          = link_to 'Enquiries', 'enquiries', class: :nav__link
     .header__branding
       %img{alt: "Nejati Clinic logo", src: "images/device-black.svg"}
 /[if lt IE 7]

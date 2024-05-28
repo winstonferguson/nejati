@@ -14,7 +14,7 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
-activate :directory_indexes
+# activate :directory_indexes
 
 activate :external_pipeline,
   name: :esbuild,
