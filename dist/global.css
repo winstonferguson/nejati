@@ -691,7 +691,7 @@ header .nav__link {
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 9999;
 }
 .dialog[aria-hidden=true] {
   display: none;
